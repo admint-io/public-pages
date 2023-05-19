@@ -398,7 +398,7 @@ window.onload = async function () {
         inviteCode=inviteId;
     
         window.ftd.set_value(
-            `admint-io.github.io/Templates/texts#nft-type`,
+            `public-pages/distribution/templates/holy-angel/texts#nft-type`,
             nftType
         );
         
@@ -422,13 +422,13 @@ window.onload = async function () {
                             }
                            if(obj.light != undefined && obj.light != "undefined"){
                             window.ftd.set_value(
-                                `admint-io.github.io/Templates/colors#${colors}.light`,
+                                `public-pages/distribution/templates/holy-angel/colors#${colors}.light`,
                                 obj.light
                             );
                            }
                            if(obj.dark != undefined && obj.dark != "undefined"){
                             window.ftd.set_value(
-                                `admint-io.github.io/Templates/colors#${colors}.dark`,
+                                `public-pages/distribution/templates/holy-angel/colors#${colors}.dark`,
                                 obj.dark
                             );
                            }   
@@ -481,16 +481,16 @@ window.onload = async function () {
                         } 
                         if("bannerImageUrl" in respData.values[0]){
                             window.ftd.set_value(
-                                "admint-io.github.io/Templates/images#hero-image-url",
+                                "public-pages/distribution/templates/holy-angel/images#hero-image-url",
                                 respData.values[0].bannerImageUrl
                             );
                         } 
                         if("creativeDatas" in respData.values[0]){
                             updateCreativeDataUi(respData.values[0].creativeDatas).then((result)=>{
-                              window.ftd.set_value(
-                                `public-pages/distribution/templates/holy-angel/#loadedState`,
-                                "loaded"
-                            );
+                                window.ftd.set_value(
+                                    `public-pages/distribution/templates/holy-angel/#loadedState`,
+                                    "loaded"
+                                );
                             });
                         }
                         resolve(respData);
@@ -550,7 +550,7 @@ window.updateCreativeDataUi = async function updateCreativeDataUi(creativeDatasA
             if(obj.creativeId==creativeId){
                 if("imageUrl" in obj){
                     window.ftd.set_value(
-                        "admint-io.github.io/Templates/images#nft-image-url",
+                        "public-pages/distribution/templates/holy-angel/images#nft-image-url",
                         obj.imageUrl
                     );                    
                 }            

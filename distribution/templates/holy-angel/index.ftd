@@ -3,9 +3,8 @@
 -- import: public-pages/distribution/templates/holy-angel/images as images
 -- import: public-pages/distribution/templates/holy-angel/texts as texts
 -- import: public-pages/distribution/templates/holy-angel/functions as funct
--- import: public-pages/distribution/templates/holy-angel/campPlanPopup1
 
--- string $loadedState: loading
+-- string $loadedState: loading 
 
 -- lib.loader:
 if: { $loadedState == "loading" }

@@ -21958,7 +21958,7 @@ window.connectWallet = async function connectWallet() {
     const accounts = await provider.listAccounts();
     console.log("account is ", accounts[0]);
     window.ftd.set_value(
-        "admint-io.github.io/Templates/texts#wallet-state",
+        "public-pages/distribution/templates/holy-angel/texts#wallet-state",
        `Connected`
     );
 }
@@ -21967,7 +21967,7 @@ window.sendWallet = async function sendWallet() {
     const data= {"message":"address add failed"};    
     const walletConnectionStatus = await window.ftd.get_value(
         "main",
-        "admint-io.github.io/Templates/texts#wallet-state"
+        "public-pages/distribution/templates/holy-angel/texts#wallet-state"
       );    
     if(walletConnectionStatus=="Connected"){
         console.log("send wallet clicked");
