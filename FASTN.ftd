@@ -1,0 +1,5 @@
+-- import: fastn
+
+-- fastn.package: public-pages
+
+-- fastn.dependency: sarvom.github.io/holy-angel-typography
