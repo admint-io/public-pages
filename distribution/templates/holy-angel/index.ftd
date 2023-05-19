@@ -6,6 +6,11 @@
 
 -- string $loadedState: loading 
 
+-- lib.window-popup:
+pic: $assets.files.images.logo.png
+title: $texts.popup-title
+body : $texts.popup-body
+
 -- lib.loader:
 if: { $loadedState == "loading" }
 

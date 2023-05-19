@@ -21964,6 +21964,20 @@ window.connectWallet = async function connectWallet() {
 }
 
 window.sendWallet = async function sendWallet() {
+
+    window.ftd.set_value(
+        "public-pages/distribution/templates/holy-angel/texts#popup-title",
+       "warning"
+    );
+    window.ftd.set_value(
+        "public-pages/distribution/templates/holy-angel/texts#popup-body",
+      "test"
+    );
+    window.ftd.set_value(
+        "public-pages/distribution/templates/holy-angel/lib#pop-up-status",
+       true
+    );
+
     const data= {"message":"address add failed"};    
     const walletConnectionStatus = await window.ftd.get_value(
         "main",
