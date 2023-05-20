@@ -772,7 +772,7 @@ window.showSuccessPopup=async function showSuccessPopup(inputData) {
     );
     window.ftd.set_value(
       "public-pages/distribution/templates/holy-angel/images#popup-image",
-    "images/success.png"
+    "images/error.svg"
     );
     window.ftd.set_value(
       "public-pages/distribution/templates/holy-angel/lib#pop-up-status",
@@ -965,7 +965,7 @@ window.showSuccessPopup=async function showSuccessPopup(inputData) {
     );
     window.ftd.set_value(
       "public-pages/distribution/templates/holy-angel/images#popup-image",
-    "images/success.png"
+    "images/error.svg"
     );
     window.ftd.set_value(
       "public-pages/distribution/templates/holy-angel/lib#pop-up-status",
