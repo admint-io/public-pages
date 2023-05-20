@@ -1168,10 +1168,10 @@ colors: $color-values-2
 
 
 
--- boolean $pop-up-status: true
+-- boolean $pop-up-status: false
 
 -- component window-popup:
-ftd.image-src pic: 
+string pic: 
 caption title:
 body body:
 

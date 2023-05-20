@@ -7,7 +7,7 @@
 -- string $loadedState: loading 
 
 -- lib.window-popup:
-pic: $assets.files.images.logo.png
+pic: $images.popup-image
 title: $texts.popup-title
 body : $texts.popup-body
 
