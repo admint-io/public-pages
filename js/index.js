@@ -352,7 +352,7 @@ function figma_json_to_ftd(json) {
             resolve(result);
         }
         catch(e){
-            showWarningPopup("Error. Switching to default color scheme");  
+           // showWarningPopup("Error. Switching to default color scheme");  
             reject(e);
         }
         
@@ -505,7 +505,7 @@ window.onload = async function () {
             })
             .catch((error) => {
                 console.error(error);
-                showFailurePopup(error);
+                //showFailurePopup(error);
                 reject(error);
             });
         }
@@ -537,7 +537,7 @@ window.fetchColorScheme = async function fetchColorScheme(colorSchemeUrl) {
         })
         .catch((error) => {
             console.error(error);                  
-            showFailurePopup(error);
+            //showFailurePopup(error);
             reject(error);
         });
     });            
