@@ -756,22 +756,22 @@ opacity: 0.7
 
 -- end: ftd.row
 
--- ftd.text: $countdown-with-info.counter
-width: fill-container
-text-align: center
-padding-vertical.px: 20
-padding-horizontal.px: 10
-border-width.px: 1
-border-radius.px: 6
-border-color: $colors.accent-secondary-
-role: $inherited.types.copy-small
-color: $colors.text-
+;;-- ftd.text: $countdown-with-info.counter
+;;width: fill-container
+;;text-align: center
+;;padding-vertical.px: 20
+;;padding-horizontal.px: 10
+;;border-width.px: 1
+;;border-radius.px: 6
+;;border-color: $colors.accent-secondary-
+;;role: $inherited.types.copy-small
+;;color: $colors.text-
 
--- ftd.text: $countdown-with-info.reminder
-role: $inherited.types.copy-small
-color: $colors.text-
-margin-top.px: 8
-opacity: 0.7
+;;-- ftd.text: $countdown-with-info.reminder
+;;role: $inherited.types.copy-small
+;;color: $colors.text-
+;;margin-top.px: 8
+;;opacity: 0.7
 
 -- end: ftd.column
 
