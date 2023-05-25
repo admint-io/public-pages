@@ -1215,6 +1215,7 @@ border-top-width.px: 2
 border-radius.px: 20
 border-color: $colors.accent-primary-
 padding-vertical.px: 100
+background.solid: $colors.base-
 
 -- ftd.column:
 width: fill-container
