@@ -473,6 +473,7 @@ boolean $is-active: false
 -- ftd.column:
 width: fill-container
 margin-vertical.px: 150
+id: claim
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
@@ -1136,6 +1137,7 @@ color: $colors.text-
 style: bold
 color: $colors.text-
 role: $inherited.types.copy-small
+link: index.html#claim
 
 -- end: ftd.row
 
