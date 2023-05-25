@@ -21952,6 +21952,25 @@ try {
 
 
 window.connectWallet = async function connectWallet() {
+     // Check if MetaMask is installed and connected
+    if (typeof window.ethereum === 'undefined') {
+        console.error('MetaMask is not installed.');
+        showWarningPopup("MetaMask is not installed");
+        return;
+    }
+
+    try {
+        // Request network change
+        await window.ethereum.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: `0x89` }],
+        });
+        console.log('Network switched successfully.');
+      } catch (error) {
+        console.error('Failed to switch network:', error);
+        return;
+      }
+
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     await provider.send("eth_requestAccounts", []);
     const signer = provider.getSigner()
@@ -21960,12 +21979,11 @@ window.connectWallet = async function connectWallet() {
     window.ftd.set_value(
         "public-pages/distribution/templates/holy-angel/texts#wallet-state",
        `Connected`
-    );
+    );    
 }
 
-window.sendWallet = async function sendWallet() {    
+window.sendWallet = async function sendWallet() {   
 
-    const data= {"message":"address add failed"};    
     const walletConnectionStatus = await window.ftd.get_value(
         "main",
         "public-pages/distribution/templates/holy-angel/texts#wallet-state"
