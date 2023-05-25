@@ -21,7 +21,7 @@ background.solid: $colors.base-
 
 -- banner: Collect your POAP NFT here.  
 cta-text: CLAIM NOW!
-$on-click$: $funct.sendWallet()
+;;$on-click$: $funct.sendWallet()
 
 -- navbar: 
 logo: $page.logo
@@ -1137,7 +1137,7 @@ color: $colors.text-
 style: bold
 color: $colors.text-
 role: $inherited.types.copy-small
-link: index.html#claim
+link: distribution/templates/holy-angel#claim
 
 -- end: ftd.row
 
