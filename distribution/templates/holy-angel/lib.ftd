@@ -21,7 +21,7 @@ background.solid: $colors.base-
 
 -- banner: Collect your POAP NFT here.  
 cta-text: CLAIM NOW!
-;;$on-click$: $funct.sendWallet()
+$on-click$: $funct.sendWallet()
 
 -- navbar: 
 logo: $page.logo
@@ -473,7 +473,6 @@ boolean $is-active: false
 -- ftd.column:
 width: fill-container
 margin-vertical.px: 150
-id: claim
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
