@@ -325,17 +325,10 @@ window.updateCreativeDataUi = async function updateCreativeDataUi(
       if (obj.creativeId == creativeId) {
         console.log("creatives match found ");
         if ("imageUrl" in obj) {
-          checkImageURL(obj.imageUrl)
-            .then((validImageUrl) => {
-              console.log("this is a valid image url", validImageUrl);
-              window.ftd.set_value(
-                "public-pages/distribution/templates/holy-angel/images#nft-image-url",
-                validImageUrl
-              );
-            })
-            .catch((error) => {
-              console.error(error);
-            });
+          window.ftd.set_value(
+            "public-pages/distribution/templates/holy-angel/images#nft-image-url",
+            obj.imageUrl
+          );       
         }
       }
     });
