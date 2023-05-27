@@ -73,21 +73,85 @@ window.onload = async function () {
     });
 };
 
+function getUrlParameters() {
+  // Get the current URL from the browser
+  const url = window.location.href;
+
+  // Split the URL into base URL and fragment identifier
+  const [baseUrl, fragment] = url.split('#');
+
+  // Check if there is a fragment identifier present
+  if (fragment) {
+    // Split the fragment into fragment part and query string
+    const [fragmentPart, queryString] = fragment.split('?');
+    const fragmentParams = new URLSearchParams(queryString);
+
+    // Create an object to store the decoded fragment parameters
+    const decodedParams = {};
+
+    // Loop through the fragment parameters and decode the values
+    for (const [key, value] of fragmentParams.entries()) {
+      decodedParams[key] = decodeURIComponent(value);
+    }
+
+    // Return the fragment parameters along with the base URL
+    return {
+      baseUrl: baseUrl,
+      fragmentParams: decodedParams
+    };
+  }
+
+  // Return only the base URL if there is no fragment identifier
+  return {
+    baseUrl: baseUrl
+  };
+}
+
 window.readUrlParams = async function readUrlParams() {
   return new Promise(function (resolve, reject) {
-    const urlParams = new URLSearchParams(window.location.search);
-    const inviteId = urlParams.get("invite_id");
-    const domainName = urlParams.get("cname");
-    const nftType = urlParams.get("type");
-    const creativeId = urlParams.get("cd");
+
+    var inviteId;
+    var domainName;
+    var nftType;
+    var creativeId;
+
+    const url = window.location.href;
+    const [baseUrl, fragment] = url.split('#');
+
+  if (fragment) {
+    console.log("fragment detecddted");
+    const [fragmentPart, queryString] = fragment.split('?');
+    const fragmentParams = new URLSearchParams(queryString);
+    const decodedParams = {};
+    for (const [key, value] of fragmentParams.entries()) {
+      decodedParams[key] = decodeURIComponent(value);
+    }
+    console.log("decoded params is ",decodedParams);
+    inviteId = decodedParams.invite_id;
+    domainName = decodedParams.cname;
+    nftType = decodedParams.type;
+    creativeId = decodedParams.cd;
+  
+  }
+  else{
+    console.log("no fragment detected");
+    var urlParams = new URLSearchParams(window.location.search);
+    inviteId = urlParams.get("invite_id");
+    domainName = urlParams.get("cname");
+    nftType = urlParams.get("type");
+    creativeId = urlParams.get("cd");
 
     console.log("invite id is ", inviteId);
     console.log("cname is ", domainName);
     console.log("nft type is ", nftType);
     console.log("creative id is ", creativeId);
+  }
+    
+    
 
     //domainName = cName;
     inviteCode = inviteId;
+    
 
     window.ftd.set_value(
       `public-pages/distribution/templates/holy-angel/texts#nft-type`,
