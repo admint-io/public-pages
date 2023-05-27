@@ -76,31 +76,25 @@ window.onload = async function () {
   window.readUrlParams = async function readUrlParams() {
 
     return new Promise(function(resolve, reject) {
-        var queryString = window.location.search;  
-        var queryParameters = queryString.slice(1);    
-        var parametersObject = {};
-    
-        queryParameters.split('&').forEach(function(parameter) {
-          var keyValue = parameter.split('=');
-          var key = decodeURIComponent(keyValue[0]);
-          var value = decodeURIComponent(keyValue[1]);
-          parametersObject[key] = value;
-        });
-        
-        var cName = parametersObject['cname'];
-        var inviteId = parametersObject['invite_id'];
-        creativeId = parametersObject['cd'];
-        var nftType=parametersObject['type'];
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const inviteId = urlParams.get('invite_id');
+        const cName = urlParams.get('cname');
+        const nftType = urlParams.get('type');
+        const creativeId= urlParams.get('cd');
+
+        console.log("invite id is ",inviteId);
+        console.log("cname is ",cName);
+        console.log("nft type is ",nftType);
+        console.log("creative id is ",creativeId);
+
         domainName=cName;
         inviteCode=inviteId;
     
         window.ftd.set_value(
             `public-pages/distribution/templates/holy-angel/texts#nft-type`,
             nftType
-        );
-        
-        console.log("cname is ",cName);
-        console.log("invite id is ",inviteCode);
+        );        
           
         fetchUiComponents(domainName).then((result)=>{
             console.log("fetchUiComponents() promise resolved");
