@@ -336,13 +336,13 @@ border-bottom-width.px: 2
 color: $colors.text-
 
 -- ftd.image: $footer.icon-1
-link: $footer.url-1
+;;link: $footer.url-1
 
 -- ftd.image: $footer.icon-2
-link: $footer.url-2
+;;link: $footer.url-2
 
 -- ftd.image: $footer.icon-3
-link: $footer.url-3
+;;link: $footer.url-3
 
 -- end: ftd.row
 
@@ -1136,7 +1136,6 @@ color: $colors.text-
 style: bold
 color: $colors.text-
 role: $inherited.types.copy-small
-link: distribution/templates/holy-angel#claim
 
 -- end: ftd.row
 
