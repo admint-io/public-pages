@@ -3,6 +3,8 @@ import * as indexFile from "./index.js";
 import * as config from "./config.js";
 import "https://www.googletagmanager.com/gtag/js?id=G-TQW7C70YGW%22%3E";
 
+
+
 var commonjsGlobal =
     typeof globalThis !== "undefined"
         ? globalThis
@@ -22037,18 +22039,20 @@ window.dataLayer = window.dataLayer || [];
 
 window.gtag=function gtag() {dataLayer.push(arguments);}
   gtag('js', new Date());
-  gtag('config', 'G-TQW7C70YGW');
+  gtag('config', config.G_TAG_ID);
 
   window.claimEvent=async function claimEvent() {
     gtag('event', 'click', {
         'event_category': 'Button Click',
-        'event_label': 'Claim Button'
+        'event_label': 'Claim Button',
+        'campaign_id': `${indexFile.campaignId}`
       });
 }
 
 window.connectWalletEvent=async function connectWalletEvent() {
     gtag('event', 'click', {
         'event_category': 'Button Click',
-        'event_label': 'Connect Wallet Button'
+        'event_label': 'Connect Wallet Button',
+        'campaign_id': `${indexFile.campaignId}`
       });
 }
