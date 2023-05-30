@@ -443,6 +443,7 @@ opacity: 0.7
 
 -- ftd.image:
 src: $hero.cover
+width.fixed.percent: 50
 
 -- end: ftd.row
 
@@ -560,7 +561,7 @@ margin-horizontal.px: 44
 spacing.fixed.px: 55
 
 -- ftd.image: 
-width.fixed.px: 544
+width.fixed.percent: 37.78
 height.fixed.px: 765
 border-radius.px: 15
 src: $image-with-button.pic
@@ -729,6 +730,7 @@ margin-bottom.px: 113
 
 -- ftd.image: 
 src: $countdown-with-info.pic
+width.fixed.percent: 40
 
 -- ftd.column: 
 
@@ -898,8 +900,8 @@ width: fill-container
 margin-bottom.px: 100
 
 -- ftd.row:
-spacing.fixed.px: 215
-margin-horizontal.px: 134
+spacing.fixed.percent: 15
+margin-horizontal.percent: 9.3
 
 -- ftd.image:
 src: $image-with-content-desktop.pic
@@ -980,6 +982,7 @@ body body:
 
 -- ftd.column:
 padding-horizontal.px: 10
+margin-bottom.px: 100
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
@@ -1010,9 +1013,9 @@ align-self: center
 if: { ftd.device == "desktop" }
 
 -- ftd.column:
-margin-vertical.px: 138
-margin-left.px: 165
-margin-right.px: 125
+margin-vertical.percent: 9.5
+margin-left.percent: 11.45
+margin-right.percent: 8.6
 
 -- ftd.text: $about.title
 role: $inherited.types.heading-large
@@ -1027,6 +1030,7 @@ opacity: 0.7
 
 -- ftd.image:
 src: $about.pic
+width.fixed.percent: 50
 
 
 -- end: ftd.row
