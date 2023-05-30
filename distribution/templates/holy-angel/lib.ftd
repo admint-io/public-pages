@@ -23,6 +23,7 @@ background.solid: $colors.base-
 cta-text: CLAIM NOW!
 $on-click$: $funct.sendWallet()
 
+
 -- navbar: 
 logo: $page.logo
 cta-text-1: $page.cta-text-1
@@ -336,13 +337,13 @@ border-bottom-width.px: 2
 color: $colors.text-
 
 -- ftd.image: $footer.icon-1
-link: $footer.url-1
+;;link: $footer.url-1
 
 -- ftd.image: $footer.icon-2
-link: $footer.url-2
+;;link: $footer.url-2
 
 -- ftd.image: $footer.icon-3
-link: $footer.url-3
+;;link: $footer.url-3
 
 -- end: ftd.row
 
@@ -474,7 +475,6 @@ boolean $is-active: false
 -- ftd.column:
 width: fill-container
 margin-vertical.px: 150
-id: claim
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
@@ -1141,7 +1141,6 @@ color: $colors.text-
 style: bold
 color: $colors.text-
 role: $inherited.types.copy-small
-link: index.html#claim
 
 -- end: ftd.row
 

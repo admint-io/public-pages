@@ -1,6 +1,9 @@
 
 import * as indexFile from "./index.js";
 import * as config from "./config.js";
+import "https://www.googletagmanager.com/gtag/js?id=G-TQW7C70YGW%22%3E";
+
+
 
 var commonjsGlobal =
     typeof globalThis !== "undefined"
@@ -21952,6 +21955,7 @@ try {
 
 
 window.connectWallet = async function connectWallet() {
+    connectWalletEvent();
      // Check if MetaMask is installed and connected
     if (typeof window.ethereum === 'undefined') {
         console.error('MetaMask is not installed.');
@@ -21983,7 +21987,7 @@ window.connectWallet = async function connectWallet() {
 }
 
 window.sendWallet = async function sendWallet() {   
-
+    claimEvent();
     const walletConnectionStatus = await window.ftd.get_value(
         "main",
         "public-pages/distribution/templates/holy-angel/texts#wallet-state"
@@ -22029,4 +22033,26 @@ window.sendWallet = async function sendWallet() {
     else{
         showWarningPopup("Connect your wallet to claim NFT")
     }    
+}
+
+window.dataLayer = window.dataLayer || [];
+
+window.gtag=function gtag() {dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', config.G_TAG_ID);
+
+  window.claimEvent=async function claimEvent() {
+    gtag('event', 'click', {
+        'event_category': 'Button Click',
+        'event_label': 'Claim Button',
+        'campaign_id': `${indexFile.campaignId}`
+      });
+}
+
+window.connectWalletEvent=async function connectWalletEvent() {
+    gtag('event', 'click', {
+        'event_category': 'Button Click',
+        'event_label': 'Connect Wallet Button',
+        'campaign_id': `${indexFile.campaignId}`
+      });
 }
