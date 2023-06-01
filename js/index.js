@@ -1,6 +1,16 @@
 //import "https://cdn.ethers.io/scripts/ethers-v3.min.js";
 import "https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js";
 import * as config from "./config.js";
+import "./imports/jquery-min.js";
+import "./imports/modal.js";
+import "./imports/metamask-adapter.js";
+import "./imports/wallet-connect-v1-adapter.js";
+import "./imports/torus-evm-adapter.js";
+import "./imports/torus-wallet-connector-plugin.js";
+import "./imports/web3-min.js";
+import { rpc } from "./ethersRPC.js";
+
+console.log("entering index page");
 
 export var campaignId = "undefined";
 export var inviteCode = "undefined";
@@ -55,22 +65,27 @@ window.color_scheme_to_ftd = async function color_scheme_to_ftd(
 };
 
 window.onload = async function () {
-  readUrlParams()
-    .then((response) => {
-      console.log("readUrlParams() promise resolved");
-      window.ftd.set_value(
+  // readUrlParams()
+  //   .then((response) => {
+  //     console.log("readUrlParams() promise resolved");
+  //     window.ftd.set_value(
+  //       `public-pages/distribution/templates/holy-angel/#loadedState`,
+  //       "loaded"
+  //     );
+  //   })
+  //   .catch((error) => {
+  //     console.log("readUrlParams() promise rejected");
+  //     console.error("Promise rejected : readUrlParams(), Reason : ", error);
+  //     window.ftd.set_value(
+  //       `public-pages/distribution/templates/holy-angel/#loadedState`,
+  //       "loaded"
+  //     );
+  //   });
+
+       window.ftd.set_value(
         `public-pages/distribution/templates/holy-angel/#loadedState`,
         "loaded"
       );
-    })
-    .catch((error) => {
-      console.log("readUrlParams() promise rejected");
-      console.error("Promise rejected : readUrlParams(), Reason : ", error);
-      window.ftd.set_value(
-        `public-pages/distribution/templates/holy-angel/#loadedState`,
-        "loaded"
-      );
-    });
 };
 
 function getUrlParameters() {
@@ -921,3 +936,198 @@ window.checkImageURL = async function checkImageURL(url) {
     img.src = url;
   });
 };
+
+
+
+
+///////////////// Code for web3Auth ///////////////////////////////////////////////////
+
+
+let web3auth = null;
+let provider = null;
+
+(async function init() {
+  $(".btn-logged-in").hide();
+  $("#sign-tx").hide();
+
+  const clientId =
+    "BBXR0jmF5bpYDUJxnLdUw5sWuA0JrXO8oAMrpL9VQ_nOovfIi4uM8xwB2m_ffxux_ybVoxd5MKwJSlhUaP1YAWY"; // get your clientId from https://dashboard.web3auth.io
+    //chainId: "0x13881",
+      //rpcTarget: "https://rpc-mumbai.maticvigil.com
+  web3auth = new window.Modal.Web3Auth({
+    clientId,
+    chainConfig: {
+      chainNamespace: "eip155",
+      chainId: "0x13881",
+      rpcTarget: "https://rpc-mumbai.maticvigil.com", // This is the public RPC we have added, please pass on your own endpoint while creating an app
+    },
+    web3AuthNetwork: "testnet",
+  });
+
+  // Add Torus Wallet Connector Plugin
+  const torusPlugin =
+    new window.TorusWalletConnectorPlugin.TorusWalletConnectorPlugin({
+      torusWalletOpts: {},
+      walletInitOptions: {
+        whiteLabel: {
+          theme: { isDark: true, colors: { primary: "#00a8ff" } },
+          logoDark: "https://web3auth.io/images/w3a-L-Favicon-1.svg",
+          logoLight: "https://web3auth.io/images/w3a-D-Favicon-1.svg",
+        },
+        useWalletConnect: true,
+        enableLogging: true,
+      },
+    });
+  await web3auth.addPlugin(torusPlugin);
+
+  const metamaskAdapter = new window.MetamaskAdapter.MetamaskAdapter({
+    clientId,
+    sessionTime: 3600, // 1 hour in seconds
+    web3AuthNetwork: "testnet",
+    chainConfig: {
+      chainNamespace: "eip155",
+      chainId: "0x13881",
+      rpcTarget: "https://rpc-mumbai.maticvigil.com", // This is the public RPC we have added, please pass on your own endpoint while creating an app
+    },
+  });
+  web3auth.configureAdapter(metamaskAdapter);
+
+  const walletConnectAdapter =
+    new window.WalletConnectV1Adapter.WalletConnectV1Adapter({
+      adapterSettings: {
+        bridge: "https://bridge.walletconnect.org",
+      },
+      clientId,
+    });
+  web3auth.configureAdapter(walletConnectAdapter);
+
+  const torusAdapter = new window.TorusEvmAdapter.TorusWalletAdapter({
+    clientId,
+  });
+  web3auth.configureAdapter(torusAdapter);
+
+  await web3auth.initModal();
+  if (web3auth.provider) {
+    $(".btn-logged-in").show();
+    $(".btn-logged-out").hide();
+    if (web3auth.connectedAdapterName === "openlogin") {
+      $("#sign-tx").show();
+    }
+  } else {
+    $(".btn-logged-out").show();
+    $(".btn-logged-in").hide();
+  }
+})();
+
+$("#login").click(async function (event) {
+  try {
+    const provider = await web3auth.connect();
+    $(".btn-logged-out").hide();
+    $(".btn-logged-in").show();
+    uiConsole("Logged in Successfully!");
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+$("#get-user-info").click(async function (event) {
+  try {
+    const user = await web3auth.getUserInfo();
+    uiConsole(user);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+$("#get-id-token").click(async function (event) {
+  try {
+    const id_token = await web3auth.authenticateUser();
+    uiConsole(id_token);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+$("#get-chain-id").click(async function (event) {
+  try {
+    const chainId = await rpc.getChainId(web3auth.provider);
+    uiConsole(chainId);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+$("#get-accounts").click(async function (event) {
+  try {
+    const accounts = await rpc.getAccounts(web3auth.provider);
+    uiConsole(accounts);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+$("#get-balance").click(async function (event) {
+  try {
+    const balance = await rpc.getBalance(web3auth.provider);
+    uiConsole(balance);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+$("#send-transaction").click(async function (event) {
+  try {
+    const receipt = await rpc.sendTransaction(web3auth.provider);
+    uiConsole(receipt);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+$("#sign-message").click(async function (event) {
+  try {
+    const signedMsg = await rpc.signMessage(web3auth.provider);
+    uiConsole(signedMsg);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+$("#get-private-key").click(async function (event) {
+  try {
+    const privateKey = await rpc.getPrivateKey(web3auth.provider);
+    uiConsole(privateKey);
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+$("#logout").click(async function (event) {
+  try {
+    await web3auth.logout();
+    $(".btn-logged-in").hide();
+    $(".btn-logged-out").show();
+  } catch (error) {
+    console.error(error.message);
+  }
+});
+
+function uiConsole(...args) {
+  const el = document.querySelector("#console>p");
+  if (el) {
+    el.innerHTML = JSON.stringify(args || {}, null, 2);
+  }
+}
+
+
+window.createWallet = async function createWallet() {
+ console.log("entering connect wallet function");
+ const provider = await web3auth.connect();
+ const privateKey = await rpc.getPrivateKey(web3auth.provider);
+ console.log("provider is ",provider,"private key is ",privateKey);
+ const user = await web3auth.getUserInfo();
+ console.log("user info is ",user); 
+ const accounts = await rpc.getAccounts(web3auth.provider);
+ console.log("accounts are ",accounts);
+}
+
