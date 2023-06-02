@@ -124,7 +124,6 @@ window.readUrlParams = async function readUrlParams() {
     var inviteId;
     var domainName;
     var nftType;
-    var creativeId;
 
     const url = window.location.href;
     const [baseUrl, fragment] = url.split('#');
@@ -141,7 +140,6 @@ window.readUrlParams = async function readUrlParams() {
     inviteId = decodedParams.invite_id;
     domainName = decodedParams.cname;
     nftType = decodedParams.type;
-    creativeId = decodedParams.cd;
   
   }
   else{
@@ -150,12 +148,10 @@ window.readUrlParams = async function readUrlParams() {
     inviteId = urlParams.get("invite_id");
     domainName = urlParams.get("cname");
     nftType = urlParams.get("type");
-    creativeId = urlParams.get("cd");
 
     console.log("invite id is ", inviteId);
     console.log("cname is ", domainName);
     console.log("nft type is ", nftType);
-    console.log("creative id is ", creativeId);
   }
     
     
@@ -169,7 +165,7 @@ window.readUrlParams = async function readUrlParams() {
       nftType
     );
 
-    fetchUiComponents(domainName,creativeId)
+    fetchUiComponents(domainName,nftType)
       .then((result) => {
         console.log("fetchUiComponents() promise resolved");
         if ("colorSchemeUrl" in result.values[0]) {
@@ -230,7 +226,7 @@ window.readUrlParams = async function readUrlParams() {
   });
 };
 
-window.fetchUiComponents = async function fetchUiComponents(domainName,creativeId) {
+window.fetchUiComponents = async function fetchUiComponents(domainName,nftType) {
   return new Promise(function (resolve, reject) {
     if (domainName != undefined) {
       const url = `${config.DISTRIBUTION_BASE_BACKEND_URL}/sitedata/${domainName}`;
@@ -262,7 +258,7 @@ window.fetchUiComponents = async function fetchUiComponents(domainName,creativeI
                   });
               }
               if ("creativeDatas" in respData.values[0]) {
-                updateCreativeDataUi(respData.values[0].creativeDatas,creativeId).then(
+                updateCreativeDataUi(respData.values[0].creativeDatas,nftType).then(
                   (result) => {
                     console.log("creative data updated");
                     window.ftd.set_value(
@@ -323,17 +319,17 @@ window.fetchColorScheme = async function fetchColorScheme(colorSchemeUrl) {
 };
 
 window.updateCreativeDataUi = async function updateCreativeDataUi(
-  creativeDatasArray,creativeId
+  creativeDatasArray,nftType
 ) {
   return new Promise(async (resolve, reject) => {
     console.log(
       "creative datas array is ",
       creativeDatasArray,
-      "creative id is ",
-      creativeId
+      "type is ",
+      nftType
     );
     creativeDatasArray.forEach((obj) => {
-      if (obj.creativeId == creativeId) {
+      if (obj.rarity == nftType) {
         console.log("creatives match found ");
         if ("imageUrl" in obj) {
           window.ftd.set_value(
