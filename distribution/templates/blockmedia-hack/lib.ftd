@@ -1,8 +1,8 @@
 -- import: public-pages/assets
--- import: public-pages/distribution/templates/holy-angel/colors as colors
+-- import: public-pages/distribution/templates/blockmedia-hack/colors as colors
 -- import: sarvom.github.io/holy-angel-typography 
--- import: public-pages/distribution/templates/holy-angel/functions as funct
--- import: public-pages/distribution/templates/holy-angel/texts as texts
+-- import: public-pages/distribution/templates/blockmedia-hack/functions as funct
+-- import: public-pages/distribution/templates/blockmedia-hack/texts as texts
 
 -- component page:
 ftd.image-src logo: $assets.files.images.logo.png
@@ -167,11 +167,13 @@ text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
 
+
 -- ftd.text: $navbar-mobile.cta-text-4
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+style: bold
 
 -- ftd.text: $navbar-mobile.cta-text-5
 role: $inherited.types.label-large
@@ -195,7 +197,8 @@ border-width.px if { navbar-mobile.is-active }: 2
 border-color if { navbar-mobile.is-active }: $colors.cta-primary-hover-
 $on-mouse-enter$: $ftd.set-bool($a = $navbar-mobile.is-active, v = true)
 $on-mouse-leave$: $ftd.set-bool($a = $navbar-mobile.is-active, v = false)
-background.linear-gradient: $lg
+css: [ $assets.files.gradient.css ]
+classes: color-2
 color: $colors.text-
 $on-click$: $funct.connectWallet()
 
@@ -373,14 +376,17 @@ color: $colors.text-
 
 
 -- component hero:
-string cover:
 caption title:
 string heading:
+string cta-button:
 body content:
+boolean $is-active: false
 
 -- ftd.column:
 width: fill-container
+align-content: center
 margin-top.px: 100
+background.image: $assets.files.images.hero-bg-1.jpg
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
@@ -396,7 +402,7 @@ margin-bottom.px: 20
 
 -- ftd.text: $hero.title
 role: $inherited.types.heading-hero
-color: $colors.accent-primary-
+color: $colors.custom-one-
 
 -- ftd.text: $hero.content
 margin-vertical.px: 24
@@ -406,32 +412,23 @@ opacity: 0.7
 
 -- end: ftd.column
 
--- ftd.image:
-src: $hero.cover
-width: fill-container
-align-self: center
-padding-horizontal.px: 20
-
 -- end: ftd.column
 
 -- ftd.row:
 if: { ftd.device == "desktop" }
-background.image: $assets.files.images.hero-bg-1.png
 
 -- ftd.column:
-margin-horizontal.px: 33
-width.fixed.percent: 50
+align-content: center
+padding-bottom.px: 600
 
 -- ftd.text: $hero.heading
 role: $inherited.types.heading-large
 color: $colors.text-
-margin-right.px: 125
 margin-bottom.px: 20
 
 -- ftd.text: $hero.title
 role: $inherited.types.heading-hero
-css: [ $assets.files.gradient.css ]
-classes: color-2
+color: $colors.custom-one-
 
 -- ftd.text: $hero.content
 margin-top.px: 24
@@ -440,11 +437,23 @@ role: $inherited.types.copy-large
 color: $colors.text-
 opacity: 0.7
 
--- end: ftd.column
+-- ftd.text: $hero.cta-button
+$on-click$: $funct.connectWallet()
+role: $inherited.types.label-large
+style: bold
+align-self: center
+text-align: center
+padding-vertical.px: 12
+padding-horizontal.px: 32
+border-radius.px: 4
+border-width.px if { hero.is-active }: 2
+background.linear-gradient: $lg
+border-color if { hero.is-active }: $colors.accent-primary-
+$on-mouse-enter$: $ftd.set-bool($a = $hero.is-active, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $hero.is-active, v = false)
+color: $colors.text-
 
--- ftd.image:
-src: $hero.cover
-width.fixed.percent: 50
+-- end: ftd.column
 
 -- end: ftd.row
 
@@ -474,7 +483,8 @@ boolean $is-active: false
 
 -- ftd.column:
 width: fill-container
-margin-vertical.px: 150
+padding-vertical.px: 150
+background.image: $assets.files.images.bg.png
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
@@ -560,12 +570,6 @@ if: { ftd.device == "desktop" }
 margin-horizontal.px: 44
 spacing.fixed.px: 55
 
--- ftd.image: 
-width.fixed.percent: 37.78
-height.fixed.px: 765
-border-radius.px: 15
-src: $image-with-button.pic
-
 -- ftd.column:
 margin-vertical.px: 215
 
@@ -633,6 +637,12 @@ $on-click$: $funct.sendWallet()
 
 -- end: ftd.column
 
+-- ftd.image: 
+width.fixed.percent: 37.78
+height.fixed.px: 765
+border-radius.px: 15
+src: $image-with-button.pic
+
 -- end: ftd.row
 
 -- end: ftd.column
@@ -660,8 +670,8 @@ string reminder:
 
 -- ftd.column:
 width: fill-container
-margin-bottom.px: 100
-;; background.image: $assets.files.images.bg.png
+padding-bottom.px: 100
+background.image: $assets.files.images.bg-2.png
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
@@ -723,10 +733,10 @@ align-self: center
 
 -- ftd.row:
 if: { ftd.device == "desktop" }
-spacing.fixed.px: 167
+spacing.fixed.px: 160
 margin-horizontal.px: 120
-margin-top.px: 33
-margin-bottom.px: 113
+margin-top.px: 32
+margin-bottom.px: 120
 
 -- ftd.image: 
 src: $countdown-with-info.pic
@@ -801,6 +811,7 @@ body body:
 
 -- ftd.column:
 width: fill-container
+background.image: $assets.files.images.bg-3.png
 
 -- image-with-content-mobile:
 if: { ftd.device == "mobile" }
@@ -861,8 +872,7 @@ opacity: 0.7
 align-self: center
 style: bold
 role: $inherited.types.heading-small
-css: [ $assets.files.gradient.css ]
-classes: color-2
+color: $colors.custom-one-
 margin-bottom.px: 12
 
 -- ftd.text: $image-with-content-mobile.body
@@ -918,8 +928,7 @@ opacity: 0.7
 -- ftd.text: $image-with-content-desktop.title
 align-self: center
 role: $inherited.types.heading-medium
-css: [ $assets.files.gradient.css ]
-classes: color-2
+color: $colors.custom-one-
 margin-bottom.px: 38
 
 -- ftd.text: $image-with-content-desktop.body
@@ -1031,6 +1040,7 @@ opacity: 0.7
 -- ftd.image:
 src: $about.pic
 width.fixed.percent: 50
+margin-right.percent: 6.67
 
 
 -- end: ftd.row
@@ -1163,14 +1173,14 @@ align-self: center
 
 
 -- ftd.linear-gradient lg:
-direction: bottom-left
+direction: bottom
 colors: $color-values-2
 
 -- ftd.linear-gradient-color list color-values-2:
 
--- ftd.linear-gradient-color: #6F59E9
+-- ftd.linear-gradient-color: #06e7bb
 
--- ftd.linear-gradient-color: #D12EEF
+-- ftd.linear-gradient-color: #359bdb
 
 -- end: color-values-2
 
