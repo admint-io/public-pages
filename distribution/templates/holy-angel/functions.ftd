@@ -1,5 +1,5 @@
 -- void connectWallet():
-js: js/ethers.js:type=module
+js: js/index.js:type=module
 
 connectWallet()
 
@@ -7,8 +7,3 @@ connectWallet()
 js: js/index.js:type=module
 
 sendWallet()
-
--- void createWallet():
-js: js/index.js:type=module
-
-createWallet()

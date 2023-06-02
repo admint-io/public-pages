@@ -2,7 +2,7 @@
 
 import * as indexFile from "./index.js";
 import * as config from "./config.js";
-import "https://www.googletagmanager.com/gtag/js?id=G-TQW7C70YGW%22%3E";
+
 
 
 
@@ -21987,76 +21987,9 @@ try {
 //     );    
 // }
 
-window.sendWallet = async function sendWallet() {   
-    claimEvent();
-    const walletConnectionStatus = await window.ftd.get_value(
-        "main",
-        "public-pages/distribution/templates/holy-angel/texts#wallet-state"
-      );    
-    if(walletConnectionStatus=="Connected"){
-        console.log("send wallet clicked");
-        const provider = new ethers.providers.Web3Provider(window.ethereum)
-        await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner()
-        const accounts = await provider.listAccounts();
-        console.log("account is ", accounts[0]);
-    if(indexFile.campaignId != "undefined" && indexFile.inviteCode != "undefined"){
-        fetch(`${config.DISTRIBUTION_BASE_BACKEND_URL}/open/dropWallet`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "walletAddress": `${accounts[0]}`,
-                "campaignId": `${indexFile.campaignId}`,
-                "inviteCode": `${indexFile.inviteCode}`
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                if("success" in data && "message" in data){
-                    if(data.success){
-                        showSuccessPopup(data.message);
-                    }
-                    else{
-                        showFailurePopup(data.message);
-                    }
-                    
-                }
-            })
-            .catch(error => console.error(error))  
-    }
-    else{
-        showWarningPopup("Invalid Link");
-    }          
-    }
-    else{
-        showWarningPopup("Connect your wallet to claim NFT")
-    }    
-}
 
-window.dataLayer = window.dataLayer || [];
 
-window.gtag=function gtag() {dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', config.G_TAG_ID);
 
-  window.claimEvent=async function claimEvent() {
-    gtag('event', 'click', {
-        'event_category': 'Button Click',
-        'event_label': 'Claim Button',
-        'campaign_id': `${indexFile.campaignId}`
-      });
-}
-
-window.connectWalletEvent=async function connectWalletEvent() {
-    gtag('event', 'click', {
-        'event_category': 'Button Click',
-        'event_label': 'Connect Wallet Button',
-        'campaign_id': `${indexFile.campaignId}`
-      });
-}
 
 export const rpc = (() => {
     /**
@@ -22149,3 +22082,6 @@ export const rpc = (() => {
       getPrivateKey,
     };
   })();
+
+
+  

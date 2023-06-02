@@ -9,6 +9,8 @@ import "./imports/torus-evm-adapter.js";
 import "./imports/torus-wallet-connector-plugin.js";
 import "./imports/web3-min.js";
 import { rpc } from "./ethersRPC.js";
+import { ethers } from "./ethers.js";
+import "https://www.googletagmanager.com/gtag/js?id=G-TQW7C70YGW%22%3E";
 
 console.log("entering index page");
 
@@ -980,17 +982,7 @@ let provider = null;
     });
   await web3auth.addPlugin(torusPlugin);
 
-  const metamaskAdapter = new window.MetamaskAdapter.MetamaskAdapter({
-    clientId,
-    sessionTime: 3600, // 1 hour in seconds
-    web3AuthNetwork: "testnet",
-    chainConfig: {
-      chainNamespace: "eip155",
-      chainId: "0x13881",
-      rpcTarget: "https://rpc-mumbai.maticvigil.com", // This is the public RPC we have added, please pass on your own endpoint while creating an app
-    },
-  });
-  web3auth.configureAdapter(metamaskAdapter);
+ 
 
   const walletConnectAdapter =
     new window.WalletConnectV1Adapter.WalletConnectV1Adapter({
@@ -1119,15 +1111,103 @@ function uiConsole(...args) {
   }
 }
 
+const clientId =
+    "BBXR0jmF5bpYDUJxnLdUw5sWuA0JrXO8oAMrpL9VQ_nOovfIi4uM8xwB2m_ffxux_ybVoxd5MKwJSlhUaP1YAWY";
 
-window.createWallet = async function createWallet() {
- console.log("entering connect wallet function");
- const provider = await web3auth.connect();
- const privateKey = await rpc.getPrivateKey(web3auth.provider);
- console.log("provider is ",provider,"private key is ",privateKey);
- const user = await web3auth.getUserInfo();
- console.log("user info is ",user); 
+  const metamaskAdapter = new window.MetamaskAdapter.MetamaskAdapter({
+    clientId,
+    sessionTime: 3600, // 1 hour in seconds
+    web3AuthNetwork: "testnet",
+    chainConfig: {
+      chainNamespace: "eip155",
+      chainId: "0x13881",
+      rpcTarget: "https://rpc-mumbai.maticvigil.com", // This is the public RPC we have added, please pass on your own endpoint while creating an app
+    },
+  });
+  web3auth.configureAdapter(metamaskAdapter);
+
+
+  window.connectWallet = async function connectWallet() {
+    console.log("connect 3eaket")
+  }
+
+
+window.connectWallet = async function connectWallet() {
+  const provider = await web3auth.connect();
+  console.log("connected state is ",web3auth.status)
+  const user = await web3auth.getUserInfo();
+  console.log("user info is ",user); 
+ // const accounts = await ethereum.request({ method: 'eth_accounts' });
  const accounts = await rpc.getAccounts(web3auth.provider);
- console.log("accounts are ",accounts);
+  console.log("accounts are ",accounts);
+      window.ftd.set_value(
+        "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+        `${web3auth.status} (${accounts})`
+    );   
+}
+
+window.sendWallet = async function sendWallet() {   
+  claimEvent();  
+  console.log("web3auth connection status is ",web3auth.status);
+  if(web3auth.status=="connected"){
+      const accounts = await rpc.getAccounts(web3auth.provider);
+      console.log("accounts are ",accounts);
+  if(campaignId != "undefined" && inviteCode != "undefined"){
+      fetch(`${config.DISTRIBUTION_BASE_BACKEND_URL}/open/dropWallet`, {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+              "walletAddress": `${accounts}`,
+              "campaignId": `${campaignId}`,
+              "inviteCode": `${inviteCode}`
+          })
+      })
+          .then(response => response.json())
+          .then(data => {
+              console.log(data);
+              if("success" in data && "message" in data){
+                  if(data.success){
+                      showSuccessPopup(data.message);
+                  }
+                  else{
+                      showFailurePopup(data.message);
+                  }
+                  
+              }
+          })
+          .catch(error => console.error(error))  
+  }
+  else{
+      showWarningPopup("Invalid Link");
+  }          
+  }
+  else{
+      showWarningPopup("Connect your wallet to claim NFT")
+  }    
+}
+
+
+window.dataLayer = window.dataLayer || [];
+
+window.gtag=function gtag() {dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', config.G_TAG_ID);
+
+  window.claimEvent=async function claimEvent() {
+    gtag('event', 'click', {
+        'event_category': 'Button Click',
+        'event_label': 'Claim Button',
+        'campaign_id': `${campaignId}`
+      });
+}
+
+window.connectWalletEvent=async function connectWalletEvent() {
+    gtag('event', 'click', {
+        'event_category': 'Button Click',
+        'event_label': 'Connect Wallet Button',
+        'campaign_id': `${campaignId}`
+      });
 }
 
