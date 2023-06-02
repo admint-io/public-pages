@@ -9,7 +9,6 @@ import "./imports/torus-evm-adapter.js";
 import "./imports/torus-wallet-connector-plugin.js";
 import "./imports/web3-min.js";
 import { rpc } from "./ethersRPC.js";
-import { ethers } from "./ethers.js";
 import "https://www.googletagmanager.com/gtag/js?id=G-TQW7C70YGW%22%3E";
 
 console.log("entering index page");
@@ -948,14 +947,9 @@ window.checkImageURL = async function checkImageURL(url) {
 let web3auth = null;
 let provider = null;
 
-(async function init() {
-  $(".btn-logged-in").hide();
-  $("#sign-tx").hide();
+const clientId =config.WEB3AUTH_CLIENT_ID;
 
-  const clientId =
-    "BBXR0jmF5bpYDUJxnLdUw5sWuA0JrXO8oAMrpL9VQ_nOovfIi4uM8xwB2m_ffxux_ybVoxd5MKwJSlhUaP1YAWY"; // get your clientId from https://dashboard.web3auth.io
-    //chainId: "0x13881",
-      //rpcTarget: "https://rpc-mumbai.maticvigil.com
+window.web3AuthInit = async function web3AuthInit() {
   web3auth = new window.Modal.Web3Auth({
     clientId,
     chainConfig: {
@@ -966,8 +960,8 @@ let provider = null;
     web3AuthNetwork: "testnet",
   });
 
-  // Add Torus Wallet Connector Plugin
-  const torusPlugin =
+    // Add Torus Wallet Connector Plugin
+    const torusPlugin =
     new window.TorusWalletConnectorPlugin.TorusWalletConnectorPlugin({
       torusWalletOpts: {},
       walletInitOptions: {
@@ -982,8 +976,6 @@ let provider = null;
     });
   await web3auth.addPlugin(torusPlugin);
 
- 
-
   const walletConnectAdapter =
     new window.WalletConnectV1Adapter.WalletConnectV1Adapter({
       adapterSettings: {
@@ -992,127 +984,6 @@ let provider = null;
       clientId,
     });
   web3auth.configureAdapter(walletConnectAdapter);
-
-  const torusAdapter = new window.TorusEvmAdapter.TorusWalletAdapter({
-    clientId,
-  });
-  web3auth.configureAdapter(torusAdapter);
-
-  await web3auth.initModal();
-  if (web3auth.provider) {
-    $(".btn-logged-in").show();
-    $(".btn-logged-out").hide();
-    if (web3auth.connectedAdapterName === "openlogin") {
-      $("#sign-tx").show();
-    }
-  } else {
-    $(".btn-logged-out").show();
-    $(".btn-logged-in").hide();
-  }
-})();
-
-$("#login").click(async function (event) {
-  try {
-    const provider = await web3auth.connect();
-    $(".btn-logged-out").hide();
-    $(".btn-logged-in").show();
-    uiConsole("Logged in Successfully!");
-  } catch (error) {
-    console.error(error.message);
-  }
-});
-
-$("#get-user-info").click(async function (event) {
-  try {
-    const user = await web3auth.getUserInfo();
-    uiConsole(user);
-  } catch (error) {
-    console.error(error.message);
-  }
-});
-
-$("#get-id-token").click(async function (event) {
-  try {
-    const id_token = await web3auth.authenticateUser();
-    uiConsole(id_token);
-  } catch (error) {
-    console.error(error.message);
-  }
-});
-
-$("#get-chain-id").click(async function (event) {
-  try {
-    const chainId = await rpc.getChainId(web3auth.provider);
-    uiConsole(chainId);
-  } catch (error) {
-    console.error(error.message);
-  }
-});
-
-$("#get-accounts").click(async function (event) {
-  try {
-    const accounts = await rpc.getAccounts(web3auth.provider);
-    uiConsole(accounts);
-  } catch (error) {
-    console.error(error.message);
-  }
-});
-
-$("#get-balance").click(async function (event) {
-  try {
-    const balance = await rpc.getBalance(web3auth.provider);
-    uiConsole(balance);
-  } catch (error) {
-    console.error(error.message);
-  }
-});
-
-$("#send-transaction").click(async function (event) {
-  try {
-    const receipt = await rpc.sendTransaction(web3auth.provider);
-    uiConsole(receipt);
-  } catch (error) {
-    console.error(error.message);
-  }
-});
-
-$("#sign-message").click(async function (event) {
-  try {
-    const signedMsg = await rpc.signMessage(web3auth.provider);
-    uiConsole(signedMsg);
-  } catch (error) {
-    console.error(error.message);
-  }
-});
-
-$("#get-private-key").click(async function (event) {
-  try {
-    const privateKey = await rpc.getPrivateKey(web3auth.provider);
-    uiConsole(privateKey);
-  } catch (error) {
-    console.error(error.message);
-  }
-});
-
-$("#logout").click(async function (event) {
-  try {
-    await web3auth.logout();
-    $(".btn-logged-in").hide();
-    $(".btn-logged-out").show();
-  } catch (error) {
-    console.error(error.message);
-  }
-});
-
-function uiConsole(...args) {
-  const el = document.querySelector("#console>p");
-  if (el) {
-    el.innerHTML = JSON.stringify(args || {}, null, 2);
-  }
-}
-
-const clientId =
-    "BBXR0jmF5bpYDUJxnLdUw5sWuA0JrXO8oAMrpL9VQ_nOovfIi4uM8xwB2m_ffxux_ybVoxd5MKwJSlhUaP1YAWY";
 
   const metamaskAdapter = new window.MetamaskAdapter.MetamaskAdapter({
     clientId,
@@ -1126,88 +997,214 @@ const clientId =
   });
   web3auth.configureAdapter(metamaskAdapter);
 
-
-  window.connectWallet = async function connectWallet() {
-    console.log("connect 3eaket")
+  const torusAdapter = new window.TorusEvmAdapter.TorusWalletAdapter({
+    clientId,
+  });
+  web3auth.configureAdapter(torusAdapter);
+  await web3auth.initModal();
+  if(web3auth.status=="connected"){
+    window.ftd.set_value(
+      "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+      "connected"
+    );
   }
+}
+
+web3AuthInit();
+
+// $("#login").click(async function (event) {
+//   try {
+//     const provider = await web3auth.connect();
+//     $(".btn-logged-out").hide();
+//     $(".btn-logged-in").show();
+//     uiConsole("Logged in Successfully!");
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });
+
+// $("#get-user-info").click(async function (event) {
+//   try {
+//     const user = await web3auth.getUserInfo();
+//     uiConsole(user);
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });
+
+// $("#get-id-token").click(async function (event) {
+//   try {
+//     const id_token = await web3auth.authenticateUser();
+//     uiConsole(id_token);
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });
+
+// $("#get-chain-id").click(async function (event) {
+//   try {
+//     const chainId = await rpc.getChainId(web3auth.provider);
+//     uiConsole(chainId);
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });
+
+// $("#get-accounts").click(async function (event) {
+//   try {
+//     const accounts = await rpc.getAccounts(web3auth.provider);
+//     uiConsole(accounts);
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });
+
+// $("#get-balance").click(async function (event) {
+//   try {
+//     const balance = await rpc.getBalance(web3auth.provider);
+//     uiConsole(balance);
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });
+
+// $("#send-transaction").click(async function (event) {
+//   try {
+//     const receipt = await rpc.sendTransaction(web3auth.provider);
+//     uiConsole(receipt);
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });
+
+// $("#sign-message").click(async function (event) {
+//   try {
+//     const signedMsg = await rpc.signMessage(web3auth.provider);
+//     uiConsole(signedMsg);
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });
+
+// $("#get-private-key").click(async function (event) {
+//   try {
+//     const privateKey = await rpc.getPrivateKey(web3auth.provider);
+//     uiConsole(privateKey);
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });
+
+// $("#logout").click(async function (event) {
+//   try {
+//     await web3auth.logout();
+//     $(".btn-logged-in").hide();
+//     $(".btn-logged-out").show();
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+// });
+
+function uiConsole(...args) {
+  const el = document.querySelector("#console>p");
+  if (el) {
+    el.innerHTML = JSON.stringify(args || {}, null, 2);
+  }
+}
+
+
+
+ 
+
 
 
 window.connectWallet = async function connectWallet() {
-  const provider = await web3auth.connect();
-  console.log("connected state is ",web3auth.status)
-  const user = await web3auth.getUserInfo();
-  console.log("user info is ",user); 
- // const accounts = await ethereum.request({ method: 'eth_accounts' });
- const accounts = await rpc.getAccounts(web3auth.provider);
-  console.log("accounts are ",accounts);
+  connectWalletEvent();
+  try {
+    await web3auth.connect();
+    if(web3auth.status=="connected"){
       window.ftd.set_value(
         "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-        `${web3auth.status} (${accounts})`
-    );   
+        "connected"
+      );
+    }      
+    console.log("Logged in Successfully!");
+  } catch (error) {
+    console.error(error.message);
+  }
+  try{
+    const accounts = await rpc.getAccounts(web3auth.provider);
+    console.log("connected account is",accounts);
+  }catch(e){
+    console.error(e);
+  }
 }
 
+
 window.sendWallet = async function sendWallet() {   
-  claimEvent();  
-  console.log("web3auth connection status is ",web3auth.status);
+  claimEvent(); 
   if(web3auth.status=="connected"){
+    try {
       const accounts = await rpc.getAccounts(web3auth.provider);
-      console.log("accounts are ",accounts);
-  if(campaignId != "undefined" && inviteCode != "undefined"){
-      fetch(`${config.DISTRIBUTION_BASE_BACKEND_URL}/open/dropWallet`, {
-          method: 'POST',
-          headers: {
-              'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-              "walletAddress": `${accounts}`,
-              "campaignId": `${campaignId}`,
-              "inviteCode": `${inviteCode}`
-          })
-      })
-          .then(response => response.json())
-          .then(data => {
-              console.log(data);
-              if("success" in data && "message" in data){
-                  if(data.success){
-                      showSuccessPopup(data.message);
-                  }
-                  else{
-                      showFailurePopup(data.message);
-                  }
-                  
-              }
-          })
-          .catch(error => console.error(error))  
-  }
-  else{
-      showWarningPopup("Invalid Link");
-  }          
+      console.log(accounts);
+      if(campaignId != "undefined" && inviteCode != "undefined"){
+        fetch(`${config.DISTRIBUTION_BASE_BACKEND_URL}/open/dropWallet`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                "walletAddress": `${accounts}`,
+                "campaignId": `${campaignId}`,
+                "inviteCode": `${inviteCode}`
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                if("success" in data && "message" in data){
+                    if(data.success){
+                        showSuccessPopup(data.message);
+                    }
+                    else{
+                        showFailurePopup(data.message);
+                    }
+                    
+                }
+            })
+            .catch(error => console.error(error))  
+    }
+    else{
+        showWarningPopup("Invalid Link");
+    }
+    } catch (error) {
+      console.error(error.message);
+    }            
   }
   else{
       showWarningPopup("Connect your wallet to claim NFT")
   }    
 }
 
-
 window.dataLayer = window.dataLayer || [];
 
 window.gtag=function gtag() {dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', config.G_TAG_ID);
+gtag('js', new Date());
+gtag('config', config.G_TAG_ID);
 
-  window.claimEvent=async function claimEvent() {
-    gtag('event', 'click', {
-        'event_category': 'Button Click',
-        'event_label': 'Claim Button',
-        'campaign_id': `${campaignId}`
-      });
+window.claimEvent=async function claimEvent() {
+  gtag('event', 'click', {
+      'event_category': 'Button Click',
+      'event_label': 'Claim Button',
+      'campaign_id': `${campaignId}`
+    });
 }
 
 window.connectWalletEvent=async function connectWalletEvent() {
-    gtag('event', 'click', {
-        'event_category': 'Button Click',
-        'event_label': 'Connect Wallet Button',
-        'campaign_id': `${campaignId}`
-      });
+  gtag('event', 'click', {
+      'event_category': 'Button Click',
+      'event_label': 'Connect Wallet Button',
+      'campaign_id': `${campaignId}`
+    });
 }
 

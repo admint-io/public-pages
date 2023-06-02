@@ -1,11 +1,5 @@
 
 
-import * as indexFile from "./index.js";
-import * as config from "./config.js";
-
-
-
-
 var commonjsGlobal =
     typeof globalThis !== "undefined"
         ? globalThis
