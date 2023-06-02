@@ -1,15 +1,16 @@
 //import "https://cdn.ethers.io/scripts/ethers-v3.min.js";
 import "https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js";
 import * as config from "./config.js";
-import "./imports/jquery-min.js";
-import "./imports/modal.js";
-import "./imports/metamask-adapter.js";
-import "./imports/wallet-connect-v1-adapter.js";
-import "./imports/torus-evm-adapter.js";
-import "./imports/torus-wallet-connector-plugin.js";
-import "./imports/web3-min.js";
 import { rpc } from "./ethersRPC.js";
 import "https://www.googletagmanager.com/gtag/js?id=G-TQW7C70YGW%22%3E";
+import "https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js";
+import "https://cdn.jsdelivr.net/npm/@web3auth/modal";
+import "https://cdn.jsdelivr.net/npm/@web3auth/metamask-adapter";
+import "https://cdn.jsdelivr.net/npm/@web3auth/wallet-connect-v1-adapter";
+import "https://cdn.jsdelivr.net/npm/@web3auth/torus-evm-adapter";
+import "https://cdn.jsdelivr.net/npm/@web3auth/torus-wallet-connector-plugin";
+import "https://cdn.jsdelivr.net/npm/web3@1.7.3/dist/web3.min.js";
+import "https://cdn.jsdelivr.net/npm/@web3auth/torus-evm-adapter";
 
 console.log("entering index page");
 
