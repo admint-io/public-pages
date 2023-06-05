@@ -2,6 +2,7 @@ import "https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js";
 import * as config from "./config.js";
 import "https://www.googletagmanager.com/gtag/js?id=G-TQW7C70YGW%22%3E";
 import "https://cdn.jsdelivr.net/npm/@toruslabs/torus-embed";
+import "https://cdn.jsdelivr.net/npm/web3@1.7.3/dist/web3.min.js";
 
 const torus = new Torus();
 
@@ -417,6 +418,42 @@ window.connectWallet = async function connectWallet() {
   connectWalletEvent();
 if (typeof window.ethereum !== 'undefined') {
     console.log("metamask is installed");
+
+
+    const polygonNetworkId = '0x89'; 
+
+  window.ethereum.request({ method: 'eth_chainId' })
+    .then((chainId) => {
+      if (chainId !== polygonNetworkId) {
+        const polygonNetwork = {
+          chainId: polygonNetworkId,
+          chainName: 'Polygon Mainnet',
+          nativeCurrency: {
+            name: 'MATIC',
+            symbol: 'MATIC',
+            decimals: 18,
+          },
+          rpcUrls: ['https://polygon-rpc.com'], 
+          blockExplorerUrls: ['https://polygonscan.com'],
+        };
+
+        return window.ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [polygonNetwork],
+        });
+      }
+
+      console.log('Polygon network is already added to MetaMask');
+      return Promise.resolve();
+    })
+    .then(() => {
+      console.log('Added Polygon Mainnet to MetaMask');
+    })
+    .catch((error) => {
+      console.error('Failed to check/add Polygon network:', error);
+    });
+
+
     const networkId = 137;
     window.ethereum.request({
       method: 'wallet_switchEthereumChain',
@@ -444,18 +481,18 @@ if (typeof window.ethereum !== 'undefined') {
 
 } else {
   console.log('MetaMask is not installed');
-  const polygonNetwork = {
-    chainId: 137, // Polygon Mainnet network ID
-    networkName: 'Polygon Mainnet',
-    rpcUrls: ['https://polygon-rpc.com'], // Replace with the appropriate RPC endpoint
-    blockExplorerUrls: ['https://polygon-explorer.com'], // Replace with the appropriate block explorer URL
-  };
-  try {
-    await torus.setProvider({ network: polygonNetwork });  
-    console.log('Switched to Polygon Mainnet');
-  } catch (error) {
-    console.error('Failed to switch network:', error);
-  }
+    const polygonNetwork = {
+      chainId: 137, // Polygon Mainnet network ID
+      networkName: 'Polygon Mainnet',
+      rpcUrls: ['https://polygon-rpc.com'], // Replace with the appropriate RPC endpoint
+      blockExplorerUrls: ['https://polygon-explorer.com'], // Replace with the appropriate block explorer URL
+    };
+    try {
+      await torus.setProvider({ network: polygonNetwork });  
+      console.log('Switched to Polygon Mainnet');
+    } catch (error) {
+      console.error('Failed to switch network:', error);
+    }
   await torus.login();
   const provider = torus.provider;
   const web3 = new Web3(provider);
