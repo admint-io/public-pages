@@ -1,9 +1,4 @@
 
-import * as indexFile from "./index.js";
-import * as config from "./config.js";
-import "https://www.googletagmanager.com/gtag/js?id=G-TQW7C70YGW%22%3E";
-
-
 
 var commonjsGlobal =
     typeof globalThis !== "undefined"
@@ -21954,105 +21949,133 @@ try {
 } catch (error) { }
 
 
-window.connectWallet = async function connectWallet() {
-    connectWalletEvent();
-     // Check if MetaMask is installed and connected
-    if (typeof window.ethereum === 'undefined') {
-        console.error('MetaMask is not installed.');
-        showWarningPopup("MetaMask is not installed");
-        return;
-    }
+// window.connectWallet = async function connectWallet() {
+//     connectWalletEvent();
+//      // Check if MetaMask is installed and connected
+//     if (typeof window.ethereum === 'undefined') {
+//         console.error('MetaMask is not installed.');
+//         showWarningPopup("MetaMask is not installed");
+//         return;
+//     }
 
-    try {
-        // Request network change
-        await window.ethereum.request({
-          method: 'wallet_switchEthereumChain',
-          params: [{ chainId: `0x89` }],
-        });
-        console.log('Network switched successfully.');
-      } catch (error) {
-        console.error('Failed to switch network:', error);
-        return;
-      }
+//     try {
+//         // Request network change
+//         await window.ethereum.request({
+//           method: 'wallet_switchEthereumChain',
+//           params: [{ chainId: `0x89` }],
+//         });
+//         console.log('Network switched successfully.');
+//       } catch (error) {
+//         console.error('Failed to switch network:', error);
+//         return;
+//       }
 
-    const provider = new ethers.providers.Web3Provider(window.ethereum)
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner()
-    const accounts = await provider.listAccounts();
-    console.log("account is ", accounts[0]);
-    window.ftd.set_value(
-        "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-       `Connected`
-    );    
-}
+//     const provider = new ethers.providers.Web3Provider(window.ethereum)
+//     await provider.send("eth_requestAccounts", []);
+//     const signer = provider.getSigner()
+//     const accounts = await provider.listAccounts();
+//     console.log("account is ", accounts[0]);
+//     window.ftd.set_value(
+//         "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+//        `Connected`
+//     );    
+// }
 
-window.sendWallet = async function sendWallet() {   
-    claimEvent();
-    const walletConnectionStatus = await window.ftd.get_value(
-        "main",
-        "public-pages/distribution/templates/holy-angel/texts#wallet-state"
-      );    
-    if(walletConnectionStatus=="Connected"){
-        console.log("send wallet clicked");
-        const provider = new ethers.providers.Web3Provider(window.ethereum)
-        await provider.send("eth_requestAccounts", []);
-        const signer = provider.getSigner()
-        const accounts = await provider.listAccounts();
-        console.log("account is ", accounts[0]);
-    if(indexFile.campaignId != "undefined" && indexFile.inviteCode != "undefined"){
-        fetch(`${config.DISTRIBUTION_BASE_BACKEND_URL}/open/dropWallet`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "walletAddress": `${accounts[0]}`,
-                "campaignId": `${indexFile.campaignId}`,
-                "inviteCode": `${indexFile.inviteCode}`
-            })
-        })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                if("success" in data && "message" in data){
-                    if(data.success){
-                        showSuccessPopup(data.message);
-                    }
-                    else{
-                        showFailurePopup(data.message);
-                    }
-                    
-                }
-            })
-            .catch(error => console.error(error))  
-    }
-    else{
-        showWarningPopup("Invalid Link");
-    }          
-    }
-    else{
-        showWarningPopup("Connect your wallet to claim NFT")
-    }    
-}
 
-window.dataLayer = window.dataLayer || [];
 
-window.gtag=function gtag() {dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', config.G_TAG_ID);
 
-  window.claimEvent=async function claimEvent() {
-    gtag('event', 'click', {
-        'event_category': 'Button Click',
-        'event_label': 'Claim Button',
-        'campaign_id': `${indexFile.campaignId}`
+
+export const rpc = (() => {
+    /**
+     *
+     * @param {*} provider - provider received from Web3Auth login.
+     */
+  
+    const getChainId = async (provider) => {
+      const ethersProvider = new ethers.providers.Web3Provider(provider);
+  
+      // Get the connected Chain's ID
+      const networkDetails = await ethersProvider.getNetwork();
+      return networkDetails.chainId;
+    };
+  
+    const getAccounts = async (provider) => {
+      const ethersProvider = new ethers.providers.Web3Provider(provider);
+      const signer = ethersProvider.getSigner();
+  
+      // Get user's Ethereum public address
+      const address = await signer.getAddress();
+  
+      return address;
+    };
+  
+    const getBalance = async (provider) => {
+      const ethersProvider = new ethers.providers.Web3Provider(provider);
+      const signer = ethersProvider.getSigner();
+  
+      // Get user's Ethereum public address
+      const address = await signer.getAddress();
+  
+      // Get user's balance in ether
+      const balance = ethers.utils.formatEther(
+        await ethersProvider.getBalance(address) // Balance is in wei
+      );
+  
+      return balance;
+    };
+  
+    const sendTransaction = async (provider) => {
+      const ethersProvider = new ethers.providers.Web3Provider(provider);
+      const signer = ethersProvider.getSigner();
+  
+      const destination = "0x40e1c367Eca34250cAF1bc8330E9EddfD403fC56";
+  
+      // Convert 1 ether to wei
+      const amount = ethers.utils.parseEther("0.001");
+  
+      // Submit transaction to the blockchain
+      const tx = await signer.sendTransaction({
+        to: destination,
+        value: amount,
+        maxPriorityFeePerGas: "5000000000", // Max priority fee per gas
+        maxFeePerGas: "6000000000000", // Max fee per gas
       });
-}
-
-window.connectWalletEvent=async function connectWalletEvent() {
-    gtag('event', 'click', {
-        'event_category': 'Button Click',
-        'event_label': 'Connect Wallet Button',
-        'campaign_id': `${indexFile.campaignId}`
+  
+      // Wait for transaction to be mined
+      const receipt = await tx.wait();
+  
+      return receipt;
+    };
+  
+    const signMessage = async (provider) => {
+      const ethersProvider = new ethers.providers.Web3Provider(provider);
+      const signer = ethersProvider.getSigner();
+  
+      const originalMessage = "YOUR_MESSAGE";
+  
+      // Sign the message
+      const signedMessage = await signer.signMessage(originalMessage);
+  
+      return signedMessage;
+    };
+  
+    const getPrivateKey = async (provider) => {
+      const privateKey = await provider.request({
+        method: "eth_private_key",
       });
-}
+  
+      return privateKey;
+    };
+  
+    return {
+      getChainId,
+      getAccounts,
+      getBalance,
+      sendTransaction,
+      signMessage,
+      getPrivateKey,
+    };
+  })();
+
+
+  

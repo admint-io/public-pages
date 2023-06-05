@@ -199,6 +199,7 @@ background.linear-gradient: $lg
 color: $colors.text-
 $on-click$: $funct.connectWallet()
 
+
 -- end: ftd.column
 
 -- end: ftd.column
@@ -1305,9 +1306,18 @@ color: $colors.text-
 
 -- component loader:
 
--- ftd.image: 
+-- ftd.column:
 width: fill-container
 height: fill-container
-src: https://art.pixilart.com/e77ef9130f863c4.gif
+background.solid: black
+align-content: center
+
+-- ftd.image: 
+width.fixed.px: 300
+height.fixed.px:200
+background.solid: black
+src: https://video-public.canva.com/VAEwnLy59fc/v/4b579cce86.gif
+
+-- end: ftd.column
 
 -- end: loader
