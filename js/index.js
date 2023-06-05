@@ -444,6 +444,18 @@ if (typeof window.ethereum !== 'undefined') {
 
 } else {
   console.log('MetaMask is not installed');
+  const polygonNetwork = {
+    chainId: 137, // Polygon Mainnet network ID
+    networkName: 'Polygon Mainnet',
+    rpcUrls: ['https://polygon-rpc.com'], // Replace with the appropriate RPC endpoint
+    blockExplorerUrls: ['https://polygon-explorer.com'], // Replace with the appropriate block explorer URL
+  };
+  try {
+    await torus.setProvider({ network: polygonNetwork });  
+    console.log('Switched to Polygon Mainnet');
+  } catch (error) {
+    console.error('Failed to switch network:', error);
+  }
   await torus.login();
   const provider = torus.provider;
   const web3 = new Web3(provider);
@@ -461,7 +473,7 @@ if (typeof window.ethereum !== 'undefined') {
 window.torusInit = async function torusInit() {
   if (typeof window.ethereum == 'undefined') {
     console.log('MetaMask is not installed');
-    await torus.init();
+    await torus.init();  
   }
   else{
     console.log("metamask is installed");
