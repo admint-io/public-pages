@@ -563,7 +563,7 @@ spacing.fixed.px: 55
 
 -- ftd.image: 
 width.fixed.percent: 37.78
-height.fixed.px: 765
+;; height.fixed.px: 765
 border-radius.px: 15
 src: $image-with-button.pic
 
