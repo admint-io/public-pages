@@ -4,12 +4,7 @@ import "https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js";
 import * as config from "./config.js";
 import { rpc } from "./ethersRPC.js";
 import "https://www.googletagmanager.com/gtag/js?id=G-TQW7C70YGW%22%3E";
-import "https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js";
-import "https://cdn.jsdelivr.net/npm/@web3auth/modal";
-import "https://cdn.jsdelivr.net/npm/@web3auth/metamask-adapter";
-import "https://cdn.jsdelivr.net/npm/@web3auth/wallet-connect-v1-adapter";
-import "https://cdn.jsdelivr.net/npm/@web3auth/torus-evm-adapter";
-import "https://cdn.jsdelivr.net/npm/@web3auth/torus-wallet-connector-plugin";
+import "https://cdn.jsdelivr.net/npm/@toruslabs/torus-embed@1.41.3/dist/torus.umd.min.js";
 import "https://cdn.jsdelivr.net/npm/web3@1.7.3/dist/web3.min.js";
 import "https://cdn.jsdelivr.net/npm/@web3auth/torus-evm-adapter";
 
@@ -686,19 +681,35 @@ if (typeof window.ethereum !== 'undefined') {
       });
 
 } else {
-  console.log('MetaMask is not installed');
-  try {
-    await web3auth.connect();
-    if(web3auth.status=="connected"){
+  console.log('MetaMask is not installed');    
+    try {
+      await torus.setProvider( {
+        host: "matic"
+      });  
+      console.log('Switched to Polygon Mainnet');
+    } catch (error) {
+      console.error('Failed to switch network:', error);
+    }
+  await torus.login();
+  const provider = torus.provider;
+  const web3 = new Web3(provider);
+  const accounts = await web3.eth.getAccounts();
+  connectedWalletAddress=accounts[0];
+  console.log("Connected with address:", connectedWalletAddress);
+  walletConnectionStatus=true;
       window.ftd.set_value(
         "public-pages/distribution/templates/holy-angel/texts#wallet-state",
         "connected"
-      );
-      walletConnectionStatus=true;
-    }      
-    console.log("Logged in Successfully!");
-  } catch (error) {
-    console.error(error.message);
+      );  
+}
+}
+
+window.torusInit = async function torusInit() {
+  if (typeof window.ethereum == 'undefined') {
+    console.log('MetaMask is not installed');   
+    await torus.init({network: {
+      host: "matic"
+    }});  
   }
   try{
     const accounts = await rpc.getAccounts(web3auth.provider);
