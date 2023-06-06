@@ -1,7 +1,7 @@
 import "https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js";
 import * as config from "./config.js";
 import "https://www.googletagmanager.com/gtag/js?id=G-TQW7C70YGW%22%3E";
-import "https://cdn.jsdelivr.net/npm/@toruslabs/torus-embed";
+import "https://cdn.jsdelivr.net/npm/@toruslabs/torus-embed@1.41.3/dist/torus.umd.min.js";
 import "https://cdn.jsdelivr.net/npm/web3@1.7.3/dist/web3.min.js";
 
 const torus = new Torus();
@@ -480,15 +480,11 @@ if (typeof window.ethereum !== 'undefined') {
       });
 
 } else {
-  console.log('MetaMask is not installed');
-    const polygonNetwork = {
-      chainId: 137, // Polygon Mainnet network ID
-      networkName: 'Polygon Mainnet',
-      rpcUrls: ['https://polygon-rpc.com'], // Replace with the appropriate RPC endpoint
-      blockExplorerUrls: ['https://polygon-explorer.com'], // Replace with the appropriate block explorer URL
-    };
+  console.log('MetaMask is not installed');    
     try {
-      await torus.setProvider({ network: polygonNetwork });  
+      await torus.setProvider( {
+        host: "matic"
+      });  
       console.log('Switched to Polygon Mainnet');
     } catch (error) {
       console.error('Failed to switch network:', error);
@@ -509,8 +505,10 @@ if (typeof window.ethereum !== 'undefined') {
 
 window.torusInit = async function torusInit() {
   if (typeof window.ethereum == 'undefined') {
-    console.log('MetaMask is not installed');
-    await torus.init();  
+    console.log('MetaMask is not installed');   
+    await torus.init({network: {
+      host: "matic"
+    }});  
   }
   else{
     console.log("metamask is installed");
