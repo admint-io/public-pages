@@ -1,3 +1,4 @@
+
 //import "https://cdn.ethers.io/scripts/ethers-v3.min.js";
 import "https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js";
 import * as config from "./config.js";
@@ -16,6 +17,8 @@ console.log("entering index page");
 
 export var campaignId = "undefined";
 export var inviteCode = "undefined";
+var connectedWalletAddress="undefined";
+var walletConnectionStatus=false;
 
 function convertToColorBlocks(text) {
   const lines = text.trim().split("\n");
@@ -602,13 +605,88 @@ web3AuthInit();
 // }
 
 
-
- 
-
-
+// window.connectWallet = async function connectWallet() {
+//   connectWalletEvent();
+//   try {
+//     await web3auth.connect();
+//     if(web3auth.status=="connected"){
+//       window.ftd.set_value(
+//         "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+//         "connected"
+//       );
+//     }      
+//     console.log("Logged in Successfully!");
+//   } catch (error) {
+//     console.error(error.message);
+//   }
+//   try{
+//     const accounts = await rpc.getAccounts(web3auth.provider);
+//     console.log("connected account is",accounts);
+//   }catch(e){
+//     console.error(e);
+//   }
+// }
 
 window.connectWallet = async function connectWallet() {
   connectWalletEvent();
+if (typeof window.ethereum !== 'undefined') {
+    console.log("metamask is installed");
+    const polygonNetworkId = '0x89'; 
+  window.ethereum.request({ method: 'eth_chainId' })
+    .then((chainId) => {
+      if (chainId !== polygonNetworkId) {
+        const polygonNetwork = {
+          chainId: polygonNetworkId,
+          chainName: 'Polygon Mainnet',
+          nativeCurrency: {
+            name: 'MATIC',
+            symbol: 'MATIC',
+            decimals: 18,
+          },
+          rpcUrls: ['https://polygon-rpc.com'], 
+          blockExplorerUrls: ['https://polygonscan.com'],
+        };
+        return window.ethereum.request({
+          method: 'wallet_addEthereumChain',
+          params: [polygonNetwork],
+        });
+      }
+      console.log('Polygon network is already added to MetaMask');
+      return Promise.resolve();
+    })
+    .then(() => {
+      console.log('Added Polygon Mainnet to MetaMask');
+    })
+    .catch((error) => {
+      console.error('Failed to check/add Polygon network:', error);
+    });
+    const networkId = 137;
+    window.ethereum.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: `0x${networkId.toString(16)}` }],
+    })
+      .then(() => {
+        console.log('Switched to Polygon Mainnet');
+        window.ethereum.request({ method: 'eth_requestAccounts' })
+    .then((accounts) => {        
+      connectedWalletAddress=accounts[0];  
+      console.log('Connected MetaMask accounts:', connectedWalletAddress);  
+      walletConnectionStatus=true;
+      window.ftd.set_value(
+        "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+        "connected"
+      );      
+    })
+    .catch((error) => {
+      console.log('Failed to connect to MetaMask:', error);
+    });
+      })
+      .catch((error) => {
+        console.error('Failed to switch network:', error);
+      });
+
+} else {
+  console.log('MetaMask is not installed');
   try {
     await web3auth.connect();
     if(web3auth.status=="connected"){
@@ -616,6 +694,7 @@ window.connectWallet = async function connectWallet() {
         "public-pages/distribution/templates/holy-angel/texts#wallet-state",
         "connected"
       );
+      walletConnectionStatus=true;
     }      
     console.log("Logged in Successfully!");
   } catch (error) {
@@ -623,19 +702,20 @@ window.connectWallet = async function connectWallet() {
   }
   try{
     const accounts = await rpc.getAccounts(web3auth.provider);
-    console.log("connected account is",accounts);
+    connectedWalletAddress=accounts
+    console.log("connected account is",connectedWalletAddress);
   }catch(e){
     console.error(e);
-  }
+  }    
 }
-
+}
 
 window.sendWallet = async function sendWallet() {   
   claimEvent(); 
-  if(web3auth.status=="connected"){
+  console.log("wallet connection status is ",walletConnectionStatus);
+  if(walletConnectionStatus){
     try {
-      const accounts = await rpc.getAccounts(web3auth.provider);
-      console.log(accounts);
+      console.log("account to send is ",connectedWalletAddress);
       if(campaignId != "undefined" && inviteCode != "undefined"){
         fetch(`${config.DISTRIBUTION_BASE_BACKEND_URL}/open/dropWallet`, {
             method: 'POST',
@@ -643,7 +723,7 @@ window.sendWallet = async function sendWallet() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                "walletAddress": `${accounts}`,
+                "walletAddress": `${connectedWalletAddress}`,
                 "campaignId": `${campaignId}`,
                 "inviteCode": `${inviteCode}`
             })
@@ -696,4 +776,3 @@ window.connectWalletEvent=async function connectWalletEvent() {
       'campaign_id': `${campaignId}`
     });
 }
-
