@@ -3,6 +3,7 @@ import * as config from "./config.js";
 import "https://www.googletagmanager.com/gtag/js?id=G-TQW7C70YGW%22%3E";
 import "https://cdn.jsdelivr.net/npm/@toruslabs/torus-embed@1.41.3/dist/torus.umd.min.js";
 import "https://cdn.jsdelivr.net/npm/web3@1.7.3/dist/web3.min.js";
+import { WalletPopup } from "./walletPopup.js";
 
 const torus = new Torus();
 
@@ -10,9 +11,8 @@ console.log("entering index page");
 
 export var campaignId = "undefined";
 export var inviteCode = "undefined";
-var connectedWalletAddress="undefined";
-var walletConnectionStatus=false;
-
+var connectedWalletAddress = "undefined";
+var walletConnectionStatus = false;
 
 function convertToColorBlocks(text) {
   const lines = text.trim().split("\n");
@@ -64,7 +64,6 @@ window.color_scheme_to_ftd = async function color_scheme_to_ftd(
 };
 
 window.onload = async function () {
-  torusInit();
   readUrlParams()
     .then((response) => {
       console.log("readUrlParams() promise resolved");
@@ -85,9 +84,9 @@ window.onload = async function () {
 
 function getUrlParameters() {
   const url = window.location.href;
-  const [baseUrl, fragment] = url.split('#');
+  const [baseUrl, fragment] = url.split("#");
   if (fragment) {
-    const [fragmentPart, queryString] = fragment.split('?');
+    const [fragmentPart, queryString] = fragment.split("?");
     const fragmentParams = new URLSearchParams(queryString);
     const decodedParams = {};
     for (const [key, value] of fragmentParams.entries()) {
@@ -96,63 +95,57 @@ function getUrlParameters() {
 
     return {
       baseUrl: baseUrl,
-      fragmentParams: decodedParams
+      fragmentParams: decodedParams,
     };
   }
 
   return {
-    baseUrl: baseUrl
+    baseUrl: baseUrl,
   };
 }
 
 window.readUrlParams = async function readUrlParams() {
   return new Promise(function (resolve, reject) {
-
     var inviteId;
     var domainName;
     var nftType;
 
     const url = window.location.href;
-    const [baseUrl, fragment] = url.split('#');
+    const [baseUrl, fragment] = url.split("#");
 
-  if (fragment) {
-    console.log("fragment detecddted");
-    const [fragmentPart, queryString] = fragment.split('?');
-    const fragmentParams = new URLSearchParams(queryString);
-    const decodedParams = {};
-    for (const [key, value] of fragmentParams.entries()) {
-      decodedParams[key] = decodeURIComponent(value);
+    if (fragment) {
+      console.log("fragment detecddted");
+      const [fragmentPart, queryString] = fragment.split("?");
+      const fragmentParams = new URLSearchParams(queryString);
+      const decodedParams = {};
+      for (const [key, value] of fragmentParams.entries()) {
+        decodedParams[key] = decodeURIComponent(value);
+      }
+      console.log("decoded params is ", decodedParams);
+      inviteId = decodedParams.invite_id;
+      domainName = decodedParams.cname;
+      nftType = decodedParams.type;
+    } else {
+      console.log("no fragment detected");
+      var urlParams = new URLSearchParams(window.location.search);
+      inviteId = urlParams.get("invite_id");
+      domainName = urlParams.get("cname");
+      nftType = urlParams.get("type");
+
+      console.log("invite id is ", inviteId);
+      console.log("cname is ", domainName);
+      console.log("nft type is ", nftType);
     }
-    console.log("decoded params is ",decodedParams);
-    inviteId = decodedParams.invite_id;
-    domainName = decodedParams.cname;
-    nftType = decodedParams.type;
-  
-  }
-  else{
-    console.log("no fragment detected");
-    var urlParams = new URLSearchParams(window.location.search);
-    inviteId = urlParams.get("invite_id");
-    domainName = urlParams.get("cname");
-    nftType = urlParams.get("type");
-
-    console.log("invite id is ", inviteId);
-    console.log("cname is ", domainName);
-    console.log("nft type is ", nftType);
-  }
-    
-    
 
     //domainName = cName;
     inviteCode = inviteId;
-    
 
     window.ftd.set_value(
       `public-pages/distribution/templates/holy-angel/texts#nft-type`,
       nftType
     );
 
-    fetchUiComponents(domainName,nftType)
+    fetchUiComponents(domainName, nftType)
       .then((result) => {
         console.log("fetchUiComponents() promise resolved");
         if ("colorSchemeUrl" in result.values[0]) {
@@ -213,7 +206,10 @@ window.readUrlParams = async function readUrlParams() {
   });
 };
 
-window.fetchUiComponents = async function fetchUiComponents(domainName,nftType) {
+window.fetchUiComponents = async function fetchUiComponents(
+  domainName,
+  nftType
+) {
   return new Promise(function (resolve, reject) {
     if (domainName != undefined) {
       const url = `${config.DISTRIBUTION_BASE_BACKEND_URL}/sitedata/${domainName}`;
@@ -245,17 +241,17 @@ window.fetchUiComponents = async function fetchUiComponents(domainName,nftType) 
                   });
               }
               if ("creativeDatas" in respData.values[0]) {
-                updateCreativeDataUi(respData.values[0].creativeDatas,nftType).then(
-                  (result) => {
+                updateCreativeDataUi(respData.values[0].creativeDatas, nftType)
+                  .then((result) => {
                     console.log("creative data updated");
                     window.ftd.set_value(
                       `public-pages/distribution/templates/holy-angel/#loadedState`,
                       "loaded"
                     );
-                  }
-                ).catch((error) => {
-                  console.error(error);
-                });
+                  })
+                  .catch((error) => {
+                    console.error(error);
+                  });
               }
               resolve(respData);
             } else {
@@ -306,7 +302,8 @@ window.fetchColorScheme = async function fetchColorScheme(colorSchemeUrl) {
 };
 
 window.updateCreativeDataUi = async function updateCreativeDataUi(
-  creativeDatasArray,nftType
+  creativeDatasArray,
+  nftType
 ) {
   return new Promise(async (resolve, reject) => {
     console.log(
@@ -322,7 +319,7 @@ window.updateCreativeDataUi = async function updateCreativeDataUi(
           window.ftd.set_value(
             "public-pages/distribution/templates/holy-angel/images#nft-image-url",
             obj.imageUrl
-          );       
+          );
         }
       }
     });
@@ -379,7 +376,6 @@ window.showFailurePopup = async function showFailurePopup(inputData) {
     "public-pages/distribution/templates/holy-angel/lib#pop-up-status",
     true
   );
-
 };
 
 window.showWarningPopup = async function showWarningPopup(inputData) {
@@ -400,11 +396,10 @@ window.showWarningPopup = async function showWarningPopup(inputData) {
     "public-pages/distribution/templates/holy-angel/lib#pop-up-status",
     true
   );
-
 };
 
 window.checkImageURL = async function checkImageURL(url) {
-  console.log("input url is ",url);
+  console.log("input url is ", url);
   return new Promise((resolve, reject) => {
     const img = new Image();
     img.onload = () => resolve(url);
@@ -413,171 +408,284 @@ window.checkImageURL = async function checkImageURL(url) {
   });
 };
 
-
 window.connectWallet = async function connectWallet() {
-  connectWalletEvent();
-if (typeof window.ethereum !== 'undefined') {
-    console.log("metamask is installed");
+  console.log("entering connect wallet function");
+  const walletPopup = new WalletPopup();
+  document.body.appendChild(walletPopup);
+};
 
+window.connectWalletProvider = async function connectWalletProvider(
+  selectedProvider
+) {  
+  console.log("entering connectWalletProvider function", selectedProvider);
+  if (selectedProvider == "metamask") {
+    if (typeof window.ethereum !== "undefined") {
+      console.log("metamask is installed");
+      const polygonNetworkId = "0x89";
+      window.ethereum
+        .request({ method: "eth_chainId" })
+        .then((chainId) => {
+          if (chainId !== polygonNetworkId) {
+            const polygonNetwork = {
+              chainId: polygonNetworkId,
+              chainName: "Polygon Mainnet",
+              nativeCurrency: {
+                name: "MATIC",
+                symbol: "MATIC",
+                decimals: 18,
+              },
+              rpcUrls: ["https://polygon-rpc.com"],
+              blockExplorerUrls: ["https://polygonscan.com"],
+            };
 
-    const polygonNetworkId = '0x89'; 
+            return window.ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [polygonNetwork],
+            });
+          }
 
-  window.ethereum.request({ method: 'eth_chainId' })
-    .then((chainId) => {
-      if (chainId !== polygonNetworkId) {
-        const polygonNetwork = {
-          chainId: polygonNetworkId,
-          chainName: 'Polygon Mainnet',
-          nativeCurrency: {
-            name: 'MATIC',
-            symbol: 'MATIC',
-            decimals: 18,
-          },
-          rpcUrls: ['https://polygon-rpc.com'], 
-          blockExplorerUrls: ['https://polygonscan.com'],
-        };
-
-        return window.ethereum.request({
-          method: 'wallet_addEthereumChain',
-          params: [polygonNetwork],
+          console.log("Polygon network is already added to MetaMask");
+          return Promise.resolve();
+        })
+        .then(() => {
+          console.log("Added Polygon Mainnet to MetaMask");
+        })
+        .catch((error) => {
+          console.error("Failed to check/add Polygon network:", error);
         });
-      }
-
-      console.log('Polygon network is already added to MetaMask');
-      return Promise.resolve();
-    })
-    .then(() => {
-      console.log('Added Polygon Mainnet to MetaMask');
-    })
-    .catch((error) => {
-      console.error('Failed to check/add Polygon network:', error);
-    });
-
-
-    const networkId = 137;
-    window.ethereum.request({
-      method: 'wallet_switchEthereumChain',
-      params: [{ chainId: `0x${networkId.toString(16)}` }],
-    })
-      .then(() => {
-        console.log('Switched to Polygon Mainnet');
-        window.ethereum.request({ method: 'eth_requestAccounts' })
-    .then((accounts) => {        
-      connectedWalletAddress=accounts[0];  
-      console.log('Connected MetaMask accounts:', connectedWalletAddress);  
-      walletConnectionStatus=true;
-      window.ftd.set_value(
-        "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-        "connected"
-      );      
-    })
-    .catch((error) => {
-      console.log('Failed to connect to MetaMask:', error);
-    });
-      })
-      .catch((error) => {
-        console.error('Failed to switch network:', error);
-      });
-
-} else {
-  console.log('MetaMask is not installed');    
+      const networkId = 137;
+      window.ethereum
+        .request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: `0x${networkId.toString(16)}` }],
+        })
+        .then(() => {
+          console.log("Switched to Polygon Mainnet");
+          window.ethereum
+            .request({ method: "eth_requestAccounts" })
+            .then((accounts) => {
+              connectedWalletAddress = accounts[0];
+              console.log(
+                "Connected MetaMask accounts:",
+                connectedWalletAddress
+              );
+              walletConnectionStatus = true;
+              window.ftd.set_value(
+                "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+                "connected"
+              );
+            })
+            .catch((error) => {
+              console.log("Failed to connect to MetaMask:", error);
+            });
+        })
+        .catch((error) => {
+          console.error("Failed to switch network:", error);
+        });
+    } else {
+      alert("metamask is not installed");
+    }
+  }
+  else if(selectedProvider=="torus (sign in with google)"){
+    document.body.style.cursor = 'wait';
+    torusInit().then(async ()=>{  
+    document.body.style.cursor = 'default';    
+    await torus.login();
     try {
       await torus.setProvider( {
         host: "matic"
-      });  
+      });
       console.log('Switched to Polygon Mainnet');
     } catch (error) {
       console.error('Failed to switch network:', error);
     }
-  await torus.login();
-  const provider = torus.provider;
-  const web3 = new Web3(provider);
-  const accounts = await web3.eth.getAccounts();
-  connectedWalletAddress=accounts[0];
-  console.log("Connected with address:", connectedWalletAddress);
-  walletConnectionStatus=true;
-      window.ftd.set_value(
-        "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-        "connected"
-      );  
-}
-}
+    const provider = torus.provider;
+    const web3 = new Web3(provider);
+    const accounts = await web3.eth.getAccounts();
+    connectedWalletAddress=accounts[0];
+    console.log("Connected with address:", connectedWalletAddress);
+    walletConnectionStatus=true;
+        window.ftd.set_value(
+          "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+          "connected"
+        );
+        if(torus.isLoggedIn){
+          torus.torusWidgetVisibility=true;
+        }        
+    }).catch((error) => {
+      console.error("Failed to open torus:", error);
+      document.body.style.cursor = 'default';      
+    });    
+  }
+};
+
+// window.connectWallet = async function connectWallet() {
+//   connectWalletEvent();
+// if (typeof window.ethereum !== 'undefined') {
+//     console.log("metamask is installed");
+
+//     const polygonNetworkId = '0x89';
+
+//   window.ethereum.request({ method: 'eth_chainId' })
+//     .then((chainId) => {
+//       if (chainId !== polygonNetworkId) {
+//         const polygonNetwork = {
+//           chainId: polygonNetworkId,
+//           chainName: 'Polygon Mainnet',
+//           nativeCurrency: {
+//             name: 'MATIC',
+//             symbol: 'MATIC',
+//             decimals: 18,
+//           },
+//           rpcUrls: ['https://polygon-rpc.com'],
+//           blockExplorerUrls: ['https://polygonscan.com'],
+//         };
+
+//         return window.ethereum.request({
+//           method: 'wallet_addEthereumChain',
+//           params: [polygonNetwork],
+//         });
+//       }
+
+//       console.log('Polygon network is already added to MetaMask');
+//       return Promise.resolve();
+//     })
+//     .then(() => {
+//       console.log('Added Polygon Mainnet to MetaMask');
+//     })
+//     .catch((error) => {
+//       console.error('Failed to check/add Polygon network:', error);
+//     });
+
+//     const networkId = 137;
+//     window.ethereum.request({
+//       method: 'wallet_switchEthereumChain',
+//       params: [{ chainId: `0x${networkId.toString(16)}` }],
+//     })
+//       .then(() => {
+//         console.log('Switched to Polygon Mainnet');
+//         window.ethereum.request({ method: 'eth_requestAccounts' })
+//     .then((accounts) => {
+//       connectedWalletAddress=accounts[0];
+//       console.log('Connected MetaMask accounts:', connectedWalletAddress);
+//       walletConnectionStatus=true;
+//       window.ftd.set_value(
+//         "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+//         "connected"
+//       );
+//     })
+//     .catch((error) => {
+//       console.log('Failed to connect to MetaMask:', error);
+//     });
+//       })
+//       .catch((error) => {
+//         console.error('Failed to switch network:', error);
+//       });
+
+// } else {
+//   console.log('MetaMask is not installed');
+//     try {
+//       await torus.setProvider( {
+//         host: "matic"
+//       });
+//       console.log('Switched to Polygon Mainnet');
+//     } catch (error) {
+//       console.error('Failed to switch network:', error);
+//     }
+//   await torus.login();
+//   const provider = torus.provider;
+//   const web3 = new Web3(provider);
+//   const accounts = await web3.eth.getAccounts();
+//   connectedWalletAddress=accounts[0];
+//   console.log("Connected with address:", connectedWalletAddress);
+//   walletConnectionStatus=true;
+//       window.ftd.set_value(
+//         "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+//         "connected"
+//       );
+// }
+// }
 
 window.torusInit = async function torusInit() {
-  if (typeof window.ethereum == 'undefined') {
-    console.log('MetaMask is not installed');   
-    await torus.init({network: {
-      host: "matic"
-    }});  
-  }
-  else{
-    console.log("metamask is installed");
-  }
-}
+  return new Promise(async (resolve, reject) => {
+    console.log("Initialising torus");
+    try{
+      if(!torus.isInitialized){
+        await torus.init({
+          network: {
+            host: "matic",
+          },
+        });
+        torus.torusWidgetVisibility=false;
+      }      
+      console.log("torus is ",torus);
+      resolve("done");
+    }catch(e){
+      reject(e);
+    }      
+  });
+};
 
-window.sendWallet = async function sendWallet() {   
-  claimEvent(); 
-  if(walletConnectionStatus){
+window.sendWallet = async function sendWallet() {
+  claimEvent();
+  if (walletConnectionStatus) {
     try {
-      console.log("account to send is ",connectedWalletAddress);
-      if(campaignId != "undefined" && inviteCode != "undefined"){
+      console.log("account to send is ", connectedWalletAddress);
+      if (campaignId != "undefined" && inviteCode != "undefined") {
         fetch(`${config.DISTRIBUTION_BASE_BACKEND_URL}/open/dropWallet`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                "walletAddress": `${connectedWalletAddress}`,
-                "campaignId": `${campaignId}`,
-                "inviteCode": `${inviteCode}`
-            })
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            walletAddress: `${connectedWalletAddress}`,
+            campaignId: `${campaignId}`,
+            inviteCode: `${inviteCode}`,
+          }),
         })
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                if("success" in data && "message" in data){
-                    if(data.success){
-                        showSuccessPopup(data.message);
-                    }
-                    else{
-                        showFailurePopup(data.message);
-                    }
-                    
-                }
-            })
-            .catch(error => console.error(error))  
-    }
-    else{
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            if ("success" in data && "message" in data) {
+              if (data.success) {
+                showSuccessPopup(data.message);
+              } else {
+                showFailurePopup(data.message);
+              }
+            }
+          })
+          .catch((error) => console.error(error));
+      } else {
         showWarningPopup("Invalid Link");
-    }
+      }
     } catch (error) {
       console.error(error.message);
-    }            
+    }
+  } else {
+    showWarningPopup("Connect your wallet to claim NFT");
   }
-  else{
-      showWarningPopup("Connect your wallet to claim NFT")
-  }    
-}
+};
 
 window.dataLayer = window.dataLayer || [];
 
-window.gtag=function gtag() {dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', config.G_TAG_ID);
+window.gtag = function gtag() {
+  dataLayer.push(arguments);
+};
+gtag("js", new Date());
+gtag("config", config.G_TAG_ID);
 
-window.claimEvent=async function claimEvent() {
-  gtag('event', 'click', {
-      'event_category': 'Button Click',
-      'event_label': 'Claim Button',
-      'campaign_id': `${campaignId}`
-    });
-}
+window.claimEvent = async function claimEvent() {
+  gtag("event", "click", {
+    event_category: "Button Click",
+    event_label: "Claim Button",
+    campaign_id: `${campaignId}`,
+  });
+};
 
-window.connectWalletEvent=async function connectWalletEvent() {
-  gtag('event', 'click', {
-      'event_category': 'Button Click',
-      'event_label': 'Connect Wallet Button',
-      'campaign_id': `${campaignId}`
-    });
-}
-
+window.connectWalletEvent = async function connectWalletEvent() {
+  gtag("event", "click", {
+    event_category: "Button Click",
+    event_label: "Connect Wallet Button",
+    campaign_id: `${campaignId}`,
+  });
+};
