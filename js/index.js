@@ -1,17 +1,10 @@
-
-//import "https://cdn.ethers.io/scripts/ethers-v3.min.js";
 import "https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js";
 import * as config from "./config.js";
-import { rpc } from "./ethersRPC.js";
 import "https://www.googletagmanager.com/gtag/js?id=G-TQW7C70YGW%22%3E";
-import "https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js";
-import "https://cdn.jsdelivr.net/npm/@web3auth/modal";
-import "https://cdn.jsdelivr.net/npm/@web3auth/metamask-adapter";
-import "https://cdn.jsdelivr.net/npm/@web3auth/wallet-connect-v1-adapter";
-import "https://cdn.jsdelivr.net/npm/@web3auth/torus-evm-adapter";
-import "https://cdn.jsdelivr.net/npm/@web3auth/torus-wallet-connector-plugin";
+import "https://cdn.jsdelivr.net/npm/@toruslabs/torus-embed@1.41.3/dist/torus.umd.min.js";
 import "https://cdn.jsdelivr.net/npm/web3@1.7.3/dist/web3.min.js";
-import "https://cdn.jsdelivr.net/npm/@web3auth/torus-evm-adapter";
+
+const torus = new Torus();
 
 console.log("entering index page");
 
@@ -19,6 +12,7 @@ export var campaignId = "undefined";
 export var inviteCode = "undefined";
 var connectedWalletAddress="undefined";
 var walletConnectionStatus=false;
+
 
 function convertToColorBlocks(text) {
   const lines = text.trim().split("\n");
@@ -70,6 +64,7 @@ window.color_scheme_to_ftd = async function color_scheme_to_ftd(
 };
 
 window.onload = async function () {
+  torusInit();
   readUrlParams()
     .then((response) => {
       console.log("readUrlParams() promise resolved");
@@ -89,34 +84,22 @@ window.onload = async function () {
 };
 
 function getUrlParameters() {
-  // Get the current URL from the browser
   const url = window.location.href;
-
-  // Split the URL into base URL and fragment identifier
   const [baseUrl, fragment] = url.split('#');
-
-  // Check if there is a fragment identifier present
   if (fragment) {
-    // Split the fragment into fragment part and query string
     const [fragmentPart, queryString] = fragment.split('?');
     const fragmentParams = new URLSearchParams(queryString);
-
-    // Create an object to store the decoded fragment parameters
     const decodedParams = {};
-
-    // Loop through the fragment parameters and decode the values
     for (const [key, value] of fragmentParams.entries()) {
       decodedParams[key] = decodeURIComponent(value);
     }
 
-    // Return the fragment parameters along with the base URL
     return {
       baseUrl: baseUrl,
       fragmentParams: decodedParams
     };
   }
 
-  // Return only the base URL if there is no fragment identifier
   return {
     baseUrl: baseUrl
   };
@@ -431,207 +414,14 @@ window.checkImageURL = async function checkImageURL(url) {
 };
 
 
-
-
-///////////////// Code for web3Auth ///////////////////////////////////////////////////
-
-
-let web3auth = null;
-let provider = null;
-
-const clientId =config.WEB3AUTH_CLIENT_ID;
-
-window.web3AuthInit = async function web3AuthInit() {
-  web3auth = new window.Modal.Web3Auth({
-    clientId,
-    chainConfig: {
-      chainNamespace: config.WEB3AUTH_CHAIN_NAMESPACE,
-      chainId: config.WEB3AUTH_CHAIN_ID,
-      rpcTarget: config.WEB3AUTH_RPC_TARGET, // This is the public RPC we have added, please pass on your own endpoint while creating an app
-    },
-    web3AuthNetwork: config.WEB3AUTH_NETWORK,
-  });
-
-    // Add Torus Wallet Connector Plugin
-    const torusPlugin =
-    new window.TorusWalletConnectorPlugin.TorusWalletConnectorPlugin({
-      torusWalletOpts: {},
-      walletInitOptions: {
-        whiteLabel: {
-          theme: { isDark: true, colors: { primary: "#00a8ff" } },
-          logoDark: "https://web3auth.io/images/w3a-L-Favicon-1.svg",
-          logoLight: "https://web3auth.io/images/w3a-D-Favicon-1.svg",
-        },
-        useWalletConnect: true,
-        enableLogging: true,
-      },
-    });
-  await web3auth.addPlugin(torusPlugin);
-
-  const walletConnectAdapter =
-    new window.WalletConnectV1Adapter.WalletConnectV1Adapter({
-      adapterSettings: {
-        bridge: "https://bridge.walletconnect.org",
-      },
-      clientId,
-    });
-  web3auth.configureAdapter(walletConnectAdapter);
-
-  const metamaskAdapter = new window.MetamaskAdapter.MetamaskAdapter({
-    clientId,
-    sessionTime: 3600, // 1 hour in seconds
-    web3AuthNetwork: config.WEB3AUTH_NETWORK,
-    chainConfig: {
-      chainNamespace: config.WEB3AUTH_CHAIN_NAMESPACE,
-      chainId:  config.WEB3AUTH_CHAIN_ID,
-      rpcTarget: config.WEB3AUTH_RPC_TARGET, // This is the public RPC we have added, please pass on your own endpoint while creating an app
-    },
-  });
-  web3auth.configureAdapter(metamaskAdapter);
-
-  const torusAdapter = new window.TorusEvmAdapter.TorusWalletAdapter({
-    clientId,
-  });
-  web3auth.configureAdapter(torusAdapter);
-  await web3auth.initModal();
-  if(web3auth.status=="connected"){
-    window.ftd.set_value(
-      "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-      "connected"
-    );
-  }
-}
-
-web3AuthInit();
-
-// $("#login").click(async function (event) {
-//   try {
-//     const provider = await web3auth.connect();
-//     $(".btn-logged-out").hide();
-//     $(".btn-logged-in").show();
-//     uiConsole("Logged in Successfully!");
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// });
-
-// $("#get-user-info").click(async function (event) {
-//   try {
-//     const user = await web3auth.getUserInfo();
-//     uiConsole(user);
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// });
-
-// $("#get-id-token").click(async function (event) {
-//   try {
-//     const id_token = await web3auth.authenticateUser();
-//     uiConsole(id_token);
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// });
-
-// $("#get-chain-id").click(async function (event) {
-//   try {
-//     const chainId = await rpc.getChainId(web3auth.provider);
-//     uiConsole(chainId);
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// });
-
-// $("#get-accounts").click(async function (event) {
-//   try {
-//     const accounts = await rpc.getAccounts(web3auth.provider);
-//     uiConsole(accounts);
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// });
-
-// $("#get-balance").click(async function (event) {
-//   try {
-//     const balance = await rpc.getBalance(web3auth.provider);
-//     uiConsole(balance);
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// });
-
-// $("#send-transaction").click(async function (event) {
-//   try {
-//     const receipt = await rpc.sendTransaction(web3auth.provider);
-//     uiConsole(receipt);
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// });
-
-// $("#sign-message").click(async function (event) {
-//   try {
-//     const signedMsg = await rpc.signMessage(web3auth.provider);
-//     uiConsole(signedMsg);
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// });
-
-// $("#get-private-key").click(async function (event) {
-//   try {
-//     const privateKey = await rpc.getPrivateKey(web3auth.provider);
-//     uiConsole(privateKey);
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// });
-
-// $("#logout").click(async function (event) {
-//   try {
-//     await web3auth.logout();
-//     $(".btn-logged-in").hide();
-//     $(".btn-logged-out").show();
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-// });
-
-// function uiConsole(...args) {
-//   const el = document.querySelector("#console>p");
-//   if (el) {
-//     el.innerHTML = JSON.stringify(args || {}, null, 2);
-//   }
-// }
-
-
-// window.connectWallet = async function connectWallet() {
-//   connectWalletEvent();
-//   try {
-//     await web3auth.connect();
-//     if(web3auth.status=="connected"){
-//       window.ftd.set_value(
-//         "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-//         "connected"
-//       );
-//     }      
-//     console.log("Logged in Successfully!");
-//   } catch (error) {
-//     console.error(error.message);
-//   }
-//   try{
-//     const accounts = await rpc.getAccounts(web3auth.provider);
-//     console.log("connected account is",accounts);
-//   }catch(e){
-//     console.error(e);
-//   }
-// }
-
 window.connectWallet = async function connectWallet() {
   connectWalletEvent();
 if (typeof window.ethereum !== 'undefined') {
     console.log("metamask is installed");
+
+
     const polygonNetworkId = '0x89'; 
+
   window.ethereum.request({ method: 'eth_chainId' })
     .then((chainId) => {
       if (chainId !== polygonNetworkId) {
@@ -646,11 +436,13 @@ if (typeof window.ethereum !== 'undefined') {
           rpcUrls: ['https://polygon-rpc.com'], 
           blockExplorerUrls: ['https://polygonscan.com'],
         };
+
         return window.ethereum.request({
           method: 'wallet_addEthereumChain',
           params: [polygonNetwork],
         });
       }
+
       console.log('Polygon network is already added to MetaMask');
       return Promise.resolve();
     })
@@ -660,6 +452,8 @@ if (typeof window.ethereum !== 'undefined') {
     .catch((error) => {
       console.error('Failed to check/add Polygon network:', error);
     });
+
+
     const networkId = 137;
     window.ethereum.request({
       method: 'wallet_switchEthereumChain',
@@ -686,33 +480,43 @@ if (typeof window.ethereum !== 'undefined') {
       });
 
 } else {
-  console.log('MetaMask is not installed');
-  try {
-    await web3auth.connect();
-    if(web3auth.status=="connected"){
+  console.log('MetaMask is not installed');    
+    try {
+      await torus.setProvider( {
+        host: "matic"
+      });  
+      console.log('Switched to Polygon Mainnet');
+    } catch (error) {
+      console.error('Failed to switch network:', error);
+    }
+  await torus.login();
+  const provider = torus.provider;
+  const web3 = new Web3(provider);
+  const accounts = await web3.eth.getAccounts();
+  connectedWalletAddress=accounts[0];
+  console.log("Connected with address:", connectedWalletAddress);
+  walletConnectionStatus=true;
       window.ftd.set_value(
         "public-pages/distribution/templates/holy-angel/texts#wallet-state",
         "connected"
-      );
-      walletConnectionStatus=true;
-    }      
-    console.log("Logged in Successfully!");
-  } catch (error) {
-    console.error(error.message);
-  }
-  try{
-    const accounts = await rpc.getAccounts(web3auth.provider);
-    connectedWalletAddress=accounts
-    console.log("connected account is",connectedWalletAddress);
-  }catch(e){
-    console.error(e);
-  }    
+      );  
 }
+}
+
+window.torusInit = async function torusInit() {
+  if (typeof window.ethereum == 'undefined') {
+    console.log('MetaMask is not installed');   
+    await torus.init({network: {
+      host: "matic"
+    }});  
+  }
+  else{
+    console.log("metamask is installed");
+  }
 }
 
 window.sendWallet = async function sendWallet() {   
   claimEvent(); 
-  console.log("wallet connection status is ",walletConnectionStatus);
   if(walletConnectionStatus){
     try {
       console.log("account to send is ",connectedWalletAddress);
@@ -776,3 +580,4 @@ window.connectWalletEvent=async function connectWalletEvent() {
       'campaign_id': `${campaignId}`
     });
 }
+
