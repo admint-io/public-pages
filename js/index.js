@@ -719,7 +719,7 @@ window.torusInit = async function torusInit() {
     console.error(e);
   }    
 }
-}
+
 
 window.sendWallet = async function sendWallet() {   
   claimEvent(); 
