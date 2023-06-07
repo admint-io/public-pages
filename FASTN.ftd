@@ -3,4 +3,53 @@
 -- fastn.package: public-pages
 
 -- fastn.dependency: sarvom.github.io/holy-angel-typography
+-- fastn.dependency: fifthtry.github.io/admint-cs
+-- fastn.dependency: fifthtry.github.io/admint-nunito-font
+-- fastn.dependency: fifthtry.github.io/roboto-font
+-- fastn.dependency: fifthtry.github.io/montserrat
+-- fastn.dependency: fifthtry.github.io/admint-typography
+-- fastn.dependency: fifthtry.github.io/lato-font
+-- fastn.dependency: fifthtry.github.io/doc-site
+-- fastn.dependency: fifthtry.github.io/footer
+-- fastn.dependency: fastn-community.github.io/opensans-font
 
+-- fastn.auto-import: public-pages/assets
+
+-- fastn.sitemap:
+
+# Home: index.html
+
+# Why NFT?: why-nft/
+
+# About Us: about/
+
+# Pricing: pricing/
+
+# Learn: learn/
+
+# Docs: docs/
+skip: true
+
+- Navbar: docs/navbar/
+- Hero: docs/hero/
+- Carousel: docs/carousel/
+- Help Banner: docs/help-banner/
+- How it works: docs/how-it-works/
+- Advertisement card: docs/advertisement-card/
+- Advertisement & cards: docs/advertisement-cards/
+- Sneak Peak: docs/sneak-peak/
+- Join waitlist form: docs/join-waitlist-form/
+- Join waitlist popup: docs/join-waitlist-popup/
+- Why NFT?🚧: docs/why-nfts/
+- About Us: docs/about-us/
+- Our Team: docs/our-team/
+- Pricing🚧: docs/pricing/
+- Learn Page🚧: docs/faq/
+- FAQs & Accordion: docs/faq/
+- Brand campaign🚧: docs/brand-campaign/
+- Advertising-web-3-0🚧: docs/advertising-web-3-0/
+- Blog🚧: docs/blog/
+- Terms & conditions🚧: docs/terms-conditions/
+- Privacy Policy🚧: docs/privacy-policy/
+- Footer: docs/footer/
+- Site Footer: docs/site-footer/

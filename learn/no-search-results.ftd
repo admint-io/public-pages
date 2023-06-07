@@ -1,0 +1,27 @@
+-- import: public-pages/assets
+-- import: public-pages/lib
+
+-- lib.page:
+blog: true
+
+-- lib.tabs:
+
+-- lib.tab: Web 3.0 Basics
+link: learn/
+
+-- lib.tab: Brand Campaign
+link: learn/brand-campaigns/
+
+-- lib.tab: Advertising & Web 3.0
+link: learn/advertising-web-3-0/
+
+-- end: lib.tabs
+
+-- lib.search-results: Search Results For:
+query: blah blah
+
+It seems we can't find what you're looking for.
+
+-- end: lib.search-results
+
+-- end: lib.page

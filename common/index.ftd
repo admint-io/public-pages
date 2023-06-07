@@ -1,0 +1,212 @@
+-- import: public-pages/assets
+-- import: fastn/processors as pr
+
+-- void global-event():
+js: $assets.files.functions.js
+
+loadWindow();
+
+
+
+
+
+-- void increment-and-clamp(a,by,min,max):
+integer $a:
+integer by: 1
+integer min: 0
+integer max: 5
+
+
+a = (((a - min) + by) % ((max+1)- min)) + min
+
+
+
+
+
+-- void decrement-and-clamp(a,by,min,max):
+integer $a:
+integer by: 1
+integer min: 0
+integer max: 5
+
+
+a = (((a - min) - by) % ((max+1)- min)) + min
+
+
+
+
+
+-- void form-validate():
+js: $assets.files.functions.js
+
+formValidation();
+
+
+
+
+
+-- void popup-form-validate():
+js: $assets.files.functions.js
+
+popupFormValidation();
+
+
+
+
+
+-- void highlight-border():
+js: $assets.files.functions.js
+
+highlightBorder();
+
+
+
+
+
+
+-- boolean check-is-active(a,b):
+optional string a:
+optional string b:
+
+a == b
+
+
+
+
+
+
+-- record team:
+caption title:
+string designation:
+ftd.image-src avatar:
+string link:
+
+-- team list members:
+
+-- team: **Harish Shankaran**
+designation: Founder
+avatar: $assets.files.static.about-us.hareesh.jpeg
+link: https://www.linkedin.com/in/harishshankaran/
+
+-- team: **Jaylah Consejo**
+designation: Founder
+avatar: $assets.files.static.about-us.Jaylah-Consejo.jpeg
+link: https://www.linkedin.com/in/jaylahconsejo/
+
+-- end: members
+
+
+
+
+
+-- record role-record:
+caption title:
+
+-- role-record list roles:
+
+-- role-record: Advertiser
+
+-- role-record: Agency
+
+-- role-record: Brand Owner
+
+-- role-record: Executive
+
+-- role-record: SMB
+
+-- role-record: Startup
+
+-- end: roles
+
+
+
+
+
+-- pr.toc-item list footer-links:
+$processor$: pr.toc
+
+- About us: about/
+- Terms & Conditions: terms-conditions/
+- Privacy Policy: privacy-policy/
+- Pricing: pricing/
+- Learn: learn/
+
+
+
+
+
+-- record social-media:
+ftd.image-src src:
+string link: /
+
+-- social-media list social-links:
+
+-- social-media:
+link: /
+src: https://admint.io/instagram.6dfc5cafd7516572a269.svg
+
+-- social-media: 
+link: /
+src: https://admint.io/linkedin.5c208bfde7ff079b9f35.svg
+
+-- social-media:
+link: /
+src: https://admint.io/twitter.d3071d3132f19afb426e.svg
+
+-- social-media: 
+link: /
+src: https://admint.io/facebook.5af5659b1d481d1457d7.svg
+
+-- end: social-links
+
+
+
+
+
+/-- ftd.background-position.length bg-position:
+x.percent: 100
+y.px: -56 
+
+/-- ftd.background-image steps-bg-image: 
+src: $assets.files.static.carousel.simple.svg
+position: right-top
+repeat: no-repeat
+
+
+
+
+
+-- ftd.background-size.length bg-size:
+x.percent: 100
+y.percent: 100
+
+-- ftd.background-image bg-tab-active-img: 
+src: $assets.files.static.highlight-tab-active.svg
+position: center
+repeat: no-repeat
+size: $bg-size
+
+
+
+
+
+-- ftd.background-image bg-footer-active-img: 
+src: $assets.files.static.pricing.tab-highlight-white.svg
+position: center
+repeat: no-repeat
+size: $bg-size
+
+
+
+
+
+-- record benefits-record:
+caption title:
+
+-- benefits-record list benefits:
+
+-- benefits-record: Saving 50% with this combination
+
+-- benefits-record: Get all exclusive features
+
+-- end: benefits
