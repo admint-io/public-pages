@@ -1,0 +1,26 @@
+-- import: fastn
+
+-- fastn.package: fifthtry.github.io/footer
+
+-- fastn.dependency: fifthtry.github.io/package-doc 
+
+-- fastn.auto-import: fifthtry.github.io/package-doc/doc as pd
+-- fastn.auto-import: fastn
+-- fastn.auto-import: fifthtry.github.io/package-doc/typography as tf
+-- fastn.auto-import: fifthtry.github.io/package-doc/code-block as cb
+-- fastn.auto-import: fifthtry.github.io/package-doc/forest-theme as ft
+
+-- fastn.sitemap:
+
+# Home: index.html
+
+## Footer Components: index.html
+- Basic Footer: basic-footer/
+- Social Footer: social-footer/
+- Social Sideline Footer: social-sideline-footer/
+- Left Hug Sitemap Footer: left-hug-sitemap-footer/
+- Sitemap Footer: sitemap-footer/
+- Fastn Powered-by Footer: fastn-footer/
+
+# Github
+  url: https://github.com/FifthTry/footer

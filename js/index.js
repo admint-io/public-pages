@@ -410,6 +410,7 @@ window.checkImageURL = async function checkImageURL(url) {
 
 window.connectWallet = async function connectWallet() {
   console.log("entering connect wallet function");
+  connectWalletEvent();
   const walletPopup = new WalletPopup();
   document.body.appendChild(walletPopup);
 };

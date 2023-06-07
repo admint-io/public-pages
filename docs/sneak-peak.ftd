@@ -1,0 +1,136 @@
+-- import: public-pages/assets
+-- import: fifthtry.github.io/doc-site as ds
+-- import: public-pages/docs
+-- import: public-pages/lib
+-- import: public-pages/common
+-- import: public-pages/common/fonts
+-- import: fifthtry.github.io/admint-cs as cs
+-- import: fifthtry.github.io/admint-typography as typo
+
+
+
+
+
+-- ds.page: Sneak Peak
+show-footer: true
+site-logo: $assets.files.static.admint-logo.svg
+colors: $cs.main
+types: $typo.types
+$widthfill: true
+sections: $lib.sitemap.sections
+
+-- ds.page.footer:
+
+-- lib.sneak-peak:
+image: $assets.files.static.carousel.sneak-peak.png
+bg-image: $assets.files.static.carousel.sneak-bg.png
+cta-text: Get Started
+cta-url: docs/sneak-peak/
+
+-- lib.sneak-peak.title:
+
+-- ftd.container:
+width.fixed.percent if { ftd.device == "desktop" }: 60
+
+-- ftd.text: A 
+role: $fonts.heading-md
+color: $inherited.colors.text
+region: h1
+display: inline
+
+-- ftd.text: sneak peek
+role: $fonts.heading-md
+color: $inherited.colors.cta-primary.base
+region: h1
+display: inline
+margin-horizontal.px: 11
+
+-- ftd.text: into the AdMint platform. See how simple it really is!
+role: $fonts.heading-md
+color: $inherited.colors.text
+region: h1
+display: inline
+
+-- end: ftd.container
+
+-- end: lib.sneak-peak.title
+
+-- end: lib.sneak-peak
+
+-- docs.footer:
+
+-- end: ds.page.footer
+
+-- ds.page.body:
+
+We have developed the `sneak-peak` component for 
+[admint.io](https://admint.io/), which matches the design currently displayed
+ on the live site.
+
+-- ds.h3: How to use?
+
+To use the `sneak-peak` component you need to import `lib.ftd` inside your `.ftd`
+file, as shown below:
+
+-- ds.code:
+lang: ftd
+
+\-- import: public-pages/lib
+
+-- ds.markdown:
+
+Once you import the `lib` inside your `.ftd` file, use the `sneak-peak` component by
+adding all required attributes of it.
+
+-- ds.rendered:
+
+-- ds.rendered.input:
+
+\-- lib.sneak-peak:
+image: $assets.files.static.carousel.sneak-peak.png
+bg-image: $assets.files.static.carousel.sneak-bg.png
+cta-text: Get Started
+cta-url: /
+
+\-- lib.sneak-peak.title:
+
+\-- ftd.container:
+width.fixed.percent if { ftd.device == "desktop" }: 60
+
+\-- ftd.text: A 
+role: $fonts.heading-md
+color: $inherited.colors.text
+region: h1
+display: inline
+
+\-- ftd.text: sneak peek
+role: $fonts.heading-md
+color: $inherited.colors.cta-primary.base
+region: h1
+display: inline
+margin-horizontal.px: 11
+
+\-- ftd.text: into the AdMint platform. See how simple it really is!
+role: $fonts.heading-md
+color: $inherited.colors.text
+region: h1
+display: inline
+
+\-- end: ftd.container
+
+\-- end: lib.sneak-peak.title
+
+\-- end: lib.sneak-peak
+
+-- ds.rendered.output:
+
+-- ftd.text: 👇 Look at bottom of this page 👇
+role: $inherited.types.copy-large
+color: $inherited.colors.text-strong
+padding-vertical.px: 20
+
+-- end: ds.rendered.output
+
+-- end: ds.rendered
+
+-- end: ds.page
