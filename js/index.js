@@ -419,8 +419,6 @@ window.connectWalletProvider = async function connectWalletProvider(
 ) {  
   console.log("entering connectWalletProvider function", selectedProvider);
   if (selectedProvider == "metamask") {
-    if (typeof window.ethereum !== "undefined") {
-      console.log("metamask is installed");
       const polygonNetworkId = "0x89";
       window.ethereum
         .request({ method: "eth_chainId" })
@@ -482,9 +480,7 @@ window.connectWalletProvider = async function connectWalletProvider(
         .catch((error) => {
           console.error("Failed to switch network:", error);
         });
-    } else {
-      alert("metamask is not installed");
-    }
+    
   }
   else if(selectedProvider=="torus (sign in with google)"){
     document.body.style.cursor = 'wait';
