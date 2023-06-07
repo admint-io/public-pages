@@ -1,0 +1,71 @@
+-- import: public-pages/assets
+-- import: public-pages/lib
+
+-- lib.page:
+blog: true
+
+-- lib.tabs:
+
+-- lib.tab: Web 3.0 Basics
+link: learn/
+
+-- lib.tab: Brand Campaign
+link: learn/brand-campaigns/
+
+-- lib.tab: Advertising & Web 3.0
+link: learn/advertising-web-3-0/
+
+-- end: lib.tabs
+
+-- lib.search-results: Search Results For:
+query: blah blah
+
+-- lib.wrapper1:
+
+-- lib.search-result: Lorem Ipsum Is Simply Dummy Text
+link: learn/metaverse-is-the-new-playground-for-advertisement-2/
+thumbnail: $assets.files.static.lorem-ipsum1.jpeg
+timestamp: December 6, 2022
+comments: No comments
+
+Lorem Ipsum is simply dummy text of the printing and typesetting
+industry. Lorem Ipsum has been the industry’s standard dummy
+
+
+-- lib.search-result: Metaverse Is The New Playground For Advertisement.
+link: learn/metaverse-is-the-new-playground-for-advertisement-2/
+thumbnail: $assets.files.static.blog.01-2048x1366.jpeg
+timestamp: December 6, 2022
+comments: No comments
+
+Ladies and gentlemen welcome to the bizarre world of Metaverse. Be it a founder,
+leader, professional, or student; how much
+
+-- end: lib.wrapper1
+
+-- lib.wrapper2:
+
+-- lib.search-result: Metaverse Is The New Playground For Advertisement.
+link: learn/metaverse-is-the-new-playground-for-advertisement-2/
+thumbnail: $assets.files.static.blog.01-2048x1366.jpeg
+timestamp: December 6, 2022
+comments: No comments
+
+Ladies and gentlemen welcome to the bizarre world of Metaverse. Be it a founder,
+leader, professional, or student; how much
+
+
+-- lib.search-result: Lorem Ipsum Is Simply
+link: learn/metaverse-is-the-new-playground-for-advertisement-2/
+thumbnail: $assets.files.static.lorem-ipsum1.jpeg
+timestamp: December 6, 2022
+comments: No comments
+
+Lorem Ipsum is simply dummy text of the printing and typesetting
+industry. Lorem Ipsum has been the industry’s standard dummy
+
+-- end: lib.wrapper2
+
+-- end: lib.search-results
+
+-- end: lib.page

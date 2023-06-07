@@ -1,0 +1,115 @@
+-- import: public-pages/assets
+-- import: fifthtry.github.io/doc-site as ds
+-- import: public-pages/docs
+-- import: public-pages/lib
+-- import: fifthtry.github.io/admint-cs as cs
+-- import: fifthtry.github.io/admint-typography as typo
+
+
+
+
+
+-- ds.page: How it works
+show-footer: true
+site-logo: $assets.files.static.admint-logo.svg
+colors: $cs.main
+types: $typo.types
+$widthfill: true
+sections: $lib.sitemap.sections
+
+-- ds.page.footer:
+
+-- docs.footer:
+
+-- end: ds.page.footer
+
+-- ds.page.body:
+
+We have developed the `how-it-works` component for 
+[admint.io](https://admint.io/), which matches the design currently displayed 
+on the live site.
+
+-- ds.h3: How to use?
+
+The `how-it-works` component accepts `ftd` `child` components also. Check 
+[How it works](index.html#how-it-works) of homepage. 
+It have `carousel` as child and `carousel` items as children. It can be used 
+to add any other components as its children. We recommend to close it with 
+`-- end: how-it-works`, if it contains multiple childrens.
+
+To use the `how-it-works` component you need to import `lib.ftd` inside your `.ftd`
+file, as shown below:
+
+-- ds.code:
+lang: ftd
+
+\-- import: public-pages/lib
+
+-- ds.markdown:
+
+Once you import the `lib` inside your `.ftd` file, use the `how-it-works`
+component by adding all required attributes of it.
+
+-- ds.rendered:
+
+-- ds.rendered.input:
+
+\-- lib.how-it-works: **HOW IT WORKS** 🚧
+
+\-- lib.how-it-works.subtitle:
+
+\-- ftd.container:
+
+\-- ftd.text: Web 3.0 campaigns
+display: inline
+color: $inherited.colors.border
+margin-right.px: 10
+
+\-- ftd.text: set up made simple.
+display: inline
+
+\-- end: ftd.container
+
+\-- end: lib.how-it-works.subtitle
+
+\-- lib.how-it-works.body:
+
+AdMint offsets most of the technological challenges 
+associated with Web 3.0, allowing advertisers to focus 
+on strategy & campaign execution
+
+\-- end: lib.how-it-works
+
+-- ds.rendered.output:
+
+-- lib.how-it-works: **HOW IT WORKS** 🚧
+
+-- lib.how-it-works.subtitle:
+
+-- ftd.container:
+
+-- ftd.text: Web 3.0 campaigns
+display: inline
+color: $inherited.colors.border
+margin-right.px: 10
+
+-- ftd.text: set up made simple.
+display: inline
+
+-- end: ftd.container
+
+-- end: lib.how-it-works.subtitle
+
+-- lib.how-it-works.body:
+
+AdMint offsets most of the technological challenges 
+associated with Web 3.0, allowing advertisers to focus 
+on strategy & campaign execution
+
+-- end: lib.how-it-works
+
+-- end: ds.rendered.output
+
+-- end: ds.rendered
+
+-- end: ds.page
