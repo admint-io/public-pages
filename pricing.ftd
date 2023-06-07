@@ -1,0 +1,197 @@
+-- import: public-pages/assets
+-- import: public-pages/lib as lib
+-- import: public-pages/common/fonts
+
+
+-- integer $stage: 1
+
+-- boolean $tos-ischecked: false
+-- boolean $newsletter-ischecked: false
+
+-- lib.page:
+active-page: pricing/
+
+-- lib.business-plan:
+subtitle: Create your first web 3.0 campaign.
+show if { stage >= 1 && stage <= 4}: true
+
+-- lib.business-plan.title:
+
+-- ftd.container:
+
+-- ftd.text: Welcome to Ad
+role: $fonts.font-40-80-700
+color: black
+display: inline
+
+-- ftd.text: mint
+role: $fonts.font-40-80-700
+color: $inherited.colors.cta-primary.base
+display: inline
+
+-- end: ftd.container
+
+-- end: lib.business-plan.title
+
+-- lib.pricing-tabs:
+stage: $stage
+tab1-title: Choose a plan
+tab2-title: Create Your account
+tab3-title: Add your card
+
+-- end: lib.pricing-tabs
+
+-- end: lib.business-plan
+
+-- lib.tab-panel:
+index: 1
+reset: $lib.current-tab
+show if { stage == 1 }: true
+
+-- lib.business-card: MONTHLY
+monthly-price: 56.90
+annually-price: 30.90
+$current-stage: $stage
+
+-- lib.business-plus-card: ANNUALLY
+monthly-price: 189.99
+annually-price: 80.99
+$current-stage: $stage
+
+-- lib.business-card: QUATERLY
+monthly-price: 126.98
+annually-price: 70.98
+$current-stage: $stage
+plan: 3
+
+-- end: lib.tab-panel
+
+-- lib.tab-panel:
+index: 2
+reset: $lib.current-tab
+show if { stage == 1 }: true
+
+-- lib.business-card: MONTHLY
+monthly-price: 56.90
+annually-price: 30.90
+$current-stage: $stage
+
+-- lib.business-plus-card: ANNUALY
+monthly-price: 189.99
+annually-price: 80.99
+$current-stage: $stage
+
+-- lib.business-card: QUATERLY
+monthly-price: 126.98
+annually-price: 70.98
+plan: 3
+$current-stage: $stage
+
+-- end: lib.tab-panel
+
+-- lib.account-form:
+name-label: Name
+org-label: Organization Name
+email-label: Enter Your Email
+password-label: Create a Password
+show if { stage == 2 }: true
+show if { stage == 3 }: true
+newsletter: I agree to recive AdMint email newsletter.
+$newsletter-ischecked: $newsletter-ischecked
+cta-label: Create Account
+cta-link: /
+$current-stage: $stage
+
+-- lib.account-form.condition1:
+
+-- ftd.container:
+margin-top.px: 24
+
+-- ftd.checkbox:
+enabled: true
+checked: $tos-ischecked
+$on-click$: $ftd.set-bool($a = $tos-ischecked, v = $CHECKED)
+height.fixed.px: 16
+width.fixed.px: 16
+margin-right.px: 10
+
+-- ftd.text: I have read and agree to the AdMint’s
+margin-left.px: 4
+color: $inherited.colors.text
+role: $fonts.size-16-22-400
+display: inline
+
+-- ftd.text: Terms of Service
+margin-left.px: 4
+color: $fonts.005fbb
+role: $fonts.size-16-22-400
+display: inline-block
+
+-- ftd.text: and
+color: $inherited.colors.text
+role: $fonts.size-16-22-400
+margin-horizontal.px: 4
+display: inline
+
+-- ftd.text: Privacy Policy
+color: $fonts.005fbb
+role: $fonts.size-16-22-400
+display: inline
+
+-- end: ftd.container
+
+-- end: lib.account-form.condition1
+
+-- lib.account-form.condition2:
+
+-- ftd.container:
+margin-top.px: 16
+
+-- ftd.text: Referral Id
+color: $fonts.005fbb
+role: $fonts.size-14-19-700
+display: inline
+
+-- ftd.text: (Optional)
+margin-left.px: 3
+color: $inherited.colors.text
+role: $fonts.size-14-19-400
+display: inline
+
+-- end: ftd.container
+
+-- end: lib.account-form.condition2
+
+
+-- lib.verification:
+show if { stage == 3 }: true
+$current-stage: $stage
+
+-- end: lib.account-form
+
+-- lib.plans:
+show if { stage == 4 }: true
+
+-- lib.plan-selected:
+
+-- lib.QNA: What is an NFT?
+
+An NFT, or non-fungible token, is a unique digital asset that is stored on a
+blockchain. It is a type of digital asset that represents ownership of a
+
+-- end: lib.plan-selected
+
+-- lib.card-component:
+$current-stage: $stage
+
+-- end: lib.plans
+
+-- lib.all-set: Awesome all set! You can start creating your first web 3.0 campaign
+show if { stage == 5 }: true
+cta-label1: Go to the dashboard
+cta-link1: /admint.io
+cta-label2: Watch demo videos
+cta-link2: /admint.io
+src: $assets.files.static.pricing.all-set.png
+
+-- end: lib.page

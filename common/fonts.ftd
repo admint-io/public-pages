@@ -1,0 +1,1475 @@
+-- import: fifthtry.github.io/admint-nunito-font/assets as nunito-assets
+-- import: fifthtry.github.io/roboto-font/assets as roboto-assets
+-- import: fifthtry.github.io/montserrat/assets as montserrat-assets
+-- import: fastn-community.github.io/opensans-font/assets as opensans-font-assets
+-- import: fifthtry.github.io/lato-font/assets as lato-font-assets
+
+;; :::: Custom Fonts ::::
+
+-- ftd.type size-29-mobile:
+line-height.px: 40
+size.px: 29
+letter-spacing.px: 0
+weight: 500
+font-family: $nunito-assets.fonts.Nunito
+
+
+-- ftd.type size-29-desktop:
+line-height.px: 28
+size.px: 24
+letter-spacing.px: 0
+weight: 500
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-29:
+desktop: $size-29-desktop
+mobile: $size-29-mobile
+
+
+
+
+
+
+-- ftd.type roboto-18-mobile:
+line-height.px: 33
+size.px: 18
+letter-spacing.px: 0
+weight: 600
+font-family: $roboto-assets.fonts.Roboto
+
+
+-- ftd.type roboto-18-desktop:
+line-height.px: 33
+size.px: 18
+letter-spacing.px: 0
+weight: 600
+font-family: $roboto-assets.fonts.Roboto
+
+-- ftd.responsive-type roboto-18:
+desktop: $roboto-18-desktop
+mobile: $roboto-18-mobile
+
+
+
+
+
+-- ftd.type roboto-18-22-600-type:
+line-height.px: 22
+size.px: 18
+letter-spacing.px: 0
+weight: 600
+font-family: $roboto-assets.fonts.Roboto
+
+-- ftd.responsive-type roboto-18-22-600: $roboto-18-22-600-type
+
+
+
+
+
+-- ftd.type roboto-18-33-600-type:
+line-height.px: 33
+size.px: 18
+letter-spacing.px: 0
+weight: 600
+font-family: $roboto-assets.fonts.Roboto
+
+-- ftd.responsive-type roboto-18-33-600: $roboto-18-33-600-type
+
+
+
+
+
+-- ftd.type roboto-22-mobile:
+line-height.px: 22
+size.px: 22
+letter-spacing.px: 0
+weight: 600
+font-family: $roboto-assets.fonts.Roboto
+
+
+-- ftd.type roboto-22-desktop:
+line-height.px: 22
+size.px: 22
+letter-spacing.px: 0
+weight: 600
+font-family: $roboto-assets.fonts.Roboto
+
+-- ftd.responsive-type roboto-22:
+desktop: $roboto-22-desktop
+mobile: $roboto-22-mobile
+
+
+
+
+
+-- ftd.type roboto-14-mobile:
+line-height.px: 21
+size.px: 14
+letter-spacing.px: 0
+weight: 400
+font-family: $roboto-assets.fonts.Roboto
+
+
+-- ftd.type roboto-14-desktop:
+line-height.px: 21
+size.px: 14
+letter-spacing.px: 0
+weight: 400
+font-family: $roboto-assets.fonts.Roboto
+
+-- ftd.responsive-type roboto-14:
+desktop: $roboto-14-desktop
+mobile: $roboto-14-mobile
+
+
+
+
+
+-- ftd.type roboto-14-25-type:
+line-height.px: 25
+size.px: 14
+letter-spacing.px: 0
+weight: 400
+font-family: $roboto-assets.fonts.Roboto
+
+-- ftd.responsive-type roboto-14-25: $roboto-14-25-type
+
+
+
+
+
+-- ftd.type montserrat-14:
+line-height.rem: 1.626
+size.px: 14
+letter-spacing.px: 0
+weight: 400
+font-family: $montserrat-assets.fonts.Montserrat
+
+-- ftd.responsive-type montserrat-14: $montserrat-14
+
+
+
+
+
+-- ftd.type montserrat-14-19-type:
+line-height.px: 21
+size.px: 14
+letter-spacing.px: 0
+weight: 400
+font-family: $montserrat-assets.fonts.Montserrat
+
+-- ftd.responsive-type montserrat-14-19: $montserrat-14-19-type
+
+
+
+
+
+-- ftd.type montserrat-14-19-v2:
+line-height.px: 22
+size.px: 14
+letter-spacing.rem: 0.0343
+weight: 400
+font-family: $montserrat-assets.fonts.Montserrat
+
+-- ftd.responsive-type montserrat-14-19-v2: $montserrat-14-19-v2
+
+
+
+
+
+-- ftd.type size-18-mobile:
+line-height.px: 24
+size.px: 16
+letter-spacing.px: 0
+weight: 600
+font-family: $nunito-assets.fonts.Nunito
+
+
+-- ftd.type size-18-desktop:
+line-height.rem: 1.8
+size.px: 16
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+weight: 400
+
+-- ftd.responsive-type size-18:
+desktop: $size-18-desktop
+mobile: $size-18-mobile
+
+
+
+
+
+-- ftd.type size-16-22-400:
+line-height.px: 22
+size.px: 16
+letter-spacing.px: 0
+weight: 600
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-16-22-400: $size-16-22-400-type
+
+
+
+
+
+-- ftd.type size-24-mobile:
+line-height.px: 28
+size.px: 24
+letter-spacing.px: 0
+weight: 600
+font-family: $nunito-assets.fonts.Nunito
+
+
+-- ftd.type size-24-desktop:
+line-height.px: 28
+size.px: 24
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+weight: 600
+
+-- ftd.responsive-type size-24:
+desktop: $size-24-desktop
+mobile: $size-24-mobile
+
+
+
+
+-- ftd.type size-24-36-600-desktop:
+line-height.px: 36
+size.px: 24
+letter-spacing.px: 0
+weight: 600
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.type size-16-24-600-mobile:
+line-height.px: 24
+size.px: 16
+letter-spacing.px: 0
+weight: 600
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-24-36-600: 
+mobile: $size-16-24-600-mobile
+desktop: $size-24-36-600-desktop
+
+
+
+
+
+-- ftd.type font-40-700-60-type:
+line-height.px: 60
+size.px: 40
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type font-40-700-60: $font-40-700-60-type
+
+
+
+
+
+-- ftd.type font-40-80-700-desktop:
+line-height.px: 80
+size.px: 40
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.type font-32-48-700-mobile:
+line-height.px: 48
+size.px: 36
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type font-40-80-700: 
+mobile: $font-32-48-700-mobile
+desktop: $font-40-80-700-desktop
+
+
+
+
+
+-- ftd.type font-40-60-700-desktop:
+line-height.px: 60
+size.px: 40
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.type font-32-44-700-mobile:
+line-height.px: 44
+size.px: 32
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type font-40-60-700: 
+mobile: $font-32-44-700-mobile
+desktop: $font-40-60-700-desktop
+
+
+
+
+
+-- ftd.type font-18-600-27-type:
+line-height.px: 27
+size.px: 18
+letter-spacing.px: 0
+weight: 600
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type font-18-600-27: $font-18-600-27-type
+
+
+
+
+
+-- ftd.type font-18-27-500-type:
+line-height.px: 27
+size.px: 18
+letter-spacing.px: 0
+weight: 500
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type font-18-27-500: $font-18-27-500-type
+
+
+
+
+
+-- ftd.type size-19-mobile:
+line-height.rem: 1.8
+size.px: 19
+letter-spacing.px: 0
+weight: 800
+font-family: $nunito-assets.fonts.Nunito
+
+
+-- ftd.type size-19-desktop:
+line-height.rem: 1.8
+size.px: 19
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+weight: 700
+
+-- ftd.responsive-type size-19:
+desktop: $size-19-desktop
+mobile: $size-19-mobile
+
+
+
+
+
+-- ftd.type size-19-28-500-type:
+line-height.rem: 1.8
+size.px: 19
+letter-spacing.px: 0
+weight: 500
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-19-28-500: $size-19-28-500-type
+
+
+
+
+
+-- ftd.type size-19-28-700-type:
+line-height.px: 28
+size.px: 19
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+weight: 700
+
+-- ftd.responsive-type size-19-28-700: $size-19-28-700-type
+
+
+
+
+
+-- ftd.type size-23-mobile:
+line-height.rem: 2.15
+size.px: 23
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+
+-- ftd.type size-23-desktop:
+line-height.rem: 2.15
+size.px: 23
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+weight: 700
+
+-- ftd.responsive-type size-23:
+desktop: $size-23-desktop
+mobile: $size-23-mobile
+
+
+
+
+-- ftd.type montserrat-18-mobile:
+line-height.px: 21
+size.px: 18
+letter-spacing.px: 0
+weight: 600
+font-family: $montserrat-assets.fonts.Montserrat
+
+
+-- ftd.type montserrat-18-desktop:
+line-height.px: 21
+size.px: 18
+letter-spacing.px: 0
+weight: 600
+font-family: $montserrat-assets.fonts.Montserrat
+
+-- ftd.responsive-type montserrat-18:
+desktop: $montserrat-18-desktop
+mobile: $montserrat-18-mobile
+
+
+
+
+
+-- ftd.type montserrat-18-33-type:
+line-height.px: 
+size.px: 18
+letter-spacing.px: 0
+weight: 600
+font-family: $montserrat-assets.fonts.Montserrat
+
+-- ftd.responsive-type montserrat-18-33: $montserrat-18-33-type
+
+
+
+
+
+-- ftd.type montserrat-15-19-mobile:
+line-height.px: 19
+size.px: 15
+letter-spacing.px: 0
+weight: 400
+font-family: $montserrat-assets.fonts.Montserrat
+
+
+-- ftd.type montserrat-15-19-desktop:
+line-height.px: 19
+size.px: 15
+letter-spacing.px: 0
+weight: 400
+font-family: $montserrat-assets.fonts.Montserrat
+
+-- ftd.responsive-type montserrat-15-19:
+desktop: $montserrat-15-19-desktop
+mobile: $montserrat-15-19-mobile
+
+
+
+
+
+-- ftd.type montserrat-15-15-type:
+line-height.px: 15
+size.px: 15
+letter-spacing.px: 0
+weight: 700
+font-family: $montserrat-assets.fonts.Montserrat
+
+-- ftd.responsive-type montserrat-15-15: $montserrat-15-15-type
+
+
+
+
+
+-- ftd.type montserrat-15-27-mobile:
+line-height.px: 27
+size.px: 15
+letter-spacing.px: 0
+weight: 400
+font-family: $montserrat-assets.fonts.Montserrat
+
+
+-- ftd.type montserrat-15-27-desktop:
+line-height.px: 27
+size.px: 15
+letter-spacing.px: 0
+weight: 400
+font-family: $montserrat-assets.fonts.Montserrat
+
+-- ftd.responsive-type montserrat-15-27:
+desktop: $montserrat-15-27-desktop
+mobile: $montserrat-15-27-mobile
+
+
+
+
+
+-- ftd.type roboto-12-mobile:
+line-height.px: 14
+size.px: 12
+letter-spacing.px: 0
+weight: 700
+font-family: $roboto-assets.fonts.Roboto
+
+
+-- ftd.type roboto-12-desktop:
+line-height.px: 14
+size.px: 12
+letter-spacing.px: 0
+weight: 700
+font-family: $roboto-assets.fonts.Roboto
+
+-- ftd.responsive-type roboto-12:
+desktop: $roboto-12-desktop
+mobile: $roboto-12-mobile
+
+
+
+
+
+-- ftd.type montserrat-28-mobile:
+line-height.px: 28
+size.px: 28
+letter-spacing.px: 0
+font-family: $montserrat-assets.fonts.Montserrat
+
+
+-- ftd.type montserrat-28-desktop:
+line-height.px: 28
+size.px: 28
+letter-spacing.px: 0
+font-family: $montserrat-assets.fonts.Montserrat
+
+-- ftd.responsive-type montserrat-28:
+desktop: $montserrat-28-desktop
+mobile: $montserrat-28-mobile
+
+
+
+
+
+-- ftd.type montserrat-28-28-600-type:
+line-height.px: 33
+size.px: 28
+letter-spacing.px: 0
+weight: 600
+font-family: $montserrat-assets.fonts.Montserrat
+
+-- ftd.responsive-type montserrat-28-28-600: $montserrat-28-28-600-type
+
+
+
+
+
+-- ftd.type montserrat-22-22-type:
+line-height.px: 22
+size.px: 22
+letter-spacing.px: 0
+font-family: $montserrat-assets.fonts.Montserrat
+weight: 600
+
+-- ftd.responsive-type montserrat-22-22: $montserrat-22-22-type
+
+
+
+
+
+-- ftd.type nunito-40-desktop:
+line-height.px: 44
+size.px: 40
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+weight: 700
+
+-- ftd.type nunito-40-mobile:
+line-height.px: 40
+size.px: 40
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+weight: 700
+
+-- ftd.responsive-type nunito-40:
+desktop: $nunito-40-desktop
+mobile: $nunito-40-mobile
+
+-- ftd.type size-27-desktop:
+line-height.px: 27
+size.px: 18
+letter-spacing.px: 0
+weight: 600
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-27:
+desktop: $size-27-desktop
+mobile: $size-27-desktop
+
+
+
+-- ftd.type size-50-mobile:
+line-height.px: 40
+size.px: 29
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.type size-50-desktop:
+line-height.px: 45
+size.px: 50
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-50:
+desktop: $size-50-desktop
+mobile: $size-50-mobile
+
+
+
+
+
+-- ftd.type nunito-14-14-type:
+line-height.px: 14
+size.px: 14
+letter-spacing.px: 0
+weight: 600
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type nunito-14-14: $nunito-14-14-type
+
+
+-- ftd.type size-24-700-mobile:
+line-height.px: 40
+size.px: 29
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.type size-24-700-desktop:
+line-height.px: 29
+size.px: 24
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-24-700:
+desktop: $size-24-700-desktop
+mobile: $size-24-700-mobile
+
+
+
+
+
+-- ftd.type size-14-400:
+line-height.px: 16
+size.px: 14
+letter-spacing.px: 0
+weight: 400
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-14-400: $size-14-400
+
+
+
+
+
+-- ftd.type size-14-19-400-type:
+line-height.px: 19
+size.px: 14
+letter-spacing.px: 0
+weight: 400
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-14-19-400: $size-14-19-400-type
+
+
+
+
+
+-- ftd.type size-14-19-700-type:
+line-height.px: 19
+size.px: 14
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-14-19-700: $size-14-19-700-type
+
+
+
+
+
+-- ftd.type size-20-700-type-mobile:
+line-height.px: 36
+size.px: 24
+letter-spacing.rem: -0.01
+weight: 600
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.type size-20-700-type-desktop:
+line-height.px: 24
+size.px: 20
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-20-700:
+desktop: $size-20-700-type-desktop
+mobile: $size-20-700-type-mobile
+
+
+
+
+
+-- ftd.type size-20-24-700-type:
+line-height.px: 24
+size.px: 20
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-20-24-700: $size-20-24-700-type
+
+
+
+
+
+-- ftd.type size-22-800-mont-type:
+line-height.px: 22
+size.px: 22
+letter-spacing.px: 0
+weight: 800
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-22-800-montserrat: $size-22-800-mont-type
+
+
+
+
+
+-- ftd.type size-24-regular-mobile:
+line-height.px: 24
+size.px: 19
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+
+-- ftd.type size-24-regular-desktop:
+line-height.px: 27
+size.px: 19
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+weight: 700
+
+
+-- ftd.responsive-type size-24-regular:
+desktop: $size-24-regular-desktop
+mobile: $size-24-regular-mobile
+
+
+
+
+
+
+-- ftd.type title-404-type:
+line-height.px: 40
+size.px: 36
+letter-spacing.px: 0
+weight: 400
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif
+
+-- ftd.responsive-type title-404: $title-404-type
+
+
+-- ftd.type size-20-mobile:
+line-height.px: 28
+size.px: 16
+letter-spacing.px: 0
+weight: 600
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.type size-20-desktop:
+line-height.px: 36
+size.px: 24
+letter-spacing.px: 0
+weight: 400
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-20:
+desktop: $size-20-desktop
+mobile: $size-20-mobile
+
+
+-- ftd.type body-404-type:
+line-height.px: 28
+size.px: 22
+letter-spacing.px: 0
+weight: 300
+font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif
+
+-- ftd.responsive-type body-404: $body-404-type
+
+
+
+
+-- ftd.type nunito-20-30-400-type:
+line-height.px: 30
+size.px: 20
+letter-spacing.px: 0
+weight: 400
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type nunito-30-20-400: $nunito-20-30-400-type
+
+
+
+
+
+-- ftd.type nunito-24-36-400-type:
+line-height.px: 36
+size.px: 24
+letter-spacing.px: 0
+weight: 400
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type nunito-24-36-400: $nunito-24-36-400-type
+
+
+
+
+
+-- ftd.type nunito-18-24-500-mobile:
+line-height.px: 24
+size.px: 18
+letter-spacing.px: 0
+weight: 500
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.type nunito-24-48-500-desktop:
+line-height.px: 48
+size.px: 24
+letter-spacing.px: 0
+weight: 500
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type nunito-24-48-500:
+mobile: $nunito-18-24-500-mobile
+desktop: $nunito-24-48-500-desktop
+
+
+
+
+-- ftd.type size-17:
+line-height.px: 24
+size.px: 17
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type button-large:
+desktop: $size-17
+mobile: $size-17
+
+
+
+
+
+-- ftd.type montserrat-16-29-type:
+line-height.px: 29
+size.px: 16
+letter-spacing.px: 0
+weight: 400
+font-family: $montserrat-assets.fonts.Montserrat
+
+-- ftd.responsive-type montserrat-16-29: $montserrat-16-29-type
+
+
+
+
+
+-- ftd.type montserrat-16-29-600-type:
+line-height.px: 29
+size.px: 16
+letter-spacing.px: 0
+weight: 600
+font-family: $montserrat-assets.fonts.Montserrat
+
+-- ftd.responsive-type montserrat-16-29-600: $montserrat-16-29-600-type
+
+
+
+
+
+-- ftd.type label-lg-nunito:
+line-height.px: 30
+size.px: 20
+weight: 500
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type label-lg-nunito:
+desktop: $label-lg-nunito
+mobile: $label-lg-nunito
+
+
+
+
+
+-- ftd.type nunito-24-36-500-type:
+line-height.px: 36
+size.px: 24
+weight: 500
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type nunito-30-20-400: $nunito-20-30-400-type
+
+
+
+-- ftd.type heading-md-desktop:
+line-height.px: 45
+size.px: 40
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+weight: 700
+
+-- ftd.type heading-md-mobile:
+line-height.px: 40
+size.px: 29
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+weight: 700
+
+-- ftd.responsive-type heading-md:
+desktop: $heading-md-desktop
+mobile: $heading-md-mobile
+
+
+
+
+
+-- ftd.type size-33-nunito:
+line-height.px: 45
+size.px: 33
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+weight: 700
+
+-- ftd.responsive-type heading-md:
+desktop: $size-33-nunito
+mobile: $size-33-nunito
+
+
+
+
+
+-- ftd.type button-lg-27-type:
+line-height.px: 27
+size.px: 18
+letter-spacing.px: 0
+weight: 600
+font-family: $nunito-assets.fonts.Nunito-live
+
+-- ftd.responsive-type button-lg-27: $button-lg-27-type
+
+
+
+
+
+
+-- ftd.type 15-18-500-mobile:
+line-height.px: 28
+size.px: 24
+letter-spacing.px: 0
+weight: 500
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.type 15-18-500-desktop:
+line-height.rem: 1.8
+size.rem: 1.5
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+weight: 500
+
+-- ftd.responsive-type 15-18-500:
+desktop: $15-18-500-desktop
+mobile: $15-18-500-mobile
+
+
+
+
+-- ftd.type font-20-400-30-type:
+line-height.px: 30
+size.px: 20
+letter-spacing.px: 0
+weight: 400
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type font-20-400-30: $font-20-400-30-type
+
+
+
+
+
+-- ftd.type copy-regular-16:
+line-height.px: 16
+size.px: 16
+letter-spacing.px: 0
+weight: 400
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type copy-regular-16: $copy-regular-16
+
+
+
+
+
+-- ftd.type 16-24-400-type:
+line-height.px: 24
+size.px: 16
+letter-spacing.px: 0
+weight: 400
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type 16-24-400: $16-24-400-type
+
+
+
+
+
+-- ftd.type 16-24-600-type:
+line-height.px: 24
+size.px: 16
+letter-spacing.px: -1
+weight: 600
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-16-24-600: $16-24-600-type
+
+
+
+
+
+-- ftd.type copy-regular-body:
+line-height.px: 24
+size.px: 16
+letter-spacing.rem: -0.008
+font-family: $nunito-assets.fonts.Nunito
+weight: 600
+
+-- ftd.responsive-type copy-regular-body: $copy-regular-body
+
+
+
+
+
+-- ftd.type copy-regular-bodyV2-desktop:
+line-height.px: 20
+size.px: 16
+letter-spacing.rem: -0.008
+font-family: $nunito-assets.fonts.Nunito
+weight: 600
+
+-- ftd.type copy-regular-bodyV2-mobile:
+line-height.px: 22
+size.px: 16
+letter-spacing.rem: -0.008
+font-family: $nunito-assets.fonts.Nunito
+weight: 600
+
+-- ftd.responsive-type copy-regular-bodyV2: 
+mobile: $copy-regular-bodyV2-mobile
+desktop: $copy-regular-bodyV2-desktop
+
+
+
+
+
+-- ftd.type copy-regular-bodyV3:
+line-height.px: 24
+size.px: 16
+letter-spacing.rem: -0.008
+font-family: $nunito-assets.fonts.Nunito
+weight: 600
+
+-- ftd.responsive-type copy-regular-bodV3: $copy-regular-bodyV3
+
+
+
+
+
+-- ftd.type font-16-22-700-type:
+line-height.px: 24
+size.px: 16
+letter-spacing.rem: -0.008
+font-family: $nunito-assets.fonts.Nunito
+weight: 600
+
+-- ftd.responsive-type font-16-22-700: $font-16-22-700-type
+
+
+
+
+-- ftd.type font-30-45-700-type:
+line-height.px: 45
+size.px: 30
+letter-spacing.px: 0
+font-family: $nunito-assets.fonts.Nunito
+weight: 700
+
+-- ftd.responsive-type font-30-45-700: $font-30-45-700-type
+
+
+
+
+
+-- ftd.type font-18-18-700-type:
+line-height.px: 18
+size.px: 18
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type font-18-18-700: $font-18-18-700-type
+
+
+
+
+
+-- ftd.type 30-45-700-type:
+line-height.px: 45
+size.px: 30
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type 30-45-700: $30-45-700-type
+
+
+
+
+
+-- ftd.type size-24-29-500-type:
+line-height.px: 29
+size.px: 24
+letter-spacing.px: 0
+weight: 500
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type size-24-29-500: $size-24-29-500-type
+
+
+-- ftd.type font-18-18-600-type:
+line-height.px: 18
+size.px: 18
+letter-spacing.px: 0
+weight: 600
+font-family: $nunito-assets.fonts.Nunito-live
+
+-- ftd.responsive-type font-18-18-600: $font-18-18-600-type
+
+
+
+
+
+-- ftd.type nunito-18-18-700-desktop:
+line-height.px: 18
+size.px: 18
+letter-spacing.rem: -0.01
+weight: 700
+font-family: $nunito-assets.fonts.Nunito-live
+
+-- ftd.type nunito-28-16-700-mobile:
+line-height.rem: 1.8
+size.px: 16
+letter-spacing.rem: -0.01
+weight: 700
+font-family: $nunito-assets.fonts.Nunito-live
+
+-- ftd.responsive-type nunito-700:
+mobile: $nunito-28-16-700-mobile
+desktop: $nunito-18-18-700-desktop
+
+
+
+
+-- ftd.type blockquote-type-desktop:
+line-height.px: 24
+size.px: 16
+letter-spacing.rem: -0.0001
+weight: 500
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.type blockquote-type-mobile:
+line-height.px: 24
+size.px: 16
+letter-spacing.rem: -0.0001
+weight: 400
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type blockquote:
+desktop: $blockquote-type-desktop
+mobile: $blockquote-type-mobile
+
+
+
+
+-- ftd.type font-20-20-400-type:
+line-height.px: 20
+size.px: 20
+letter-spacing.px: 0
+weight: 400
+font-family: $nunito-assets.fonts.Nunito-live
+
+-- ftd.responsive-type font-20-20-400: $font-20-20-400-type
+
+
+
+
+
+-- ftd.type font-19-19-500-type:
+line-height.px: 19
+size.px: 19
+letter-spacing.px: 0
+weight: 500
+font-family: $nunito-assets.fonts.Nunito-live
+
+-- ftd.responsive-type font-19-19-500: $font-19-19-500-type
+
+
+
+
+-- ftd.type opensans-12-type-mobile:
+size.px: 16
+weight: 400
+font-family: $opensans-font-assets.fonts.Open-Sans
+
+-- ftd.type opensans-12-type-desktop:
+size.px: 14
+weight: 400
+font-family: $opensans-font-assets.fonts.Open-Sans
+
+-- ftd.responsive-type opensans-12: 
+desktop: $opensans-12-type-desktop
+mobile: $opensans-12-type-mobile
+
+
+
+
+-- ftd.type font-40-29-mobile:
+line-height.px: 40
+size.px: 29
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+
+-- ftd.type font-40-29-desktop:
+line-height.px: 45
+size.px: 28
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type font-40-29:
+desktop: $font-40-29-desktop
+mobile: $font-40-29-mobile
+
+
+
+
+
+-- ftd.type font-18-24-600-type:
+line-height.rem: 1.53
+size.px: 18
+letter-spacing.px: 0
+weight: 600
+font-family: $nunito-assets.fonts.Nunito-live
+
+-- ftd.responsive-type font-18-24-600: $font-18-24-600-type
+
+
+
+
+
+-- ftd.type font-16-21-700-type:
+line-height.rem: 1.33
+size.px: 16
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito-live
+
+-- ftd.responsive-type font-16-21-700: $font-16-21-700-type
+
+
+
+
+
+-- ftd.type font-16-98-700-type:
+line-height.rem: 4.98
+size.px: 60
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito-live
+
+-- ftd.responsive-type font-16-98-700: $font-16-98-700-type
+
+
+
+
+
+-- ftd.type font-14-16-600-type:
+line-height.rem: 1.16
+size.px: 14
+letter-spacing.px: 0
+weight: 600
+font-family: $nunito-assets.fonts.Inter
+
+-- ftd.responsive-type font-14-16-600: $font-14-16-600-type
+
+
+
+
+
+-- ftd.type font-18-36-700-type:
+line-height.rem: 1.36
+size.px: 18
+letter-spacing.px: 0
+weight: 600
+font-family: $lato-font-assets.fonts.Lato
+
+-- ftd.responsive-type font-18-36-700: $font-18-36-700-type
+
+
+
+
+
+
+-- ftd.type font-16-36-400-type:
+line-height.rem: 1.36
+size.px: 16
+letter-spacing.px: 0
+weight: 400
+font-family: $nunito-assets.fonts.Nunito-live
+
+-- ftd.responsive-type font-16-36-400: $font-16-36-400-type
+
+
+
+
+-- ftd.type font-18-06-600-type:
+line-height.rem: 1.06
+size.px: 18
+letter-spacing.px: 0
+weight: 600
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type font-18-06-600: $font-18-06-600-type
+
+
+
+
+
+
+-- ftd.type font-14-19-400-type:
+line-height.rem: 1.19
+size.px: 14
+letter-spacing.px: 0
+weight: 400
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type font-14-19-400: $font-14-19-400-type
+
+
+
+
+
+-- ftd.type font-18-52-700-type:
+line-height.px: 52
+size.px: 18
+letter-spacing.px: 0
+weight: 700
+font-family: $nunito-assets.fonts.Nunito
+
+-- ftd.responsive-type font-18-52-700: $font-18-52-700-type
+
+-- ftd.color 222b27: #222b27
+
+-- ftd.color bdbdbd: #bdbdbd
+
+-- ftd.color 69f0ae: #69f0ae
+
+-- ftd.color dc3545: #dc3545
+
+-- ftd.color cdcdcd36: #cdcdcd36
+
+-- ftd.color adadad: #adadad
+
+-- ftd.color 44ce9a: #44ce9a
+
+-- ftd.color 005FBB: #005FBB
+
+-- ftd.color 3ea880: #3ea880
+
+-- ftd.color 121a17: #121a17
+
+-- ftd.color grey: #777
+
+-- ftd.color eeeeee80: #eeeeee80
+
+-- ftd.color outset-border: rgba(0, 0, 0, 0.1)
+
+-- ftd.color faf8f4: #faf8f4
+
+-- ftd.color 005fbb: #005FBB
+
+-- ftd.color 7d8180: #7d8180
+
+-- ftd.color 3fb488: #3fb488
+
+-- ftd.color c3d9ee: #c3d9ee
+
+-- ftd.color c9efde: #c9efde
+
+
+-- ftd.color 005FBB: #005FBB
+
+-- ftd.shadow help-banner:
+color: #a9a7a5ba
+x-offset.px: -2
+y-offset.px: 8
+blur.px: 10
+inset-body: false
+spread.px: 0
+
+
+
+
+-- ftd.shadow help-banner-1:
+color: #005FBB
+x-offset.px: 12
+y-offset.px: 12
+blur.px: 1
+inset-body: false
+spread.px: 0
+
+
+
+
+-- ftd.shadow about:
+color: #000
+x-offset.px: 10
+y-offset.px: 10 
+blur.px: 1
+
+
+
+
+
+-- ftd.shadow tabs:
+color: #505050
+x-offset.px: 6
+y-offset.px: 8 
+blur.px: 1

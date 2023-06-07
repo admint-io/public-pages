@@ -1,0 +1,115 @@
+-- import: public-pages/assets
+-- import: fifthtry.github.io/doc-site as ds
+-- import: public-pages/docs
+-- import: public-pages/lib
+-- import: fifthtry.github.io/admint-cs as cs
+-- import: fifthtry.github.io/admint-typography as typo
+
+
+
+
+
+-- ds.page: Help Banner
+show-footer: true
+site-logo: $assets.files.static.admint-logo.svg
+colors: $cs.main
+types: $typo.types
+$widthfill: true
+sections: $lib.sitemap.sections
+
+-- ds.page.footer:
+
+-- docs.footer:
+
+-- end: ds.page.footer
+
+-- ds.page.body:
+
+We have developed the `help-banner` component for 
+[admint.io](https://admint.io/), which matches the design currently displayed 
+on the live site.
+
+-- ds.h3: How to use?
+
+To use the `help-banner` component you need to import `lib.ftd` inside your
+`.ftd` file, as shown below:
+
+-- ds.code:
+lang: ftd
+
+\-- import: public-pages/lib
+
+-- ds.markdown:
+
+Once you import the `lib` inside your `.ftd` file, use the `help-banner`
+component by adding all required attributes of it.
+
+-- ds.rendered:
+
+-- ds.rendered.input:
+
+\-- lib.help-banner:
+cta-label: Let's Learn
+cta-url: /learn/
+image: $assets.files.static.help-banner.svg
+body: You ask why? Because... Followed by the WHY NFTs?
+
+\-- lib.help-banner.title:
+
+\-- ftd.container:
+
+\-- ftd.text: NFTs are our preferred
+role: $inherited.types.heading-tiny
+color: $inherited.colors.text
+region: h1
+display: inline
+
+\-- ftd.text: media vehicle!
+role: $inherited.types.heading-tiny
+color: $inherited.colors.cta-primary.base
+region: h1
+display: inline
+margin-left.px: 8
+
+\-- end: ftd.container
+
+\-- end: lib.help-banner.title
+
+\-- end: lib.help-banner
+
+-- ds.rendered.output:
+
+-- lib.help-banner:
+cta-label: Let's Learn
+cta-url: /learn/
+image: $assets.files.static.help-banner.svg
+body: You ask why? Because... Followed by the WHY NFTs?
+
+-- lib.help-banner.title:
+
+-- ftd.container:
+
+-- ftd.text: NFTs are our preferred
+role: $inherited.types.heading-tiny
+color: $inherited.colors.text
+region: h1
+display: inline
+
+-- ftd.text: media vehicle!
+role: $inherited.types.heading-tiny
+color: $inherited.colors.cta-primary.base
+region: h1
+display: inline
+margin-left.px: 8
+
+-- end: ftd.container
+
+-- end: lib.help-banner.title
+
+-- end: lib.help-banner
+
+-- end: ds.rendered.output
+
+-- end: ds.rendered
+
+-- end: ds.page
