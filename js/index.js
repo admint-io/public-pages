@@ -111,6 +111,7 @@ window.readUrlParams = async function readUrlParams() {
     var nftType;
 
     const url = window.location.href;
+    console.log("url from broswer is ",url);
     const [baseUrl, fragment] = url.split("#");
 
     if (fragment) {
