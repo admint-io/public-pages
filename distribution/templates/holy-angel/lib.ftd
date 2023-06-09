@@ -23,7 +23,6 @@ background.solid: $colors.base-
 cta-text: CLAIM NOW!
 $on-click$: $funct.sendWallet()
 
-
 -- navbar: 
 logo: $page.logo
 cta-text-1: $page.cta-text-1
@@ -262,12 +261,14 @@ role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+link: distribution/templates/holy-angel#howtoclaim
 
 -- ftd.text: $navbar-desktop.cta-text-4
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+link: distribution/templates/holy-angel#aboutus
 
 -- ftd.text: $navbar-desktop.cta-text-5
 role: $inherited.types.label-large
@@ -476,6 +477,7 @@ boolean $is-active: false
 -- ftd.column:
 width: fill-container
 margin-vertical.px: 150
+id: howtoclaim
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
@@ -984,6 +986,7 @@ body body:
 -- ftd.column:
 padding-horizontal.px: 10
 margin-bottom.px: 100
+id: aboutus
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
