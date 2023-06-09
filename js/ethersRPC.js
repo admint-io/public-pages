@@ -21950,7 +21950,7 @@ try {
 
 
 // window.connectWallet = async function connectWallet() {
-//     connectWalletEvent();
+//     connectWalletClickEvent();
 //      // Check if MetaMask is installed and connected
 //     if (typeof window.ethereum === 'undefined') {
 //         console.error('MetaMask is not installed.');

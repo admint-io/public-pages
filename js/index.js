@@ -411,7 +411,7 @@ window.checkImageURL = async function checkImageURL(url) {
 
 window.connectWallet = async function connectWallet() {
   console.log("entering connect wallet function");
-  connectWalletEvent();
+  connectWalletClickEvent();
   const walletPopup = new WalletPopup();
   document.body.appendChild(walletPopup);
 };
@@ -421,6 +421,7 @@ window.connectWalletProvider = async function connectWalletProvider(
 ) {  
   console.log("entering connectWalletProvider function", selectedProvider);
   if (selectedProvider == "metamask") {
+      metaMaskConnectEvent();
       const polygonNetworkId = "0x89";
       window.ethereum
         .request({ method: "eth_chainId" })
@@ -474,6 +475,7 @@ window.connectWalletProvider = async function connectWalletProvider(
                 "public-pages/distribution/templates/holy-angel/texts#wallet-state",
                 "connected"
               );
+              walletConnectedEvent();
             })
             .catch((error) => {
               console.log("Failed to connect to MetaMask:", error);
@@ -485,6 +487,7 @@ window.connectWalletProvider = async function connectWalletProvider(
     
   }
   else if(selectedProvider=="torus (sign in with google)"){
+    torusConnectEvent();
     document.body.style.cursor = 'wait';
     torusInit().then(async ()=>{  
     document.body.style.cursor = 'default';    
@@ -507,6 +510,7 @@ window.connectWalletProvider = async function connectWalletProvider(
           "public-pages/distribution/templates/holy-angel/texts#wallet-state",
           "connected"
         );
+        walletConnectedEvent();
         if(torus.isLoggedIn){
           torus.torusWidgetVisibility=true;
         }        
@@ -647,13 +651,21 @@ window.sendWallet = async function sendWallet() {
             if ("success" in data && "message" in data) {
               if (data.success) {
                 showSuccessPopup(data.message);
+                claimSuccessEvent();
               } else {
                 showFailurePopup(data.message);
+                if(data.message=="add wallet addresss Failed!!!"){
+                  addWalletFailEvent();
+                }
+                if(data.message=="invite code already claimed!!!"){
+                  alreadyClaimedEvent();
+                }
               }
             }
           })
           .catch((error) => console.error(error));
       } else {
+        invalidLinkEvent();
         showWarningPopup("Invalid Link");
       }
     } catch (error) {
@@ -680,10 +692,75 @@ window.claimEvent = async function claimEvent() {
   });
 };
 
-window.connectWalletEvent = async function connectWalletEvent() {
+window.connectWalletClickEvent = async function connectWalletClickEvent() {
   gtag("event", "click", {
     event_category: "Button Click",
     event_label: "Connect Wallet Button",
     campaign_id: `${campaignId}`,
   });
 };
+
+window.invalidLinkEvent = async function invalidLinkEvent() {
+  gtag("event", "click", {
+    event_category: "popup",
+    event_label: "Invalid Link",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.metaMaskConnectEvent = async function metaMaskConnectEvent() {
+  gtag("event", "click", {
+    event_category: "connect wallet",
+    event_label: "Metamask Connect",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.torusConnectEvent = async function torusConnectEvent() {
+  gtag("event", "click", {
+    event_category: "connect wallet",
+    event_label: "Torus Connect",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.connectWalletSkipEvent = async function connectWalletSkipEvent() {
+  gtag("event", "click", {
+    event_category: "skip",
+    event_label: "Skip Wallet Connect",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.addWalletFailEvent = async function addWalletFailEvent() {
+  gtag("event", "response", {
+    event_category: "api response",
+    event_label: "Address Add Failed",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.claimSuccessEvent = async function claimSuccessEvent() {
+  gtag("event", "response", {
+    event_category: "api response",
+    event_label: "Address Add Succesful",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.alreadyClaimedEvent = async function alreadyClaimedEvent() {
+  gtag("event", "response", {
+    event_category: "api response",
+    event_label: "Address already added",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.walletConnectedEvent = async function walletConnectedEvent() {
+  gtag("event", "process", {
+    event_category: "process result",
+    event_label: "Wallet Connected",
+    campaign_id: `${campaignId}`,
+  });
+};
+
