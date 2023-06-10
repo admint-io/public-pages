@@ -261,14 +261,16 @@ role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
-link: distribution/templates/holy-angel#howtoclaim
+$on-click$: $funct.navigateToComponent(elementId=howtoclaim)
+;;link: distribution/templates/holy-angel#howtoclaim
 
 -- ftd.text: $navbar-desktop.cta-text-4
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
-link: distribution/templates/holy-angel#aboutus
+$on-click$: $funct.navigateToComponent(elementId=aboutus)
+;;link: distribution/templates/holy-angel#aboutus
 
 -- ftd.text: $navbar-desktop.cta-text-5
 role: $inherited.types.label-large

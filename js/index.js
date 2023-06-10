@@ -764,3 +764,8 @@ window.walletConnectedEvent = async function walletConnectedEvent() {
   });
 };
 
+window.navigateToComponent = async function navigateToComponent(elementId) {
+  console.log("entering navigateToComponent function with id ",elementId);
+  const element = document.getElementById(elementId);
+  element.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+};
