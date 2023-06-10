@@ -77,7 +77,7 @@ export class WalletPopup extends HTMLElement {
     
           /* Styles for the popup content */
           .popup-content {
-            background-color: white;
+            background-color: #00011d;
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
@@ -100,10 +100,11 @@ export class WalletPopup extends HTMLElement {
             font-weight: 600;
             font-size: 18px;
             font-family: 'Poppins', sans-serif; /* Poppins font */
+            color: white
           }
     
           .provider-item:hover {
-            background-color: #f5f5f5;
+            background-color: #00FFF2;
           }
     
           .provider-icon {
