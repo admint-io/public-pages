@@ -751,7 +751,7 @@ window.claimSuccessEvent = async function claimSuccessEvent() {
 window.alreadyClaimedEvent = async function alreadyClaimedEvent() {
   gtag("event", "response", {
     event_category: "api response",
-    event_label: "Address already added",
+    event_label: "Address Already Added",
     campaign_id: `${campaignId}`,
   });
 };
