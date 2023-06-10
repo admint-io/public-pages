@@ -249,12 +249,14 @@ role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=home)
 
 -- ftd.text: $navbar-desktop.cta-text-2
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=poap)
 
 -- ftd.text: $navbar-desktop.cta-text-3
 role: $inherited.types.label-large
@@ -277,6 +279,7 @@ role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=faq)
 
 -- end: ftd.row
 
