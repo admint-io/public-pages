@@ -23,7 +23,6 @@ background.solid: $colors.base-
 cta-text: CLAIM NOW!
 $on-click$: $funct.sendWallet()
 
-
 -- navbar: 
 logo: $page.logo
 cta-text-1: $page.cta-text-1
@@ -262,12 +261,14 @@ role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+link: distribution/templates/holy-angel#howtoclaim
 
 -- ftd.text: $navbar-desktop.cta-text-4
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+link: distribution/templates/holy-angel#aboutus
 
 -- ftd.text: $navbar-desktop.cta-text-5
 role: $inherited.types.label-large
@@ -289,11 +290,13 @@ text-align: center
 padding-vertical.px: 12
 padding-horizontal.px: 32
 border-radius.px: 4
-border-width.px if { navbar-desktop.is-active }: 2
+border-width.px: 2
 background.linear-gradient: $lg
-border-color if { navbar-desktop.is-active }: $colors.accent-primary-
+background.solid if { navbar-desktop.is-active }: $colors.text-
+border-color: $colors.accent-primary-
 $on-mouse-enter$: $ftd.set-bool($a = $navbar-desktop.is-active, v = true)
 $on-mouse-leave$: $ftd.set-bool($a = $navbar-desktop.is-active, v = false)
+color if { navbar-desktop.is-active }: $colors.accent-primary-
 color: $colors.text-
 
 -- end: ftd.row
@@ -321,6 +324,8 @@ ftd.image-src icon-3: $assets.files.images.fb.png
 string url-1: /
 string url-2: /
 string url-3: /
+string cta-text-1: Terms and Conditions
+string cta-text-2: Privacy Policy
 
 -- ftd.column:
 align-self: center
@@ -349,8 +354,28 @@ color: $colors.text-
 -- end: ftd.row
 
 -- ftd.row:
+if: { ftd.device == "desktop" }
+width.fixed.percent: 90
 margin-top.px: 32
+spacing: space-between
+
+-- ftd.row:
+spacing.fixed.px: 24
+
+-- ftd.text: $footer.cta-text-1
+role: $inherited.types.copy-regular
+color: $colors.text-
+
+-- ftd.text: $footer.cta-text-2
+role: $inherited.types.copy-regular
+color: $colors.text-
+
+-- end: ftd.row
+
+-- ftd.row:
 spacing.fixed.px: 10
+align-self: center
+align-content: center
 
 -- ftd.text: $footer.text
 role: $inherited.types.copy-regular
@@ -359,6 +384,45 @@ color: $colors.text-
 -- ftd.image: $footer.logo
 
 -- end: ftd.row
+
+-- end: ftd.row
+
+
+-- ftd.column:
+if: { ftd.device == "mobile" }
+width.fixed.percent: 90
+margin-top.px: 16
+
+-- ftd.row:
+spacing.fixed.px: 10
+align-self: center
+align-content: center
+
+-- ftd.text: $footer.text
+role: $inherited.types.copy-regular
+color: $colors.text-
+
+-- ftd.image: $footer.logo
+align-self: center
+
+-- end: ftd.row
+
+-- ftd.row:
+width: fill-container
+margin-top.px: 16
+spacing: space-between
+
+-- ftd.text: $footer.cta-text-1
+role: $inherited.types.copy-regular
+color: $colors.text-
+
+-- ftd.text: $footer.cta-text-2
+role: $inherited.types.copy-regular
+color: $colors.text-
+
+-- end: ftd.row
+
+-- end: ftd.column
 
 -- end: ftd.column
 
@@ -476,6 +540,7 @@ boolean $is-active: false
 -- ftd.column:
 width: fill-container
 margin-vertical.px: 150
+id: howtoclaim
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
@@ -984,6 +1049,7 @@ body body:
 -- ftd.column:
 padding-horizontal.px: 10
 margin-bottom.px: 100
+id: aboutus
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
@@ -1199,15 +1265,6 @@ height: fill-container
 background.solid: $inherited.colors.background.overlay
 z-index: 99999
 
--- ftd.image:
-src: $assets.files.images.cross.png
-height.fixed.px: 14
-width: auto
-anchor: window
-right.px: 16
-top.px: 20
-$on-click$: $ftd.set-bool($a = $pop-up-status, v = false)
-
 -- ftd.column:
 if: {ftd.device == "desktop"}
 width: fill-container
@@ -1220,12 +1277,26 @@ border-width.px: 1
 border-top-width.px: 2
 border-radius.px: 20
 border-color: $colors.accent-primary-
-padding-vertical.px: 100
 background.solid: $colors.base-
+
+-- ftd.row:
+align-content: right
+align-self: end
+
+-- ftd.image:
+margin-right.px: 16
+margin-top.px: 16
+src: $assets.files.images.cross.png
+height.fixed.px: 14
+width: auto
+$on-click$: $ftd.set-bool($a = $pop-up-status, v = false)
+
+-- end: ftd.row
 
 -- ftd.column:
 width: fill-container
 align-content: center
+margin-top.px: 100
 
 -- ftd.image:
 src: $window-popup.pic
@@ -1242,12 +1313,12 @@ text-align: center
 color: $colors.text-
 margin-bottom.px: 8
 
-
 -- ftd.text: $window-popup.body
 role: $inherited.types.copy-regular
 text-align: center
 width: fill-container
 color: $colors.text-
+margin-bottom.px: 100
            
 -- end: ftd.column
 
@@ -1265,11 +1336,25 @@ border-width.px: 1
 border-top-width.px: 2
 border-radius.px: 20
 border-color: $colors.accent-primary-
-padding.px: 32
+
+-- ftd.row:
+align-content: right
+align-self: end
+
+-- ftd.image:
+margin-right.px: 8
+margin-top.px: 8
+src: $assets.files.images.cross.png
+height.fixed.px: 14
+width: auto
+$on-click$: $ftd.set-bool($a = $pop-up-status, v = false)
+
+-- end: ftd.row
 
 -- ftd.column:
 width: fill-container
 align-content: center
+padding-top.px: 32
 
 -- ftd.image:
 src: $window-popup.pic
