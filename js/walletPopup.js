@@ -80,6 +80,7 @@ export class WalletPopup extends HTMLElement {
             background-color: #00011d;
             padding: 20px;
             border-radius: 10px;
+            border: 2px solid #D12EEF;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             width: 80%;
             max-width: 400px;
@@ -104,7 +105,7 @@ export class WalletPopup extends HTMLElement {
           }
     
           .provider-item:hover {
-            background-color: #00FFF2;
+            background-color: #D12EEF;
           }
     
           .provider-icon {

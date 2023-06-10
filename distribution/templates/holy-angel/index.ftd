@@ -98,7 +98,7 @@ Metamask or Torus. After logging in simply claim and approve the transaction. On
 the organizers will be able to send the POAP NFT to you. The NFT should reflect in your 
 wallet within 24 hours.
 
--- lib.faq: I don't have a crypto wallet to access my token. What is my alternative?
+-- lib.faq: I don’t have a crypto wallet. How do I claim my token?
 
 You can select the login with the Torus wallet option. Once selected you can simply login 
 with any of your existing social accounts, and a wallet will be created for you. You can 
