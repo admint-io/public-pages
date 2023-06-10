@@ -21,7 +21,7 @@ background.solid: $colors.base-
 
 -- banner: Collect your POAP NFT here.  
 cta-text: CLAIM NOW!
-$on-click$: $funct.sendWallet()
+$on-click$: $funct.navigateToComponent(elementId=poap)
 
 -- navbar: 
 logo: $page.logo
@@ -153,30 +153,35 @@ role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=home)
 
 -- ftd.text: $navbar-mobile.cta-text-2
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=poap)
 
 -- ftd.text: $navbar-mobile.cta-text-3
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=howtoclaim)
 
 -- ftd.text: $navbar-mobile.cta-text-4
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=aboutus)
 
 -- ftd.text: $navbar-mobile.cta-text-5
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=faq)
 
 -- ftd.column:
 width: fill-container
