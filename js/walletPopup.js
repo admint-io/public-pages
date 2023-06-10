@@ -145,6 +145,7 @@ export class WalletPopup extends HTMLElement {
       hidePopup() {
         // Hide the popup
         this.style.display = 'none';
+        connectWalletSkipEvent();
       }
   }
   
