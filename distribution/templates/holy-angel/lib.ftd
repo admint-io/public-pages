@@ -448,6 +448,7 @@ body content:
 -- ftd.column:
 width: fill-container
 margin-top.px: 100
+id: home
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
@@ -542,7 +543,7 @@ boolean $is-active: false
 -- ftd.column:
 width: fill-container
 margin-vertical.px: 150
-id: howtoclaim
+id: poap
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
@@ -869,6 +870,7 @@ body body:
 
 -- ftd.column:
 width: fill-container
+id: howtoclaim
 
 -- image-with-content-mobile:
 if: { ftd.device == "mobile" }
@@ -1128,6 +1130,7 @@ boolean $open: false
 align-content: center
 width: fill-container
 margin-bottom.px: 30
+id: faq
 
 -- ftd.column:
 width.fixed.percent: 80
