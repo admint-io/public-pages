@@ -105,6 +105,7 @@ with any of your existing social accounts, and a wallet will be created for you.
 then proceed to claim the POAP NFT.
 
 -- lib.faq: How do I get a Metamask wallet?
+
  
 You can download and install Metamask in your favorite browser here: 
 [https://metamask.io/download/](https://metamask.io/download/) 
@@ -114,10 +115,12 @@ it's important to keep them safe. Never share your private keys with anyone.
 
 -- lib.faq: How many times can I claim a token?
 
+
 Your assigned NFT can be claimed only once. Hence it is very important that you do not 
 share your unique URL with others as they could claim it on your behalf.
 
 -- lib.faq: Which blockchain are these tokens minted on?
+$id: faq
 
 The POAP token issued to you has been minted over the Polygon network.
 

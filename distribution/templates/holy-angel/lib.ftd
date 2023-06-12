@@ -1133,12 +1133,14 @@ body body:
 ftd.image-src more: $assets.files.images.add.png
 ftd.image-src less: $assets.files.images.less.png
 boolean $open: false
+optional string $id: 
 
 -- ftd.column:
 align-content: center
 width: fill-container
 margin-bottom.px: 30
-id: faq
+id: $faq.id
+;;id: faq
 
 -- ftd.column:
 width.fixed.percent: 80
