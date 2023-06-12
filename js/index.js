@@ -769,3 +769,23 @@ window.navigateToComponent = async function navigateToComponent(elementId) {
   const element = document.getElementById(elementId);
   element.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 };
+
+
+
+
+window.addEventListener('message', function(event) {
+  // if (event.origin !== 'http://localhost:8000') {
+  //   return;
+  // }
+
+  var receivedData = event.data;
+  console.log('Data received in the iframe:', receivedData);
+  console.log('event origin is :', event.origin);
+  if(receivedData.message=="device screen width"){
+    if(receivedData.value<768){
+      window.ftd.set_string_for_all("ftd#device", "mobile");
+    }else{
+      window.ftd.set_string_for_all("ftd#device", "desktop");
+    }
+  }  
+});
