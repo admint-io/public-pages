@@ -782,7 +782,7 @@ window.checkForNftOwnership = async function checkForNftOwnership() {
   console.log("entering checkForNftOwnership function with wallet id ",connectedWalletAddress);
   console.log("nft contract address to verify is : ",userNftContractAddress);
   const openseaApiUrl=`${config.OPENSEA_COLLECTION_FETCH_BASE_URL}${connectedWalletAddress}`;
-  
+  console.log("opensea collection api is ",openseaApiUrl);
   try {
     const apiConfig = {
       headers: {
@@ -823,7 +823,8 @@ window.checkForNftOwnership = async function checkForNftOwnership() {
 window.viewNftInOpensea = async function viewNftInOpensea() {
   console.log("entering viewNftInOpensea function ");
   if(connectedWalletAddress!="undefined" && userNftTokenId!="undefined"){    
-    const url=`${config.OPENSEA_VIEW_NFT_BASE_URL}/${userNftContractAddress}/${userNftTokenId}`;    
+    const url=`${config.OPENSEA_VIEW_NFT_BASE_URL}/${userNftContractAddress}/${userNftTokenId}`;   
+    console.log("opensea view api is ",url); 
     const newTab = window.open(url, '_blank');
     newTab.focus();  
   }
