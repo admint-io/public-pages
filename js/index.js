@@ -618,7 +618,7 @@ window.torusInit = async function torusInit() {
             host: "matic",
           },
         });
-        torus.torusWidgetVisibility=false;
+       // torus.torusWidgetVisibility=false;
       }      
       console.log("torus is ",torus);
       resolve("done");
