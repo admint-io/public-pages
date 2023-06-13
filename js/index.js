@@ -14,6 +14,7 @@ export var inviteCode = "undefined";
 var connectedWalletAddress = "undefined";
 var walletConnectionStatus = false;
 var userNftContractAddress="undefined";
+var userNftTokenId="undefined";
 
 function convertToColorBlocks(text) {
   const lines = text.trim().split("\n");
@@ -780,7 +781,9 @@ window.navigateToComponent = async function navigateToComponent(elementId) {
 window.checkForNftOwnership = async function checkForNftOwnership() {
   console.log("entering checkForNftOwnership function with wallet id ",connectedWalletAddress);
   console.log("nft contract address to verify is : ",userNftContractAddress);
-  const openseaApiUrl=`https://testnets-api.opensea.io/api/v1/assets?owner=${connectedWalletAddress}`;
+  // const openseaApiUrl=`https://testnets-api.opensea.io/api/v1/assets?owner=${connectedWalletAddress}`;
+  const openseaApiUrl=`https://api.opensea.io/api/v1/assets?owner=${connectedWalletAddress}`;
+  
   try {
     const apiConfig = {
       headers: {
@@ -790,14 +793,24 @@ window.checkForNftOwnership = async function checkForNftOwnership() {
     axios
     .get(openseaApiUrl, apiConfig)
     .then((response) => {
-      const respData = response.data;
-      
-      respData.assets.forEach((nfts)=>{
-        console.log("nft contract addresses are : ",nfts.asset_contract.address)
-        if(userNftContractAddress==nfts.asset_contract.address){
-          console.log("NFT is present in this account");
-        }
-      })
+      const respData = response.data;   
+      if(respData.hasOwnProperty(`assets`)){
+        respData.assets.forEach((nfts)=>{
+          if(nfts.hasOwnProperty('asset_contract') && nfts.asset_contract.hasOwnProperty('address')){
+            console.log("nft contract addresses are : ",nfts)
+            if(userNftContractAddress==nfts.asset_contract.address){
+              console.log("NFT is present in this account");
+              window.ftd.set_value(
+                `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
+                true
+              );
+              if(nfts.hasOwnProperty('token_id')){
+                userNftTokenId=nfts.token_id;
+              }             
+            }
+          }          
+        })
+      }         
       console.log("opensea api result is : ",respData);
     })
     .catch((error) => {
@@ -807,3 +820,20 @@ window.checkForNftOwnership = async function checkForNftOwnership() {
     console.error('An error occurred:', error.message);
   }
 };
+
+window.viewNftInOpensea = async function viewNftInOpensea() {
+  console.log("entering viewNftInOpensea function ");
+  if(connectedWalletAddress!="undefined" && userNftTokenId!="undefined"){    
+    const url=`https://opensea.io/assets/matic/${userNftContractAddress}/${userNftTokenId}`;
+    // const url=`https://testnets.opensea.io/assets/goerli/${userNftContractAddress}/${userNftTokenId}`;
+   // const url=`https://testnets.opensea.io/${connectedWalletAddress}`;
+    const newTab = window.open(url, '_blank');
+    newTab.focus();  
+  }
+  else{
+    window.ftd.set_value(
+      `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
+      false
+    );
+  }  
+}

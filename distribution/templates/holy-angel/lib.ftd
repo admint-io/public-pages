@@ -4,7 +4,7 @@
 -- import: public-pages/distribution/templates/holy-angel/functions as funct
 -- import: public-pages/distribution/templates/holy-angel/texts as texts
 
--- boolean $viewNftButtonStatus: true
+-- boolean $viewNftButtonStatus: false
 
 -- component page:
 ftd.image-src logo: $assets.files.images.logo.png
@@ -641,7 +641,7 @@ $on-mouse-leave$: $ftd.set-bool($a = $image-with-button.is-active-2, v = false)
 border-color: $colors.accent-primary-
 role: $inherited.types.copy-regular
 color: $colors.text-
-$on-click$: $funct.sendWallet()
+$on-click$: $funct.viewNftInOpensea()
 
 -- end: ftd.column
 
@@ -744,7 +744,7 @@ $on-mouse-leave$: $ftd.set-bool($a = $image-with-button.is-active-2, v = false)
 border-color: $colors.accent-primary-
 role: $inherited.types.copy-regular
 color: $colors.text-
-$on-click$: $funct.sendWallet()
+$on-click$: $funct.viewNftInOpensea()
 
 -- end: ftd.column
 

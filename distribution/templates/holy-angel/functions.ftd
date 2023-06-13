@@ -13,3 +13,8 @@ string elementId:
 js: js/index.js:type=module
 
 navigateToComponent(elementId)
+
+-- void viewNftInOpensea():
+js: js/index.js:type=module
+
+viewNftInOpensea()
