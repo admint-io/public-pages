@@ -13,6 +13,8 @@ export var campaignId = "undefined";
 export var inviteCode = "undefined";
 var connectedWalletAddress = "undefined";
 var walletConnectionStatus = false;
+var userNftContractAddress="undefined";
+var userNftTokenId="undefined";
 
 function convertToColorBlocks(text) {
   const lines = text.trim().split("\n");
@@ -316,6 +318,9 @@ window.updateCreativeDataUi = async function updateCreativeDataUi(
     creativeDatasArray.forEach((obj) => {
       if (obj.rarity == nftType) {
         console.log("creatives match found ");
+        if("creativeContractAddress" in obj){
+          userNftContractAddress=obj.creativeContractAddress;
+        }        
         if ("imageUrl" in obj) {
           window.ftd.set_value(
             "public-pages/distribution/templates/holy-angel/images#nft-image-url",
@@ -476,6 +481,7 @@ window.connectWalletProvider = async function connectWalletProvider(
                 "connected"
               );
               walletConnectedEvent();
+              checkForNftOwnership();
             })
             .catch((error) => {
               console.log("Failed to connect to MetaMask:", error);
@@ -513,7 +519,8 @@ window.connectWalletProvider = async function connectWalletProvider(
         walletConnectedEvent();
         if(torus.isLoggedIn){
           torus.torusWidgetVisibility=true;
-        }        
+        }  
+        checkForNftOwnership();      
     }).catch((error) => {
       console.error("Failed to open torus:", error);
       document.body.style.cursor = 'default';      
@@ -618,7 +625,7 @@ window.torusInit = async function torusInit() {
             host: "matic",
           },
         });
-        torus.torusWidgetVisibility=false;
+       // torus.torusWidgetVisibility=false;
       }      
       console.log("torus is ",torus);
       resolve("done");
@@ -769,3 +776,61 @@ window.navigateToComponent = async function navigateToComponent(elementId) {
   const element = document.getElementById(elementId);
   element.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 };
+
+
+window.checkForNftOwnership = async function checkForNftOwnership() {
+  console.log("entering checkForNftOwnership function with wallet id ",connectedWalletAddress);
+  console.log("nft contract address to verify is : ",userNftContractAddress);
+  const openseaApiUrl=`${config.OPENSEA_COLLECTION_FETCH_BASE_URL}${connectedWalletAddress}`;
+  
+  try {
+    const apiConfig = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    axios
+    .get(openseaApiUrl, apiConfig)
+    .then((response) => {
+      const respData = response.data;   
+      if(respData.hasOwnProperty(`assets`)){
+        respData.assets.forEach((nfts)=>{
+          if(nfts.hasOwnProperty('asset_contract') && nfts.asset_contract.hasOwnProperty('address')){
+            console.log("nft contract addresses are : ",nfts)
+            if(userNftContractAddress==nfts.asset_contract.address){
+              console.log("NFT is present in this account");
+              window.ftd.set_value(
+                `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
+                true
+              );
+              if(nfts.hasOwnProperty('token_id')){
+                userNftTokenId=nfts.token_id;
+              }             
+            }
+          }          
+        })
+      }         
+      console.log("opensea api result is : ",respData);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  } catch (error) {
+    console.error('An error occurred:', error.message);
+  }
+};
+
+window.viewNftInOpensea = async function viewNftInOpensea() {
+  console.log("entering viewNftInOpensea function ");
+  if(connectedWalletAddress!="undefined" && userNftTokenId!="undefined"){    
+    const url=`${config.OPENSEA_VIEW_NFT_BASE_URL}/${userNftContractAddress}/${userNftTokenId}`;    
+    const newTab = window.open(url, '_blank');
+    newTab.focus();  
+  }
+  else{
+    window.ftd.set_value(
+      `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
+      false
+    );
+  }  
+}
