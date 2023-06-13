@@ -200,9 +200,9 @@ and potential loss of the POA NFT.
 unauthorized access or loss of the POA NFT due to the sharing of the unique URL or due
 to any negligent or willful act of the claimant/participant.
 
--- lib.tc-item-item: .Privacy and Data Protection
+-- lib.tc-item-item: Privacy and Data Protection
 number: 2.11
-  
+
 2.11.1  The organizers and the Issuer are committed to protecting your personal 
 information and complying with applicable data privacy laws.
     
@@ -233,7 +233,7 @@ of service that govern the handling of personal information. The organizers reco
 reviewing the privacy policies and terms of service of the third-party service provider 
 to understand how they handle and protect your personal information.
 
--- lib.tc-item-item: .Security
+-- lib.tc-item-item: Security
 number: 2.12
 
 2.12.1  It is your responsibility to ensure the security of your digital wallet and 

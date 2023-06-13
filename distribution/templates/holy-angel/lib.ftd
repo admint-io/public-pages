@@ -1492,7 +1492,7 @@ children c:
 if: { tc-pop-up-status }
 anchor: window
 width: fill-container
-height: fill-container
+height.fixed.percent: 100
 background.solid: $inherited.colors.background.overlay
 z-index: 99999
 
@@ -1601,7 +1601,7 @@ $on-click$: $ftd.set-bool($a = $pop-up-status, v = false)
 
 -- ftd.column:
 width: fill-container
-height: fill-container
+;;height: fill-container
 align-content: left
 padding-top.px: 96
 padding-horizontal.px: 24
@@ -1662,7 +1662,6 @@ caption heading:
 body content:
 
 -- ftd.column:
-height: fill-container
 width: fill-container
 margin-vertical.px: 8
 
@@ -1706,7 +1705,6 @@ caption heading:
 body content:
 
 -- ftd.column:
-height: fill-container
 width: fill-container
 margin-left.px: 8
 margin-vertical.px: 8
