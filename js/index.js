@@ -347,7 +347,7 @@ window.showSuccessPopup = async function showSuccessPopup(inputData) {
 
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-title",
-    "Success"
+    "You rocked it !"
   );
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-body",
@@ -368,7 +368,7 @@ window.showFailurePopup = async function showFailurePopup(inputData) {
 
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-title",
-    "Claim Request Error !"
+    "Oops! Something Went Wrong"
   );
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-body",
@@ -388,7 +388,7 @@ window.showWarningPopup = async function showWarningPopup(inputData) {
   console.log("input data is ", inputData);
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-title",
-    "Claim Request Error !"
+    "Oops! Something Went Wrong"
   );
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-body",
