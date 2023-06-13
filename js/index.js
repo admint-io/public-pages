@@ -13,6 +13,7 @@ export var campaignId = "undefined";
 export var inviteCode = "undefined";
 var connectedWalletAddress = "undefined";
 var walletConnectionStatus = false;
+var userNftContractAddress="undefined";
 
 function convertToColorBlocks(text) {
   const lines = text.trim().split("\n");
@@ -316,6 +317,9 @@ window.updateCreativeDataUi = async function updateCreativeDataUi(
     creativeDatasArray.forEach((obj) => {
       if (obj.rarity == nftType) {
         console.log("creatives match found ");
+        if("creativeContractAddress" in obj){
+          userNftContractAddress=obj.creativeContractAddress;
+        }        
         if ("imageUrl" in obj) {
           window.ftd.set_value(
             "public-pages/distribution/templates/holy-angel/images#nft-image-url",
@@ -476,6 +480,7 @@ window.connectWalletProvider = async function connectWalletProvider(
                 "connected"
               );
               walletConnectedEvent();
+              checkForNftOwnership();
             })
             .catch((error) => {
               console.log("Failed to connect to MetaMask:", error);
@@ -513,7 +518,8 @@ window.connectWalletProvider = async function connectWalletProvider(
         walletConnectedEvent();
         if(torus.isLoggedIn){
           torus.torusWidgetVisibility=true;
-        }        
+        }  
+        checkForNftOwnership();      
     }).catch((error) => {
       console.error("Failed to open torus:", error);
       document.body.style.cursor = 'default';      
@@ -768,4 +774,36 @@ window.navigateToComponent = async function navigateToComponent(elementId) {
   console.log("entering navigateToComponent function with id ",elementId);
   const element = document.getElementById(elementId);
   element.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+};
+
+
+window.checkForNftOwnership = async function checkForNftOwnership() {
+  console.log("entering checkForNftOwnership function with wallet id ",connectedWalletAddress);
+  console.log("nft contract address to verify is : ",userNftContractAddress);
+  const openseaApiUrl=`https://testnets-api.opensea.io/api/v1/assets?owner=${connectedWalletAddress}`;
+  try {
+    const apiConfig = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    axios
+    .get(openseaApiUrl, apiConfig)
+    .then((response) => {
+      const respData = response.data;
+      
+      respData.assets.forEach((nfts)=>{
+        console.log("nft contract addresses are : ",nfts.asset_contract.address)
+        if(userNftContractAddress==nfts.asset_contract.address){
+          console.log("NFT is present in this account");
+        }
+      })
+      console.log("opensea api result is : ",respData);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  } catch (error) {
+    console.error('An error occurred:', error.message);
+  }
 };

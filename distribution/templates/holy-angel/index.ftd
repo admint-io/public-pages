@@ -5,6 +5,7 @@
 -- import: public-pages/distribution/templates/holy-angel/functions as funct
 
 -- string $loadedState: loading
+-- boolean $viewNftButtonStatus: false
 
 -- lib.window-popup:
 pic: $images.popup-image
