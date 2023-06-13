@@ -781,8 +781,7 @@ window.navigateToComponent = async function navigateToComponent(elementId) {
 window.checkForNftOwnership = async function checkForNftOwnership() {
   console.log("entering checkForNftOwnership function with wallet id ",connectedWalletAddress);
   console.log("nft contract address to verify is : ",userNftContractAddress);
-  // const openseaApiUrl=`https://testnets-api.opensea.io/api/v1/assets?owner=${connectedWalletAddress}`;
-  const openseaApiUrl=`https://api.opensea.io/api/v1/assets?owner=${connectedWalletAddress}`;
+  const openseaApiUrl=`${config.OPENSEA_COLLECTION_FETCH_BASE_URL}${connectedWalletAddress}`;
   
   try {
     const apiConfig = {
@@ -824,9 +823,7 @@ window.checkForNftOwnership = async function checkForNftOwnership() {
 window.viewNftInOpensea = async function viewNftInOpensea() {
   console.log("entering viewNftInOpensea function ");
   if(connectedWalletAddress!="undefined" && userNftTokenId!="undefined"){    
-    const url=`https://opensea.io/assets/matic/${userNftContractAddress}/${userNftTokenId}`;
-    // const url=`https://testnets.opensea.io/assets/goerli/${userNftContractAddress}/${userNftTokenId}`;
-   // const url=`https://testnets.opensea.io/${connectedWalletAddress}`;
+    const url=`${config.OPENSEA_VIEW_NFT_BASE_URL}/${userNftContractAddress}/${userNftTokenId}`;    
     const newTab = window.open(url, '_blank');
     newTab.focus();  
   }
