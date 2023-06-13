@@ -4,6 +4,8 @@
 -- import: public-pages/distribution/templates/holy-angel/functions as funct
 -- import: public-pages/distribution/templates/holy-angel/texts as texts
 
+-- boolean $viewNftButtonStatus: true
+
 -- component page:
 ftd.image-src logo: $assets.files.images.logo.png
 string cta-text-1: Home
@@ -545,8 +547,10 @@ string text-1:
 string text-2:
 string val-1:
 string val-2:
-string button:
-boolean $is-active: false
+string button-1:
+string button-2:
+boolean $is-active-1: false
+boolean $is-active-2: false
 
 -- ftd.column:
 width: fill-container
@@ -607,17 +611,34 @@ color: $colors.text-
 
 -- end: ftd.row
 
--- ftd.text: $image-with-button.button
+-- ftd.text: $image-with-button.button-1
 width: fill-container
 text-align: center
 padding-vertical.px: 16
 padding-horizontal.px: 10
-border-width.px if { image-with-button.is-active }: 1
+border-width.px: 1
 border-radius.px: 6
-background.linear-gradient : $lg
-$on-mouse-enter$: $ftd.set-bool($a = $image-with-button.is-active, v = true)
-$on-mouse-leave$: $ftd.set-bool($a = $image-with-button.is-active, v = false)
-border-color if { image-with-button.is-active }: $colors.accent-primary-
+background.linear-gradient: $lg
+$on-mouse-enter$: $ftd.set-bool($a = $image-with-button.is-active-1, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $image-with-button.is-active-1, v = false)
+border-color: $colors.accent-primary-
+role: $inherited.types.copy-regular
+color: $colors.text-
+$on-click$: $funct.sendWallet()
+
+-- ftd.text: $image-with-button.button-2
+if: { viewNftButtonStatus }
+width: fill-container
+text-align: center
+padding-vertical.px: 16
+padding-horizontal.px: 10
+margin-top.px: 16
+border-width.px: 1
+border-radius.px: 6
+background.linear-gradient: $lg
+$on-mouse-enter$: $ftd.set-bool($a = $image-with-button.is-active-2, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $image-with-button.is-active-2, v = false)
+border-color: $colors.accent-primary-
 role: $inherited.types.copy-regular
 color: $colors.text-
 $on-click$: $funct.sendWallet()
@@ -693,16 +714,33 @@ color: $colors.text-
 
 -- end: ftd.row
 
--- ftd.text: $image-with-button.button
+-- ftd.text: $image-with-button.button-1
 width: fill-container
 text-align: center
 padding-vertical.px: 20
 padding-horizontal.px: 10
 border-width.px: 1
 border-radius.px: 6
-background.linear-gradient if { image-with-button.is-active }: $lg
-$on-mouse-enter$: $ftd.set-bool($a = $image-with-button.is-active, v = true)
-$on-mouse-leave$: $ftd.set-bool($a = $image-with-button.is-active, v = false)
+background.linear-gradient if { image-with-button.is-active-1 }: $lg
+$on-mouse-enter$: $ftd.set-bool($a = $image-with-button.is-active-1, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $image-with-button.is-active-1, v = false)
+border-color: $colors.accent-primary-
+role: $inherited.types.copy-regular
+color: $colors.text-
+$on-click$: $funct.sendWallet()
+
+-- ftd.text: $image-with-button.button-2
+if: { viewNftButtonStatus }
+width: fill-container
+text-align: center
+padding-vertical.px: 16
+padding-horizontal.px: 10
+margin-top.px: 24
+border-width.px: 1
+border-radius.px: 6
+background.linear-gradient if { image-with-button.is-active-2 } : $lg
+$on-mouse-enter$: $ftd.set-bool($a = $image-with-button.is-active-2, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $image-with-button.is-active-2, v = false)
 border-color: $colors.accent-primary-
 role: $inherited.types.copy-regular
 color: $colors.text-

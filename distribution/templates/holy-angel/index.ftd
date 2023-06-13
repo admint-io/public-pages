@@ -5,7 +5,6 @@
 -- import: public-pages/distribution/templates/holy-angel/functions as funct
 
 -- string $loadedState: loading
--- boolean $viewNftButtonStatus: false
 
 -- lib.window-popup:
 pic: $images.popup-image
@@ -32,7 +31,8 @@ text-1: **Blockchain** :
 text-2: **POAP Type** : 
 val-1: Polygon
 val-2: $texts.nft-type
-button: Claim Now
+button-1: Claim Now
+button-2: View NFT
 
 This POAP or Proof of Attendance Protocol is a non-fungible token that proves you 
 participated in the 2nd Regional Cybersecurity Conference conducted by The School of 
