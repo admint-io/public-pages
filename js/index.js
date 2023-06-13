@@ -4,7 +4,6 @@ import "https://www.googletagmanager.com/gtag/js?id=G-GB9WDK9NC7%22%3E";
 import "https://cdn.jsdelivr.net/npm/@toruslabs/torus-embed@1.41.3/dist/torus.umd.min.js";
 import "https://cdn.jsdelivr.net/npm/web3@1.7.3/dist/web3.min.js";
 import { WalletPopup } from "./walletPopup.js";
-import "https://unpkg.com/@metamask/detect-provider/dist/detect-provider.min.js";
 
 const torus = new Torus();
 
@@ -422,74 +421,69 @@ window.connectWalletProvider = async function connectWalletProvider(
 ) {  
   console.log("entering connectWalletProvider function", selectedProvider);
   if (selectedProvider == "metamask") {
+      metaMaskConnectEvent();
+      const polygonNetworkId = "0x89";
+      window.ethereum
+        .request({ method: "eth_chainId" })
+        .then((chainId) => {
+          if (chainId !== polygonNetworkId) {
+            const polygonNetwork = {
+              chainId: polygonNetworkId,
+              chainName: "Polygon Mainnet",
+              nativeCurrency: {
+                name: "MATIC",
+                symbol: "MATIC",
+                decimals: 18,
+              },
+              rpcUrls: ["https://polygon-rpc.com"],
+              blockExplorerUrls: ["https://polygonscan.com"],
+            };
 
+            return window.ethereum.request({
+              method: "wallet_addEthereumChain",
+              params: [polygonNetwork],
+            });
+          }
 
-    connectMeta();
-
-
-      // metaMaskConnectEvent();
-      // const polygonNetworkId = "0x89";
-      // window.ethereum
-      //   .request({ method: "eth_chainId" })
-      //   .then((chainId) => {
-      //     if (chainId !== polygonNetworkId) {
-      //       const polygonNetwork = {
-      //         chainId: polygonNetworkId,
-      //         chainName: "Polygon Mainnet",
-      //         nativeCurrency: {
-      //           name: "MATIC",
-      //           symbol: "MATIC",
-      //           decimals: 18,
-      //         },
-      //         rpcUrls: ["https://polygon-rpc.com"],
-      //         blockExplorerUrls: ["https://polygonscan.com"],
-      //       };
-
-      //       return window.ethereum.request({
-      //         method: "wallet_addEthereumChain",
-      //         params: [polygonNetwork],
-      //       });
-      //     }
-
-      //     console.log("Polygon network is already added to MetaMask");
-      //     return Promise.resolve();
-      //   })
-      //   .then(() => {
-      //     console.log("Added Polygon Mainnet to MetaMask");
-      //   })
-      //   .catch((error) => {
-      //     console.error("Failed to check/add Polygon network:", error);
-      //   });
-      // const networkId = 137;
-      // window.ethereum
-      //   .request({
-      //     method: "wallet_switchEthereumChain",
-      //     params: [{ chainId: `0x${networkId.toString(16)}` }],
-      //   })
-      //   .then(() => {
-      //     console.log("Switched to Polygon Mainnet");
-      //     window.ethereum
-      //       .request({ method: "eth_requestAccounts" })
-      //       .then((accounts) => {
-      //         connectedWalletAddress = accounts[0];
-      //         console.log(
-      //           "Connected MetaMask accounts:",
-      //           connectedWalletAddress
-      //         );
-      //         walletConnectionStatus = true;
-      //         window.ftd.set_value(
-      //           "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-      //           "connected"
-      //         );
-      //         walletConnectedEvent();
-      //       })
-      //       .catch((error) => {
-      //         console.log("Failed to connect to MetaMask:", error);
-      //       });
-      //   })
-      //   .catch((error) => {
-      //     console.error("Failed to switch network:", error);
-      //   });
+          console.log("Polygon network is already added to MetaMask");
+          return Promise.resolve();
+        })
+        .then(() => {
+          console.log("Added Polygon Mainnet to MetaMask");
+        })
+        .catch((error) => {
+          console.error("Failed to check/add Polygon network:", error);
+        });
+      const networkId = 137;
+      window.ethereum
+        .request({
+          method: "wallet_switchEthereumChain",
+          params: [{ chainId: `0x${networkId.toString(16)}` }],
+        })
+        .then(() => {
+          console.log("Switched to Polygon Mainnet");
+          window.ethereum
+            .request({ method: "eth_requestAccounts" })
+            .then((accounts) => {
+              connectedWalletAddress = accounts[0];
+              console.log(
+                "Connected MetaMask accounts:",
+                connectedWalletAddress
+              );
+              walletConnectionStatus = true;
+              window.ftd.set_value(
+                "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+                "connected"
+              );
+              walletConnectedEvent();
+            })
+            .catch((error) => {
+              console.log("Failed to connect to MetaMask:", error);
+            });
+        })
+        .catch((error) => {
+          console.error("Failed to switch network:", error);
+        });
     
   }
   else if(selectedProvider=="torus (sign in with google)"){
@@ -775,43 +769,3 @@ window.navigateToComponent = async function navigateToComponent(elementId) {
   const element = document.getElementById(elementId);
   element.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
 };
-
-
-window.connectMeta = async function connectMeta() {
-  console.log("entering meta function");
-  const provider = await detectEthereumProvider();
-
-if (provider) {
-  // From now on, this should always be true:
-  // provider === window.ethereum
-  startApp(provider); // initialize your app
-  console.log("metamask is installed");
-  alert("metamask is installed");
-  const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' })
-    .catch((err) => {
-      if (err.code === 4001) {
-        // EIP-1193 userRejectedRequest error
-        // If this happens, the user rejected the connection request.
-        console.log('Please connect to MetaMask.');
-      } else {
-        console.error(err);
-      }
-    });
-  const account = accounts[0];
-  console.log("selected account is ",account);
-  alert(`selected account is ${accounts[0]}`);
-} else {
-  console.log('Please install MetaMask!');
-  alert("metamask is not installed");
-}
-
-function startApp(provider) {
-  // If the provider returned by detectEthereumProvider isn't the same as
-  // window.ethereum, something is overwriting it – perhaps another wallet.
-  if (provider !== window.ethereum) {
-    console.error('Do you have multiple wallets installed?');
-  }
-  // Access the decentralized web!
-}
-}
-
