@@ -789,7 +789,7 @@ window.checkForNftOwnership = async function checkForNftOwnership() {
         "Content-Type": "application/json",
       },
     };
-    axios
+    await axios
     .get(openseaApiUrl, apiConfig)
     .then((response) => {
       const respData = response.data;   
