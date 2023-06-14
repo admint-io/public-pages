@@ -6,6 +6,18 @@
 
 -- boolean $viewNftButtonStatus: false
 
+-- string list js:
+
+-- string: //unpkg.com/web3@1.2.11/dist/web3.min.js:type=text/javascript
+-- string: //unpkg.com/web3modal@1.9.0/dist/index.js:type=text/javascript
+-- string: //unpkg.com/evm-chains@0.2.0/dist/umd/index.min.js:type=text/javascript
+-- string: //unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js:type=text/javascript
+-- string: //unpkg.com/fortmatic@2.0.6/dist/fortmatic.js:type=text/javascript
+-- string: js/walletConnect.js:type=module
+
+-- end: js
+
+
 -- component page:
 ftd.image-src logo: $assets.files.images.logo.png
 string cta-text-1: Home
@@ -151,6 +163,7 @@ margin-vertical.px: 10
 spacing.fixed.px: 10
 
 -- ftd.text: $navbar-mobile.cta-text-1
+js: $js
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
@@ -252,6 +265,7 @@ spacing: space-between
 align-self: center
 
 -- ftd.text: $navbar-desktop.cta-text-1
+js: $js
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32

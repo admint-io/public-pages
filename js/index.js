@@ -446,7 +446,7 @@ window.connectWallet = async function connectWallet() {
       console.error('Failed to copy text:', error);
     });
     }
-  }  
+  }   
 };
 
 window.connectWalletProvider = async function connectWalletProvider(
@@ -454,72 +454,84 @@ window.connectWalletProvider = async function connectWalletProvider(
 ) {  
   console.log("entering connectWalletProvider function", selectedProvider);
   if (selectedProvider == "metamask") {
+
+    onConnect();
+    if(window.ethereum=="undefined"){
+      console.log("metamask not installed");
+      alert("metamask not installed");
+    }
+
+
       metaMaskConnectEvent();
-      const polygonNetworkId = "0x89";
-      window.ethereum
-        .request({ method: "eth_chainId" })
-        .then((chainId) => {
-          if (chainId !== polygonNetworkId) {
-            const polygonNetwork = {
-              chainId: polygonNetworkId,
-              chainName: "Polygon Mainnet",
-              nativeCurrency: {
-                name: "MATIC",
-                symbol: "MATIC",
-                decimals: 18,
-              },
-              rpcUrls: ["https://polygon-rpc.com"],
-              blockExplorerUrls: ["https://polygonscan.com"],
-            };
+      // const polygonNetworkId = "0x89";
+      // window.ethereum
+      //   .request({ method: "eth_chainId" })
+      //   .then((chainId) => {
+      //     if (chainId !== polygonNetworkId) {
+      //       const polygonNetwork = {
+      //         chainId: polygonNetworkId,
+      //         chainName: "Polygon Mainnet",
+      //         nativeCurrency: {
+      //           name: "MATIC",
+      //           symbol: "MATIC",
+      //           decimals: 18,
+      //         },
+      //         rpcUrls: ["https://polygon-rpc.com"],
+      //         blockExplorerUrls: ["https://polygonscan.com"],
+      //       };
 
-            return window.ethereum.request({
-              method: "wallet_addEthereumChain",
-              params: [polygonNetwork],
-            });
-          }
+      //       return window.ethereum.request({
+      //         method: "wallet_addEthereumChain",
+      //         params: [polygonNetwork],
+      //       });
+      //     }
 
-          console.log("Polygon network is already added to MetaMask");
-          return Promise.resolve();
-        })
-        .then(() => {
-          console.log("Added Polygon Mainnet to MetaMask");
-        })
-        .catch((error) => {
-          console.error("Failed to check/add Polygon network:", error);
-        });
-      const networkId = 137;
-      window.ethereum
-        .request({
-          method: "wallet_switchEthereumChain",
-          params: [{ chainId: `0x${networkId.toString(16)}` }],
-        })
-        .then(() => {
-          console.log("Switched to Polygon Mainnet");
-          window.ethereum
-            .request({ method: "eth_requestAccounts" })
-            .then((accounts) => {
-              connectedWalletAddress = accounts[0];
-              console.log(
-                "Connected MetaMask accounts:",
-                connectedWalletAddress
-              );
-              walletConnectionStatus = true;
-              const buttonDisplayStringStart=`${connectedWalletAddress[0]}${connectedWalletAddress[1]}${connectedWalletAddress[2]}${connectedWalletAddress[3]}${connectedWalletAddress[4]}${connectedWalletAddress[5]}`
-              const buttonDisplayStringEnd=`${connectedWalletAddress[connectedWalletAddress.length-4]}${connectedWalletAddress[connectedWalletAddress.length-3]}${connectedWalletAddress[connectedWalletAddress.length-2]}${connectedWalletAddress[connectedWalletAddress.length-1]}`;
-              window.ftd.set_value(
-                "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-                `Connected  (${buttonDisplayStringStart}...${buttonDisplayStringEnd})`
-              );
-              walletConnectedEvent();
-              checkForNftOwnership();
-            })
-            .catch((error) => {
-              console.log("Failed to connect to MetaMask:", error);
-            });
-        })
-        .catch((error) => {
-          console.error("Failed to switch network:", error);
-        });
+      //     console.log("Polygon network is already added to MetaMask");
+      //     return Promise.resolve();
+      //   })
+      //   .then(() => {
+      //     console.log("Added Polygon Mainnet to MetaMask");
+      //   })
+      //   .catch((error) => {
+      //     console.error("Failed to check/add Polygon network:", error);
+      //   });
+      // const networkId = 137;
+      // window.ethereum
+      //   .request({
+      //     method: "wallet_switchEthereumChain",
+      //     params: [{ chainId: `0x${networkId.toString(16)}` }],
+      //   })
+      //   .then(() => {
+      //     console.log("Switched to Polygon Mainnet");
+      //     window.ethereum
+      //       .request({ method: "eth_requestAccounts" })
+      //       .then((accounts) => {
+      //         connectedWalletAddress = accounts[0];
+      //         console.log(
+      //           "Connected MetaMask accounts:",
+      //           connectedWalletAddress
+      //         );
+      //         walletConnectionStatus = true;
+      //         const buttonDisplayStringStart=`${connectedWalletAddress[0]}${connectedWalletAddress[1]}${connectedWalletAddress[2]}${connectedWalletAddress[3]}${connectedWalletAddress[4]}${connectedWalletAddress[5]}`
+      //         const buttonDisplayStringEnd=`${connectedWalletAddress[connectedWalletAddress.length-4]}${connectedWalletAddress[connectedWalletAddress.length-3]}${connectedWalletAddress[connectedWalletAddress.length-2]}${connectedWalletAddress[connectedWalletAddress.length-1]}`;
+      //         window.ftd.set_value(
+      //           "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+      //           `Connected  (${buttonDisplayStringStart}...${buttonDisplayStringEnd})`
+      //         );
+      //         walletConnectedEvent();
+      //         checkForNftOwnership();
+      //       })
+      //       .catch((error) => {
+      //         console.log("Failed to connect to MetaMask:", error);
+      //       });
+      //   })
+      //   .catch((error) => {
+      //     console.error("Failed to switch network:", error);
+      //   });
+
+
+
+
     
   }
   else if(selectedProvider=="torus (sign in with google)"){
@@ -867,3 +879,114 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
     );
   }  
 }
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////// Wallet connect code below ////////////////////////////////////////////////////////
+
+ const Web3Modal = window.Web3Modal.default;
+ const WalletConnectProvider = window.WalletConnectProvider.default;
+ const Fortmatic = window.Fortmatic;
+ const evmChains = window.evmChains; 
+ let web3Modal 
+ let provider; 
+ 
+ function init() { 
+   console.log("Initializing example");
+   console.log("WalletConnectProvider is", WalletConnectProvider);
+   console.log("Fortmatic is", Fortmatic);
+   console.log("window.web3 is", window.web3, "window.ethereum is", window.ethereum);
+ 
+   const providerOptions = {
+    //  walletconnect: {
+    //    package: WalletConnectProvider,
+    //    options: {
+    //      // Mikko's test key - don't copy as your mileage may vary
+    //      infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+    //    }
+    //  },
+ 
+    //  fortmatic: {
+    //    package: Fortmatic,
+    //    options: {
+    //      // Mikko's TESTNET api key
+    //      key: "pk_test_391E26A3B43A3350"
+    //    }
+    //  }
+   };
+ 
+   web3Modal = new Web3Modal({
+     cacheProvider: false, // optional
+     providerOptions, // required
+     disableInjectedProvider: false, // optional. For MetaMask / Brave / Opera.
+   });
+ 
+   console.log("Web3Modal instance is", web3Modal);
+ }
+ 
+ async function fetchAccountData() { 
+   const web3 = new Web3(provider); 
+   console.log("Web3 instance is", web3);
+   const chainId = await web3.eth.getChainId();
+   const chainData = evmChains.getChain(chainId); 
+   const accounts = await web3.eth.getAccounts();
+   console.log("Got accounts", accounts);
+   connectedWalletAddress=accounts[0];
+   console.log("selected wall accnt is ",connectedWalletAddress);
+ }  
+ 
+ async function refreshAccountData() { 
+      await fetchAccountData(provider);
+ }  
+  window.onConnect = async function onConnect() {   
+   console.log("Entering onConnect function");
+   try {
+     provider = await web3Modal.connect();
+   } catch(e) {
+     console.log("Could not get a wallet connection", e);
+     return;
+   }
+   console.log("connection to metamask complete")
+
+   provider.on("accountsChanged", (accounts) => {
+     console.log("account change detected",accounts);
+     fetchAccountData();
+   });
+ 
+   provider.on("chainChanged", (chainId) => {
+     console.log("account change detected",chainId);
+     fetchAccountData();
+   });
+ 
+   provider.on("networkChanged", (networkId) => {
+    console.log("network change detected",networkId);
+     fetchAccountData();
+   });
+ 
+   await refreshAccountData();
+ }
+ 
+ async function onDisconnect() {
+ 
+   console.log("Killing the wallet connection", provider); 
+   if(provider.close) {
+     await provider.close();
+     await web3Modal.clearCachedProvider();
+     provider = null;
+   } 
+   selectedAccount = null;
+ } 
+ 
+ window.addEventListener('load', async () => {
+   init();   
+ });
+ 
