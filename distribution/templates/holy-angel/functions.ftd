@@ -7,3 +7,14 @@ connectWallet()
 js: js/index.js:type=module
 
 sendWallet()
+
+-- void navigateToComponent(elementId):
+string elementId:
+js: js/index.js:type=module
+
+navigateToComponent(elementId)
+
+-- void viewNftInOpensea():
+js: js/index.js:type=module
+
+viewNftInOpensea()

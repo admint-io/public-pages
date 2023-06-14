@@ -1,6 +1,7 @@
 import "https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js";
 import * as config from "./config.js";
-import "https://www.googletagmanager.com/gtag/js?id=G-TQW7C70YGW%22%3E";
+import "https://www.googletagmanager.com/gtag/js?id=G-NDZYGEPEV9%22%3E";    // Admint prod
+//import "https://www.googletagmanager.com/gtag/js?id=G-GB9WDK9NC7%22%3E"; // Test
 import "https://cdn.jsdelivr.net/npm/@toruslabs/torus-embed@1.41.3/dist/torus.umd.min.js";
 import "https://cdn.jsdelivr.net/npm/web3@1.7.3/dist/web3.min.js";
 import { WalletPopup } from "./walletPopup.js";
@@ -13,6 +14,8 @@ export var campaignId = "undefined";
 export var inviteCode = "undefined";
 var connectedWalletAddress = "undefined";
 var walletConnectionStatus = false;
+var userNftContractAddress="undefined";
+var userNftTokenId="undefined";
 
 function convertToColorBlocks(text) {
   const lines = text.trim().split("\n");
@@ -111,6 +114,7 @@ window.readUrlParams = async function readUrlParams() {
     var nftType;
 
     const url = window.location.href;
+    console.log("url from broswer is ",url);
     const [baseUrl, fragment] = url.split("#");
 
     if (fragment) {
@@ -315,6 +319,9 @@ window.updateCreativeDataUi = async function updateCreativeDataUi(
     creativeDatasArray.forEach((obj) => {
       if (obj.rarity == nftType) {
         console.log("creatives match found ");
+        if("creativeContractAddress" in obj){
+          userNftContractAddress=obj.creativeContractAddress;
+        }        
         if ("imageUrl" in obj) {
           window.ftd.set_value(
             "public-pages/distribution/templates/holy-angel/images#nft-image-url",
@@ -341,7 +348,7 @@ window.showSuccessPopup = async function showSuccessPopup(inputData) {
 
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-title",
-    "Success"
+    "You rocked it !"
   );
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-body",
@@ -362,7 +369,7 @@ window.showFailurePopup = async function showFailurePopup(inputData) {
 
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-title",
-    "Claim Request Error !"
+    "Oops! Something Went Wrong"
   );
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-body",
@@ -382,7 +389,7 @@ window.showWarningPopup = async function showWarningPopup(inputData) {
   console.log("input data is ", inputData);
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-title",
-    "Claim Request Error !"
+    "Oops! Something Went Wrong"
   );
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-body",
@@ -410,9 +417,36 @@ window.checkImageURL = async function checkImageURL(url) {
 
 window.connectWallet = async function connectWallet() {
   console.log("entering connect wallet function");
-  connectWalletEvent();
-  const walletPopup = new WalletPopup();
-  document.body.appendChild(walletPopup);
+  if(!walletConnectionStatus){
+    connectWalletClickEvent();
+    const walletPopup = new WalletPopup();
+    document.body.appendChild(walletPopup);
+  }
+  else{
+    if(connectedWalletAddress!="undefined"){
+      navigator.clipboard.writeText(connectedWalletAddress)
+    .then(() => {
+      console.log('Text copied to clipboard:', connectedWalletAddress);
+      window.ftd.set_value(
+        "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+        "Wallet Address Copied !"
+      );
+      const delay = 1000;
+      setTimeout(()=>{
+        const buttonDisplayStringStart=`${connectedWalletAddress[0]}${connectedWalletAddress[1]}${connectedWalletAddress[2]}${connectedWalletAddress[3]}${connectedWalletAddress[4]}${connectedWalletAddress[5]}`
+        const buttonDisplayStringEnd=`${connectedWalletAddress[connectedWalletAddress.length-4]}${connectedWalletAddress[connectedWalletAddress.length-3]}${connectedWalletAddress[connectedWalletAddress.length-2]}${connectedWalletAddress[connectedWalletAddress.length-1]}`;
+        window.ftd.set_value(
+          "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+          `Connected  (${buttonDisplayStringStart}...${buttonDisplayStringEnd})`
+        );
+      }, delay);    
+
+    })
+    .catch((error) => {
+      console.error('Failed to copy text:', error);
+    });
+    }
+  }  
 };
 
 window.connectWalletProvider = async function connectWalletProvider(
@@ -420,6 +454,7 @@ window.connectWalletProvider = async function connectWalletProvider(
 ) {  
   console.log("entering connectWalletProvider function", selectedProvider);
   if (selectedProvider == "metamask") {
+      metaMaskConnectEvent();
       const polygonNetworkId = "0x89";
       window.ethereum
         .request({ method: "eth_chainId" })
@@ -469,10 +504,14 @@ window.connectWalletProvider = async function connectWalletProvider(
                 connectedWalletAddress
               );
               walletConnectionStatus = true;
+              const buttonDisplayStringStart=`${connectedWalletAddress[0]}${connectedWalletAddress[1]}${connectedWalletAddress[2]}${connectedWalletAddress[3]}${connectedWalletAddress[4]}${connectedWalletAddress[5]}`
+              const buttonDisplayStringEnd=`${connectedWalletAddress[connectedWalletAddress.length-4]}${connectedWalletAddress[connectedWalletAddress.length-3]}${connectedWalletAddress[connectedWalletAddress.length-2]}${connectedWalletAddress[connectedWalletAddress.length-1]}`;
               window.ftd.set_value(
                 "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-                "connected"
+                `Connected  (${buttonDisplayStringStart}...${buttonDisplayStringEnd})`
               );
+              walletConnectedEvent();
+              checkForNftOwnership();
             })
             .catch((error) => {
               console.log("Failed to connect to MetaMask:", error);
@@ -484,6 +523,7 @@ window.connectWalletProvider = async function connectWalletProvider(
     
   }
   else if(selectedProvider=="torus (sign in with google)"){
+    torusConnectEvent();
     document.body.style.cursor = 'wait';
     torusInit().then(async ()=>{  
     document.body.style.cursor = 'default';    
@@ -502,13 +542,17 @@ window.connectWalletProvider = async function connectWalletProvider(
     connectedWalletAddress=accounts[0];
     console.log("Connected with address:", connectedWalletAddress);
     walletConnectionStatus=true;
-        window.ftd.set_value(
-          "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-          "connected"
-        );
+    const buttonDisplayStringStart=`${connectedWalletAddress[0]}${connectedWalletAddress[1]}${connectedWalletAddress[2]}${connectedWalletAddress[3]}${connectedWalletAddress[4]}${connectedWalletAddress[5]}`
+    const buttonDisplayStringEnd=`${connectedWalletAddress[connectedWalletAddress.length-4]}${connectedWalletAddress[connectedWalletAddress.length-3]}${connectedWalletAddress[connectedWalletAddress.length-2]}${connectedWalletAddress[connectedWalletAddress.length-1]}`;
+    window.ftd.set_value(
+      "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+      `Connected  (${buttonDisplayStringStart}...${buttonDisplayStringEnd})`
+    );
+        walletConnectedEvent();
         if(torus.isLoggedIn){
           torus.torusWidgetVisibility=true;
-        }        
+        }  
+        checkForNftOwnership();      
     }).catch((error) => {
       console.error("Failed to open torus:", error);
       document.body.style.cursor = 'default';      
@@ -613,7 +657,7 @@ window.torusInit = async function torusInit() {
             host: "matic",
           },
         });
-        torus.torusWidgetVisibility=false;
+       // torus.torusWidgetVisibility=false;
       }      
       console.log("torus is ",torus);
       resolve("done");
@@ -646,13 +690,21 @@ window.sendWallet = async function sendWallet() {
             if ("success" in data && "message" in data) {
               if (data.success) {
                 showSuccessPopup(data.message);
+                claimSuccessEvent();
               } else {
                 showFailurePopup(data.message);
+                if(data.message=="add wallet addresss Failed!!!"){
+                  addWalletFailEvent();
+                }
+                if(data.message=="invite code already claimed!!!"){
+                  alreadyClaimedEvent();
+                }
               }
             }
           })
           .catch((error) => console.error(error));
       } else {
+        invalidLinkEvent();
         showWarningPopup("Invalid Link");
       }
     } catch (error) {
@@ -679,10 +731,139 @@ window.claimEvent = async function claimEvent() {
   });
 };
 
-window.connectWalletEvent = async function connectWalletEvent() {
+window.connectWalletClickEvent = async function connectWalletClickEvent() {
   gtag("event", "click", {
     event_category: "Button Click",
     event_label: "Connect Wallet Button",
     campaign_id: `${campaignId}`,
   });
 };
+
+window.invalidLinkEvent = async function invalidLinkEvent() {
+  gtag("event", "click", {
+    event_category: "popup",
+    event_label: "Invalid Link",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.metaMaskConnectEvent = async function metaMaskConnectEvent() {
+  gtag("event", "click", {
+    event_category: "connect wallet",
+    event_label: "Metamask Connect",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.torusConnectEvent = async function torusConnectEvent() {
+  gtag("event", "click", {
+    event_category: "connect wallet",
+    event_label: "Torus Connect",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.connectWalletSkipEvent = async function connectWalletSkipEvent() {
+  gtag("event", "click", {
+    event_category: "skip",
+    event_label: "Skip Wallet Connect",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.addWalletFailEvent = async function addWalletFailEvent() {
+  gtag("event", "response", {
+    event_category: "api response",
+    event_label: "Address Add Failed",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.claimSuccessEvent = async function claimSuccessEvent() {
+  gtag("event", "response", {
+    event_category: "api response",
+    event_label: "Address Add Succesful",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.alreadyClaimedEvent = async function alreadyClaimedEvent() {
+  gtag("event", "response", {
+    event_category: "api response",
+    event_label: "Address Already Added",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.walletConnectedEvent = async function walletConnectedEvent() {
+  gtag("event", "process", {
+    event_category: "process result",
+    event_label: "Wallet Connected",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.navigateToComponent = async function navigateToComponent(elementId) {
+  console.log("entering navigateToComponent function with id ",elementId);
+  const element = document.getElementById(elementId);
+  element.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+};
+
+
+window.checkForNftOwnership = async function checkForNftOwnership() {
+  console.log("entering checkForNftOwnership function with wallet id ",connectedWalletAddress);
+  console.log("nft contract address to verify is : ",userNftContractAddress);
+  const openseaApiUrl=`${config.OPENSEA_COLLECTION_FETCH_BASE_URL}${connectedWalletAddress}`;
+  console.log("opensea collection api is ",openseaApiUrl);
+  try {
+    const apiConfig = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    await axios
+    .get(openseaApiUrl, apiConfig)
+    .then((response) => {
+      const respData = response.data;   
+      if(respData.hasOwnProperty(`assets`)){
+        respData.assets.forEach((nfts)=>{
+          if(nfts.hasOwnProperty('asset_contract') && nfts.asset_contract.hasOwnProperty('address')){
+            console.log("nft contract addresses are : ",nfts)
+            if(userNftContractAddress==nfts.asset_contract.address){
+              console.log("NFT is present in this account");
+              window.ftd.set_value(
+                `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
+                true
+              );
+              if(nfts.hasOwnProperty('token_id')){
+                userNftTokenId=nfts.token_id;
+              }             
+            }
+          }          
+        })
+      }         
+      console.log("opensea api result is : ",respData);
+    })
+    .catch((error) => {
+      console.error(error);
+    });
+  } catch (error) {
+    console.error('An error occurred:', error.message);
+  }
+};
+
+window.viewNftInOpensea = async function viewNftInOpensea() {
+  console.log("entering viewNftInOpensea function ");
+  if(connectedWalletAddress!="undefined" && userNftTokenId!="undefined"){    
+    const url=`${config.OPENSEA_VIEW_NFT_BASE_URL}/${userNftContractAddress}/${userNftTokenId}`;   
+    console.log("opensea view api is ",url); 
+    const newTab = window.open(url, '_blank');
+    newTab.focus();  
+  }
+  else{
+    window.ftd.set_value(
+      `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
+      false
+    );
+  }  
+}

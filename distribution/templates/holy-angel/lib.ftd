@@ -4,6 +4,8 @@
 -- import: public-pages/distribution/templates/holy-angel/functions as funct
 -- import: public-pages/distribution/templates/holy-angel/texts as texts
 
+-- boolean $viewNftButtonStatus: false
+
 -- component page:
 ftd.image-src logo: $assets.files.images.logo.png
 string cta-text-1: Home
@@ -21,8 +23,7 @@ background.solid: $colors.base-
 
 -- banner: Collect your POAP NFT here.  
 cta-text: CLAIM NOW!
-$on-click$: $funct.sendWallet()
-
+$on-click$: $funct.navigateToComponent(elementId=poap)
 
 -- navbar: 
 logo: $page.logo
@@ -154,30 +155,35 @@ role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=home)
 
 -- ftd.text: $navbar-mobile.cta-text-2
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=poap)
 
 -- ftd.text: $navbar-mobile.cta-text-3
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=howtoclaim)
 
 -- ftd.text: $navbar-mobile.cta-text-4
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=aboutus)
 
 -- ftd.text: $navbar-mobile.cta-text-5
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=faq)
 
 -- ftd.column:
 width: fill-container
@@ -250,30 +256,37 @@ role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=home)
 
 -- ftd.text: $navbar-desktop.cta-text-2
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=poap)
 
 -- ftd.text: $navbar-desktop.cta-text-3
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=howtoclaim)
+;;link: distribution/templates/holy-angel#howtoclaim
 
 -- ftd.text: $navbar-desktop.cta-text-4
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=aboutus)
+;;link: distribution/templates/holy-angel#aboutus
 
 -- ftd.text: $navbar-desktop.cta-text-5
 role: $inherited.types.label-large
 text-align: center
 margin-horizontal.px: 32
 color: $colors.text-
+$on-click$: $funct.navigateToComponent(elementId=faq)
 
 -- end: ftd.row
 
@@ -289,11 +302,13 @@ text-align: center
 padding-vertical.px: 12
 padding-horizontal.px: 32
 border-radius.px: 4
-border-width.px if { navbar-desktop.is-active }: 2
+border-width.px: 2
 background.linear-gradient: $lg
-border-color if { navbar-desktop.is-active }: $colors.accent-primary-
+background.solid if { navbar-desktop.is-active }: $colors.text-
+border-color: $colors.accent-primary-
 $on-mouse-enter$: $ftd.set-bool($a = $navbar-desktop.is-active, v = true)
 $on-mouse-leave$: $ftd.set-bool($a = $navbar-desktop.is-active, v = false)
+color if { navbar-desktop.is-active }: $colors.accent-primary-
 color: $colors.text-
 
 -- end: ftd.row
@@ -321,6 +336,8 @@ ftd.image-src icon-3: $assets.files.images.fb.png
 string url-1: /
 string url-2: /
 string url-3: /
+string cta-text-1: Terms and Conditions
+string cta-text-2: Privacy Policy
 
 -- ftd.column:
 align-self: center
@@ -349,8 +366,30 @@ color: $colors.text-
 -- end: ftd.row
 
 -- ftd.row:
+if: { ftd.device == "desktop" }
+width.fixed.percent: 90
 margin-top.px: 32
+spacing: space-between
+
+-- ftd.row:
+spacing.fixed.px: 24
+
+-- ftd.text: $footer.cta-text-1
+role: $inherited.types.copy-regular
+color: $colors.text-
+$on-click$: $ftd.set-bool($a = $tc-pop-up-status, v = true)
+
+-- ftd.text: $footer.cta-text-2
+role: $inherited.types.copy-regular
+color: $colors.text-
+$on-click$: $ftd.set-bool($a = $tc-pop-up-status, v = true)
+
+-- end: ftd.row
+
+-- ftd.row:
 spacing.fixed.px: 10
+align-self: center
+align-content: center
 
 -- ftd.text: $footer.text
 role: $inherited.types.copy-regular
@@ -359,6 +398,47 @@ color: $colors.text-
 -- ftd.image: $footer.logo
 
 -- end: ftd.row
+
+-- end: ftd.row
+
+
+-- ftd.column:
+if: { ftd.device == "mobile" }
+width.fixed.percent: 90
+margin-top.px: 16
+
+-- ftd.row:
+spacing.fixed.px: 10
+align-self: center
+align-content: center
+
+-- ftd.text: $footer.text
+role: $inherited.types.copy-regular
+color: $colors.text-
+
+-- ftd.image: $footer.logo
+align-self: center
+
+-- end: ftd.row
+
+-- ftd.row:
+width: fill-container
+margin-top.px: 16
+spacing: space-between
+
+-- ftd.text: $footer.cta-text-1
+role: $inherited.types.copy-regular
+color: $colors.text-
+$on-click$: $ftd.set-bool($a = $tc-pop-up-status, v = true)
+
+-- ftd.text: $footer.cta-text-2
+role: $inherited.types.copy-regular
+color: $colors.text-
+$on-click$: $ftd.set-bool($a = $tc-pop-up-status, v = true)
+
+-- end: ftd.row
+
+-- end: ftd.column
 
 -- end: ftd.column
 
@@ -382,6 +462,7 @@ body content:
 -- ftd.column:
 width: fill-container
 margin-top.px: 100
+id: home
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
@@ -470,12 +551,15 @@ string text-1:
 string text-2:
 string val-1:
 string val-2:
-string button:
-boolean $is-active: false
+string button-1:
+string button-2:
+boolean $is-active-1: false
+boolean $is-active-2: false
 
 -- ftd.column:
 width: fill-container
 margin-vertical.px: 150
+id: poap
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
@@ -531,20 +615,37 @@ color: $colors.text-
 
 -- end: ftd.row
 
--- ftd.text: $image-with-button.button
+-- ftd.text: $image-with-button.button-1
 width: fill-container
 text-align: center
 padding-vertical.px: 16
 padding-horizontal.px: 10
-border-width.px if { image-with-button.is-active }: 1
+border-width.px: 1
 border-radius.px: 6
-background.linear-gradient : $lg
-$on-mouse-enter$: $ftd.set-bool($a = $image-with-button.is-active, v = true)
-$on-mouse-leave$: $ftd.set-bool($a = $image-with-button.is-active, v = false)
-border-color if { image-with-button.is-active }: $colors.accent-primary-
+background.linear-gradient: $lg
+$on-mouse-enter$: $ftd.set-bool($a = $image-with-button.is-active-1, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $image-with-button.is-active-1, v = false)
+border-color: $colors.accent-primary-
 role: $inherited.types.copy-regular
 color: $colors.text-
 $on-click$: $funct.sendWallet()
+
+-- ftd.text: $image-with-button.button-2
+if: { viewNftButtonStatus }
+width: fill-container
+text-align: center
+padding-vertical.px: 16
+padding-horizontal.px: 10
+margin-top.px: 16
+border-width.px: 1
+border-radius.px: 6
+background.linear-gradient: $lg
+$on-mouse-enter$: $ftd.set-bool($a = $image-with-button.is-active-2, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $image-with-button.is-active-2, v = false)
+border-color: $colors.accent-primary-
+role: $inherited.types.copy-regular
+color: $colors.text-
+$on-click$: $funct.viewNftInOpensea()
 
 -- end: ftd.column
 
@@ -617,20 +718,37 @@ color: $colors.text-
 
 -- end: ftd.row
 
--- ftd.text: $image-with-button.button
+-- ftd.text: $image-with-button.button-1
 width: fill-container
 text-align: center
 padding-vertical.px: 20
 padding-horizontal.px: 10
 border-width.px: 1
 border-radius.px: 6
-background.linear-gradient if { image-with-button.is-active }: $lg
-$on-mouse-enter$: $ftd.set-bool($a = $image-with-button.is-active, v = true)
-$on-mouse-leave$: $ftd.set-bool($a = $image-with-button.is-active, v = false)
+background.linear-gradient if { image-with-button.is-active-1 }: $lg
+$on-mouse-enter$: $ftd.set-bool($a = $image-with-button.is-active-1, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $image-with-button.is-active-1, v = false)
 border-color: $colors.accent-primary-
 role: $inherited.types.copy-regular
 color: $colors.text-
 $on-click$: $funct.sendWallet()
+
+-- ftd.text: $image-with-button.button-2
+if: { viewNftButtonStatus }
+width: fill-container
+text-align: center
+padding-vertical.px: 16
+padding-horizontal.px: 10
+margin-top.px: 24
+border-width.px: 1
+border-radius.px: 6
+background.linear-gradient if { image-with-button.is-active-2 } : $lg
+$on-mouse-enter$: $ftd.set-bool($a = $image-with-button.is-active-2, v = true)
+$on-mouse-leave$: $ftd.set-bool($a = $image-with-button.is-active-2, v = false)
+border-color: $colors.accent-primary-
+role: $inherited.types.copy-regular
+color: $colors.text-
+$on-click$: $funct.viewNftInOpensea()
 
 -- end: ftd.column
 
@@ -802,6 +920,7 @@ body body:
 
 -- ftd.column:
 width: fill-container
+id: howtoclaim
 
 -- image-with-content-mobile:
 if: { ftd.device == "mobile" }
@@ -984,6 +1103,7 @@ body body:
 -- ftd.column:
 padding-horizontal.px: 10
 margin-bottom.px: 100
+id: aboutus
 
 -- ftd.column:
 if: { ftd.device == "mobile" }
@@ -1055,11 +1175,14 @@ body body:
 ftd.image-src more: $assets.files.images.add.png
 ftd.image-src less: $assets.files.images.less.png
 boolean $open: false
+optional string $id: 
 
 -- ftd.column:
 align-content: center
 width: fill-container
 margin-bottom.px: 30
+id: $faq.id
+;;id: faq
 
 -- ftd.column:
 width.fixed.percent: 80
@@ -1199,15 +1322,6 @@ height: fill-container
 background.solid: $inherited.colors.background.overlay
 z-index: 99999
 
--- ftd.image:
-src: $assets.files.images.cross.png
-height.fixed.px: 14
-width: auto
-anchor: window
-right.px: 16
-top.px: 20
-$on-click$: $ftd.set-bool($a = $pop-up-status, v = false)
-
 -- ftd.column:
 if: {ftd.device == "desktop"}
 width: fill-container
@@ -1220,12 +1334,26 @@ border-width.px: 1
 border-top-width.px: 2
 border-radius.px: 20
 border-color: $colors.accent-primary-
-padding-vertical.px: 100
 background.solid: $colors.base-
+
+-- ftd.row:
+align-content: right
+align-self: end
+
+-- ftd.image:
+margin-right.px: 16
+margin-top.px: 16
+src: $assets.files.images.cross.png
+height.fixed.px: 14
+width: auto
+$on-click$: $ftd.set-bool($a = $pop-up-status, v = false)
+
+-- end: ftd.row
 
 -- ftd.column:
 width: fill-container
 align-content: center
+margin-top.px: 100
 
 -- ftd.image:
 src: $window-popup.pic
@@ -1242,12 +1370,12 @@ text-align: center
 color: $colors.text-
 margin-bottom.px: 8
 
-
 -- ftd.text: $window-popup.body
 role: $inherited.types.copy-regular
 text-align: center
 width: fill-container
 color: $colors.text-
+margin-bottom.px: 100
            
 -- end: ftd.column
 
@@ -1265,11 +1393,25 @@ border-width.px: 1
 border-top-width.px: 2
 border-radius.px: 20
 border-color: $colors.accent-primary-
-padding.px: 32
+
+-- ftd.row:
+align-content: right
+align-self: end
+
+-- ftd.image:
+margin-right.px: 8
+margin-top.px: 8
+src: $assets.files.images.cross.png
+height.fixed.px: 14
+width: auto
+$on-click$: $ftd.set-bool($a = $pop-up-status, v = false)
+
+-- end: ftd.row
 
 -- ftd.column:
 width: fill-container
 align-content: center
+padding-top.px: 32
 
 -- ftd.image:
 src: $window-popup.pic
@@ -1304,6 +1446,13 @@ color: $colors.text-
 
 
 
+
+
+
+
+
+
+
 -- component loader:
 
 -- ftd.column:
@@ -1321,3 +1470,266 @@ src: https://video-public.canva.com/VAEwnLy59fc/v/4b579cce86.gif
 -- end: ftd.column
 
 -- end: loader
+
+
+
+
+
+
+
+
+
+
+-- boolean $tc-pop-up-status: false
+
+-- component tc-popup: 
+caption title:
+string head:
+body body:
+children c:
+
+-- ftd.column:
+if: { tc-pop-up-status }
+anchor: window
+width: fill-container
+height.fixed.percent: 100
+background.solid: $inherited.colors.background.overlay
+z-index: 99999
+
+-- ftd.column:
+if: {ftd.device == "desktop"}
+width: fill-container
+height: fill-container
+
+-- ftd.column:  
+width.fixed.percent: 70
+border-width.px: 1
+border-top-width.px: 2
+border-radius.px: 20
+border-color: $colors.accent-primary-
+background.solid: $colors.base-
+align-self: center
+height: fill-container
+
+-- ftd.row:
+align-content: right
+align-self: end
+
+-- ftd.image:
+margin-right.px: 16
+margin-top.px: 16
+src: $assets.files.images.cross.png
+height.fixed.px: 14
+width: auto
+$on-click$: $ftd.set-bool($a = $tc-pop-up-status, v = false)
+
+-- end: ftd.row
+
+-- ftd.column:
+width: fill-container
+height: fill-container
+align-content: left
+padding-top.px: 96
+padding-horizontal.px: 24
+css: [ $assets.files.scroll.css ]
+classes: body
+
+-- ftd.text: $tc-popup.title
+role: $inherited.types.heading-tiny
+width: fill-container
+style: bold
+text-align: center
+color: $colors.text-
+margin-bottom.px: 8
+
+-- ftd.text: $tc-popup.head
+role: $inherited.types.copy-regular
+width: fill-container
+text-align: center
+style: bold
+color: $colors.text-
+margin-bottom.px: 8
+
+-- ftd.text: 
+role: $inherited.types.copy-regular
+width: fill-container
+color: $colors.text-
+
+$tc-popup.body
+
+-- ftd.column:
+width: fill-container
+height: fill-container
+children: $tc-popup.c
+spacing.fixed.px: 16
+
+-- end: ftd.column
+           
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- ftd.column:
+if: {ftd.device == "mobile"}
+width: fill-container
+height: fill-container
+
+-- ftd.column:  
+height: fill-container
+width.fixed.percent: 70
+border-width.px: 1
+border-top-width.px: 2
+border-radius.px: 20
+border-color: $colors.accent-primary-
+align-self: center
+
+-- ftd.row:
+align-content: right
+align-self: end
+
+-- ftd.image:
+margin-right.px: 8
+margin-top.px: 8
+src: $assets.files.images.cross.png
+height.fixed.px: 14
+width: auto
+$on-click$: $ftd.set-bool($a = $pop-up-status, v = false)
+
+-- end: ftd.row
+
+-- ftd.column:
+width: fill-container
+;;height: fill-container
+align-content: left
+padding-top.px: 96
+padding-horizontal.px: 24
+css: [ $assets.files.scroll.css ]
+classes: body
+
+-- ftd.text: $tc-popup.title
+role: $inherited.types.heading-tiny
+width: fill-container
+style: bold
+text-align: center
+color: $colors.text-
+margin-bottom.px: 8
+
+-- ftd.text: $tc-popup.head
+role: $inherited.types.copy-regular
+width: fill-container
+text-align: center
+style: bold
+color: $colors.text-
+margin-bottom.px: 8
+
+-- ftd.text: $tc-popup.body
+role: $inherited.types.copy-regular
+width: fill-container
+color: $colors.text-
+
+-- ftd.column:
+width: fill-container
+height: fill-container
+margin-bottom.px: 8
+children: $tc-popup.c
+spacing.fixed.px: 16
+
+-- end: ftd.column
+
+-- end: ftd.column
+           
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: ftd.column
+
+-- end: tc-popup
+
+
+
+
+
+
+
+
+
+-- component tc-item:
+string number:
+caption heading:
+body content:
+
+-- ftd.column:
+width: fill-container
+margin-vertical.px: 8
+
+-- ftd.row: 
+width: fill-container
+spacing.fixed.px: 4
+
+-- ftd.text: $tc-item.number
+role: $inherited.types.copy-regular
+color: $colors.text-
+
+-- ftd.text: $tc-item.heading
+role: $inherited.types.copy-regular
+color: $colors.text-
+
+-- end: ftd.row
+
+-- ftd.text: 
+role: $inherited.types.copy-regular
+color: $colors.text-
+margin-left.px: 8
+
+$tc-item.content
+
+-- end: ftd.column
+
+-- end: tc-item
+
+
+
+
+
+
+
+
+
+
+-- component tc-item-item:
+string number:
+caption heading:
+body content:
+
+-- ftd.column:
+width: fill-container
+margin-left.px: 8
+margin-vertical.px: 8
+
+-- ftd.row: 
+width: fill-container
+spacing.fixed.px: 4
+
+-- ftd.text: $tc-item-item.number
+role: $inherited.types.copy-regular
+color: $colors.text-
+
+-- ftd.text: $tc-item-item.heading
+role: $inherited.types.copy-regular
+color: $colors.text-
+
+-- end: ftd.row
+
+-- ftd.text: 
+role: $inherited.types.copy-regular
+color: $colors.text-
+margin-left.px: 8
+
+$tc-item-item.content
+
+-- end: ftd.column
+
+-- end: tc-item-item

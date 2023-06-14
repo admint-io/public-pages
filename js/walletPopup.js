@@ -14,7 +14,7 @@ export class WalletPopup extends HTMLElement {
         // Create provider items and add them to the list
         const providerData = [
           { name: 'Metamask', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/1200px-MetaMask_Fox.svg.png' },
-          { name: 'Torus (Sign in with Google)', icon: 'https://tor.us/images/Wallet.svg' }
+          { name: 'Torus (Sign in with Google)', icon: './images/TorusWallet.svg' }
           // Add more providers as needed
         ];
        
@@ -77,9 +77,10 @@ export class WalletPopup extends HTMLElement {
     
           /* Styles for the popup content */
           .popup-content {
-            background-color: white;
+            background-color: #00011d;
             padding: 20px;
             border-radius: 10px;
+            border: 2px solid #D12EEF;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
             width: 80%;
             max-width: 400px;
@@ -100,10 +101,11 @@ export class WalletPopup extends HTMLElement {
             font-weight: 600;
             font-size: 18px;
             font-family: 'Poppins', sans-serif; /* Poppins font */
+            color: white
           }
     
           .provider-item:hover {
-            background-color: #f5f5f5;
+            background-color: #D12EEF;
           }
     
           .provider-icon {
@@ -144,6 +146,7 @@ export class WalletPopup extends HTMLElement {
       hidePopup() {
         // Hide the popup
         this.style.display = 'none';
+        connectWalletSkipEvent();
       }
   }
   
