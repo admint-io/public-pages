@@ -1,6 +1,7 @@
 import "https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js";
 import * as config from "./config.js";
-import "https://www.googletagmanager.com/gtag/js?id=G-GB9WDK9NC7%22%3E";
+import "https://www.googletagmanager.com/gtag/js?id=G-NDZYGEPEV9%22%3E";    // Admint prod
+//import "https://www.googletagmanager.com/gtag/js?id=G-GB9WDK9NC7%22%3E"; // Test
 import "https://cdn.jsdelivr.net/npm/@toruslabs/torus-embed@1.41.3/dist/torus.umd.min.js";
 import "https://cdn.jsdelivr.net/npm/web3@1.7.3/dist/web3.min.js";
 import { WalletPopup } from "./walletPopup.js";
@@ -416,9 +417,36 @@ window.checkImageURL = async function checkImageURL(url) {
 
 window.connectWallet = async function connectWallet() {
   console.log("entering connect wallet function");
-  connectWalletClickEvent();
-  const walletPopup = new WalletPopup();
-  document.body.appendChild(walletPopup);
+  if(!walletConnectionStatus){
+    connectWalletClickEvent();
+    const walletPopup = new WalletPopup();
+    document.body.appendChild(walletPopup);
+  }
+  else{
+    if(connectedWalletAddress!="undefined"){
+      navigator.clipboard.writeText(connectedWalletAddress)
+    .then(() => {
+      console.log('Text copied to clipboard:', connectedWalletAddress);
+      window.ftd.set_value(
+        "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+        "Wallet Address Copied !"
+      );
+      const delay = 1000;
+      setTimeout(()=>{
+        const buttonDisplayStringStart=`${connectedWalletAddress[0]}${connectedWalletAddress[1]}${connectedWalletAddress[2]}${connectedWalletAddress[3]}${connectedWalletAddress[4]}${connectedWalletAddress[5]}`
+        const buttonDisplayStringEnd=`${connectedWalletAddress[connectedWalletAddress.length-4]}${connectedWalletAddress[connectedWalletAddress.length-3]}${connectedWalletAddress[connectedWalletAddress.length-2]}${connectedWalletAddress[connectedWalletAddress.length-1]}`;
+        window.ftd.set_value(
+          "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+          `Connected  (${buttonDisplayStringStart}...${buttonDisplayStringEnd})`
+        );
+      }, delay);    
+
+    })
+    .catch((error) => {
+      console.error('Failed to copy text:', error);
+    });
+    }
+  }  
 };
 
 window.connectWalletProvider = async function connectWalletProvider(
@@ -476,9 +504,11 @@ window.connectWalletProvider = async function connectWalletProvider(
                 connectedWalletAddress
               );
               walletConnectionStatus = true;
+              const buttonDisplayStringStart=`${connectedWalletAddress[0]}${connectedWalletAddress[1]}${connectedWalletAddress[2]}${connectedWalletAddress[3]}${connectedWalletAddress[4]}${connectedWalletAddress[5]}`
+              const buttonDisplayStringEnd=`${connectedWalletAddress[connectedWalletAddress.length-4]}${connectedWalletAddress[connectedWalletAddress.length-3]}${connectedWalletAddress[connectedWalletAddress.length-2]}${connectedWalletAddress[connectedWalletAddress.length-1]}`;
               window.ftd.set_value(
                 "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-                "connected"
+                `Connected  (${buttonDisplayStringStart}...${buttonDisplayStringEnd})`
               );
               walletConnectedEvent();
               checkForNftOwnership();
@@ -512,10 +542,12 @@ window.connectWalletProvider = async function connectWalletProvider(
     connectedWalletAddress=accounts[0];
     console.log("Connected with address:", connectedWalletAddress);
     walletConnectionStatus=true;
-        window.ftd.set_value(
-          "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-          "connected"
-        );
+    const buttonDisplayStringStart=`${connectedWalletAddress[0]}${connectedWalletAddress[1]}${connectedWalletAddress[2]}${connectedWalletAddress[3]}${connectedWalletAddress[4]}${connectedWalletAddress[5]}`
+    const buttonDisplayStringEnd=`${connectedWalletAddress[connectedWalletAddress.length-4]}${connectedWalletAddress[connectedWalletAddress.length-3]}${connectedWalletAddress[connectedWalletAddress.length-2]}${connectedWalletAddress[connectedWalletAddress.length-1]}`;
+    window.ftd.set_value(
+      "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+      `Connected  (${buttonDisplayStringStart}...${buttonDisplayStringEnd})`
+    );
         walletConnectedEvent();
         if(torus.isLoggedIn){
           torus.torusWidgetVisibility=true;

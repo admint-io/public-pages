@@ -14,7 +14,7 @@ export class WalletPopup extends HTMLElement {
         // Create provider items and add them to the list
         const providerData = [
           { name: 'Metamask', icon: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/MetaMask_Fox.svg/1200px-MetaMask_Fox.svg.png' },
-          { name: 'Torus (Sign in with Google)', icon: 'https://tor.us/images/Wallet.svg' }
+          { name: 'Torus (Sign in with Google)', icon: './images/TorusWallet.svg' }
           // Add more providers as needed
         ];
        
