@@ -343,12 +343,12 @@ window.isValidJSON = async function isValidJSON(response) {
   }
 };
 
-window.showSuccessPopup = async function showSuccessPopup(inputData) {
+window.showSuccessPopup = async function showSuccessPopup(inputData,title) {
   console.log("input data is ", inputData);
 
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-title",
-    "You rocked it !"
+    title
   );
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-body",
@@ -364,12 +364,12 @@ window.showSuccessPopup = async function showSuccessPopup(inputData) {
   );
 };
 
-window.showFailurePopup = async function showFailurePopup(inputData) {
+window.showFailurePopup = async function showFailurePopup(inputData,title) {
   console.log("input data is ", inputData);
 
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-title",
-    "Oops! Something Went Wrong"
+    title
   );
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-body",
@@ -385,11 +385,11 @@ window.showFailurePopup = async function showFailurePopup(inputData) {
   );
 };
 
-window.showWarningPopup = async function showWarningPopup(inputData) {
+window.showWarningPopup = async function showWarningPopup(inputData,title) {
   console.log("input data is ", inputData);
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-title",
-    "Oops! Something Went Wrong"
+    title
   );
   window.ftd.set_value(
     "public-pages/distribution/templates/holy-angel/texts#popup-body",
@@ -695,10 +695,10 @@ window.sendWallet = async function sendWallet() {
             console.log(data);
             if ("success" in data && "message" in data) {
               if (data.success) {
-                showSuccessPopup(data.message);
+                showSuccessPopup(data.message,"Claim successful");
                 claimSuccessEvent();
               } else {
-                showFailurePopup(data.message);
+                showFailurePopup(data.message,"Claim unsuccessful");
                 if(data.message=="add wallet addresss Failed!!!"){
                   addWalletFailEvent();
                 }
@@ -711,13 +711,13 @@ window.sendWallet = async function sendWallet() {
           .catch((error) => console.error(error));
       } else {
         invalidLinkEvent();
-        showWarningPopup("Invalid Link");
+        showWarningPopup("You are using an incorrect invite URL","Claim unsuccessful");
       }
     } catch (error) {
       console.error(error.message);
     }
   } else {
-    showWarningPopup("Connect your wallet to claim NFT");
+    showWarningPopup("If you don't have an existing wallet, use Torus to sign up","Connect wallet to claim");
   }
 };
 
