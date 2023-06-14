@@ -1,6 +1,7 @@
 import "https://cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js";
 import * as config from "./config.js";
-import "https://www.googletagmanager.com/gtag/js?id=G-GB9WDK9NC7%22%3E";
+import "https://www.googletagmanager.com/gtag/js?id=G-NDZYGEPEV9%22%3E";    // Admint prod
+//import "https://www.googletagmanager.com/gtag/js?id=G-GB9WDK9NC7%22%3E"; // Test
 import "https://cdn.jsdelivr.net/npm/@toruslabs/torus-embed@1.41.3/dist/torus.umd.min.js";
 import "https://cdn.jsdelivr.net/npm/web3@1.7.3/dist/web3.min.js";
 import { WalletPopup } from "./walletPopup.js";
