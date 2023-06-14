@@ -13,7 +13,7 @@ export class WalletPopup extends HTMLElement {
     
         // Create provider items and add them to the list
         const providerData = [
-          { name: 'Wallet Connect', icon: './images/WalletConnect.png' },
+          { name: 'Wallet Connect', icon: 'https://example.walletconnect.org/favicon.ico' },
           { name: 'Torus (Sign in with Google)', icon: './images/TorusWallet.svg' }
           // Add more providers as needed
         ];
