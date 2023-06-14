@@ -6,6 +6,7 @@
 
 -- string $loadedState: loading
 
+
 -- lib.window-popup:
 pic: $images.popup-image
 title: $texts.popup-title
@@ -301,3 +302,6 @@ number: (8)
 8.2 Any disputes arising out of or in connection with these terms and conditions shall be subject to the exclusive jurisdiction of the courts in the Philippines.
 
 -- end: lib.tc-popup
+
+
+
