@@ -910,36 +910,36 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
    console.log("window.web3 is", window.web3, "window.ethereum is", window.ethereum);
  
    const providerOptions = {
-     walletconnect: {
-       package: WalletConnectProvider,
-       options: {
-         // Mikko's test key - don't copy as your mileage may vary
-         infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
-         qrcodeModalOptions: {
-          desktopLinks: [
-            'ledger',
-            'tokenary',
-            'wallet',
-            'wallet 3',
-            'secuX',
-            'ambire',
-            'wallet3',
-            'apolloX',
-            'zerion',
-            'sequence',
-            'punkWallet',
-            'kryptoGO',
-            'nft',
-            'riceWallet',
-            'vision',
-            'keyring'
-          ],
-          mobileLinks: [
-            "metamask"
-          ],
-        },
-       }
-     },
+    //  walletconnect: {
+    //    package: WalletConnectProvider,
+    //    options: {
+    //      // Mikko's test key - don't copy as your mileage may vary
+    //      infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+    //      qrcodeModalOptions: {
+    //       desktopLinks: [
+    //         'ledger',
+    //         'tokenary',
+    //         'wallet',
+    //         'wallet 3',
+    //         'secuX',
+    //         'ambire',
+    //         'wallet3',
+    //         'apolloX',
+    //         'zerion',
+    //         'sequence',
+    //         'punkWallet',
+    //         'kryptoGO',
+    //         'nft',
+    //         'riceWallet',
+    //         'vision',
+    //         'keyring'
+    //       ],
+    //       mobileLinks: [
+    //         "metamask"
+    //       ],
+    //     },
+    //    }
+    //  },
  
     //  fortmatic: {
     //    package: Fortmatic,
