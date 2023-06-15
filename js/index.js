@@ -425,29 +425,6 @@ window.connectWallet = async function connectWallet() {
   }
   else{
     console.log("wallet already connected");
-    // if(connectedWalletAddress!="undefined"){
-    //   navigator.clipboard.writeText(connectedWalletAddress)
-    // .then(() => {
-    //   console.log('Text copied to clipboard:', connectedWalletAddress);
-    //   window.ftd.set_value(
-    //     "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-    //     "Wallet Address Copied !"
-    //   );
-    //   const delay = 1000;
-    //   setTimeout(()=>{
-    //     const buttonDisplayStringStart=`${connectedWalletAddress[0]}${connectedWalletAddress[1]}${connectedWalletAddress[2]}${connectedWalletAddress[3]}${connectedWalletAddress[4]}${connectedWalletAddress[5]}`
-    //     const buttonDisplayStringEnd=`${connectedWalletAddress[connectedWalletAddress.length-4]}${connectedWalletAddress[connectedWalletAddress.length-3]}${connectedWalletAddress[connectedWalletAddress.length-2]}${connectedWalletAddress[connectedWalletAddress.length-1]}`;
-    //     window.ftd.set_value(
-    //       "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-    //       `Connected  (${buttonDisplayStringStart}...${buttonDisplayStringEnd})`
-    //     );
-    //   }, delay);    
-
-    // })
-    // .catch((error) => {
-    //   console.error('Failed to copy text:', error);
-    // });
-    // }
   }   
 };
 
@@ -460,32 +437,24 @@ window.connectWalletProvider = async function connectWalletProvider(
     metamaskConnectionTriggerEvent();
   }
   else if(selectedProvider=="torus (sign in with google)"){
-    torusConnectEvent();
+    torusConnectionTriggerEvent();
     document.body.style.cursor = 'wait';
     torusInit().then(async ()=>{  
     document.body.style.cursor = 'default';    
     await torus.login();
-    // try {
-    //   await torus.setProvider( {
-    //     host: "matic"
-    //   });
-    //   console.log('Switched to Polygon Mainnet');
-    // } catch (error) {
-    //   console.error('Failed to switch network:', error);
-    // }
     const provider = torus.provider;
     const web3 = new Web3(provider);
     const accounts = await web3.eth.getAccounts();
     connectedWalletAddress=accounts[0];
     console.log("Connected with address:", connectedWalletAddress);
     walletConnectionStatus=true;
+    torusConnectionSuccessEvent();
     const buttonDisplayStringStart=`${connectedWalletAddress[0]}${connectedWalletAddress[1]}${connectedWalletAddress[2]}${connectedWalletAddress[3]}${connectedWalletAddress[4]}${connectedWalletAddress[5]}`
     const buttonDisplayStringEnd=`${connectedWalletAddress[connectedWalletAddress.length-4]}${connectedWalletAddress[connectedWalletAddress.length-3]}${connectedWalletAddress[connectedWalletAddress.length-2]}${connectedWalletAddress[connectedWalletAddress.length-1]}`;
     window.ftd.set_value(
       "public-pages/distribution/templates/holy-angel/texts#wallet-state",
       `Connected  (${buttonDisplayStringStart}...${buttonDisplayStringEnd})`
     );
-        walletConnectedEvent();
         if(torus.isLoggedIn){
           torus.torusWidgetVisibility=true;
         }  
@@ -496,93 +465,6 @@ window.connectWalletProvider = async function connectWalletProvider(
     });    
   }
 };
-
-// window.connectWallet = async function connectWallet() {
-//   connectWalletEvent();
-// if (typeof window.ethereum !== 'undefined') {
-//     console.log("metamask is installed");
-
-//     const polygonNetworkId = '0x89';
-
-//   window.ethereum.request({ method: 'eth_chainId' })
-//     .then((chainId) => {
-//       if (chainId !== polygonNetworkId) {
-//         const polygonNetwork = {
-//           chainId: polygonNetworkId,
-//           chainName: 'Polygon Mainnet',
-//           nativeCurrency: {
-//             name: 'MATIC',
-//             symbol: 'MATIC',
-//             decimals: 18,
-//           },
-//           rpcUrls: ['https://polygon-rpc.com'],
-//           blockExplorerUrls: ['https://polygonscan.com'],
-//         };
-
-//         return window.ethereum.request({
-//           method: 'wallet_addEthereumChain',
-//           params: [polygonNetwork],
-//         });
-//       }
-
-//       console.log('Polygon network is already added to MetaMask');
-//       return Promise.resolve();
-//     })
-//     .then(() => {
-//       console.log('Added Polygon Mainnet to MetaMask');
-//     })
-//     .catch((error) => {
-//       console.error('Failed to check/add Polygon network:', error);
-//     });
-
-//     const networkId = 137;
-//     window.ethereum.request({
-//       method: 'wallet_switchEthereumChain',
-//       params: [{ chainId: `0x${networkId.toString(16)}` }],
-//     })
-//       .then(() => {
-//         console.log('Switched to Polygon Mainnet');
-//         window.ethereum.request({ method: 'eth_requestAccounts' })
-//     .then((accounts) => {
-//       connectedWalletAddress=accounts[0];
-//       console.log('Connected MetaMask accounts:', connectedWalletAddress);
-//       walletConnectionStatus=true;
-//       window.ftd.set_value(
-//         "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-//         "connected"
-//       );
-//     })
-//     .catch((error) => {
-//       console.log('Failed to connect to MetaMask:', error);
-//     });
-//       })
-//       .catch((error) => {
-//         console.error('Failed to switch network:', error);
-//       });
-
-// } else {
-//   console.log('MetaMask is not installed');
-//     try {
-//       await torus.setProvider( {
-//         host: "matic"
-//       });
-//       console.log('Switched to Polygon Mainnet');
-//     } catch (error) {
-//       console.error('Failed to switch network:', error);
-//     }
-//   await torus.login();
-//   const provider = torus.provider;
-//   const web3 = new Web3(provider);
-//   const accounts = await web3.eth.getAccounts();
-//   connectedWalletAddress=accounts[0];
-//   console.log("Connected with address:", connectedWalletAddress);
-//   walletConnectionStatus=true;
-//       window.ftd.set_value(
-//         "public-pages/distribution/templates/holy-angel/texts#wallet-state",
-//         "connected"
-//       );
-// }
-// }
 
 window.torusInit = async function torusInit() {
   return new Promise(async (resolve, reject) => {
@@ -626,14 +508,14 @@ window.sendWallet = async function sendWallet() {
             console.log(data);
             if ("success" in data && "message" in data) {
               if (data.success) {
-                showSuccessPopup(data.message,"Claim successful");
+                showSuccessPopup(data.message,"Claim successful.");
                 claimSuccessEvent();
               } else {
-                showFailurePopup(data.message,"Claim unsuccessful");
-                if(data.message=="add wallet addresss Failed!!!"){
+                showFailurePopup(data.message,"Claim unsuccessful.");
+                if(data.message=="Not a valid ethereum wallet address."){
                   addWalletFailEvent();
                 }
-                if(data.message=="invite code already claimed!!!"){
+                if(data.message=="This token has already been claimed."){
                   alreadyClaimedEvent();
                 }
               }
@@ -642,7 +524,7 @@ window.sendWallet = async function sendWallet() {
           .catch((error) => console.error(error));
       } else {
         invalidLinkEvent();
-        showWarningPopup("You are using an incorrect invite URL","Claim unsuccessful");
+        showWarningPopup("You are using an incorrect invite URL.","Claim unsuccessful.");
       }
     } catch (error) {
       console.error(error.message);
@@ -660,7 +542,7 @@ window.gtag = function gtag() {
 gtag("js", new Date());
 gtag("config", config.G_TAG_ID);
 
-window.claimEvent = async function claimEvent() {
+window.claimEvent = async function claimEvent() {             // Claim button click
   gtag("event", "click", {
     event_category: "Button Click",
     event_label: "Claim Button",
@@ -668,7 +550,7 @@ window.claimEvent = async function claimEvent() {
   });
 };
 
-window.connectWalletClickEvent = async function connectWalletClickEvent() {
+window.connectWalletClickEvent = async function connectWalletClickEvent() {       // Connect wallet click
   gtag("event", "click", {
     event_category: "Button Click",
     event_label: "Connect Wallet Button",
@@ -676,7 +558,7 @@ window.connectWalletClickEvent = async function connectWalletClickEvent() {
   });
 };
 
-window.invalidLinkEvent = async function invalidLinkEvent() {
+window.invalidLinkEvent = async function invalidLinkEvent() {                   // Invalid link event
   gtag("event", "click", {
     event_category: "popup",
     event_label: "Invalid Link",
@@ -684,23 +566,8 @@ window.invalidLinkEvent = async function invalidLinkEvent() {
   });
 };
 
-window.metaMaskConnectEvent = async function metaMaskConnectEvent() {
-  gtag("event", "click", {
-    event_category: "connect wallet",
-    event_label: "Metamask Connect",
-    campaign_id: `${campaignId}`,
-  });
-};
 
-window.torusConnectEvent = async function torusConnectEvent() {
-  gtag("event", "click", {
-    event_category: "connect wallet",
-    event_label: "Torus Connect",
-    campaign_id: `${campaignId}`,
-  });
-};
-
-window.connectWalletSkipEvent = async function connectWalletSkipEvent() {
+window.connectWalletSkipEvent = async function connectWalletSkipEvent() {           // Connect wallet skip event
   gtag("event", "click", {
     event_category: "skip",
     event_label: "Skip Wallet Connect",
@@ -708,7 +575,7 @@ window.connectWalletSkipEvent = async function connectWalletSkipEvent() {
   });
 };
 
-window.addWalletFailEvent = async function addWalletFailEvent() {
+window.addWalletFailEvent = async function addWalletFailEvent() {               // Not a valid address event
   gtag("event", "response", {
     event_category: "api response",
     event_label: "Address Add Failed",
@@ -716,7 +583,7 @@ window.addWalletFailEvent = async function addWalletFailEvent() {
   });
 };
 
-window.claimSuccessEvent = async function claimSuccessEvent() {
+window.claimSuccessEvent = async function claimSuccessEvent() {       // Claim successful event
   gtag("event", "response", {
     event_category: "api response",
     event_label: "Address Add Succesful",
@@ -724,7 +591,7 @@ window.claimSuccessEvent = async function claimSuccessEvent() {
   });
 };
 
-window.alreadyClaimedEvent = async function alreadyClaimedEvent() {
+window.alreadyClaimedEvent = async function alreadyClaimedEvent() {       // Already claimed event
   gtag("event", "response", {
     event_category: "api response",
     event_label: "Address Already Added",
@@ -732,15 +599,7 @@ window.alreadyClaimedEvent = async function alreadyClaimedEvent() {
   });
 };
 
-window.walletConnectedEvent = async function walletConnectedEvent() {
-  gtag("event", "process", {
-    event_category: "process result",
-    event_label: "Wallet Connected",
-    campaign_id: `${campaignId}`,
-  });
-};
-
-window.walletDisconnectEvent = async function walletDisconnectEvent() {
+window.walletDisconnectEvent = async function walletDisconnectEvent() {             // Wallet disconnect from metamask event
   gtag("event", "process", {
     event_category: "process result",
     event_label: "Wallet Disconnected",
@@ -748,7 +607,7 @@ window.walletDisconnectEvent = async function walletDisconnectEvent() {
   });
 };
 
-window.metamaskConnectionTriggerEvent = async function metamaskConnectionTriggerEvent() {
+window.metamaskConnectionTriggerEvent = async function metamaskConnectionTriggerEvent() {     // Metamask triggered event
   gtag("event", "click", {
     event_category: "button click",
     event_label: "Metamask Option Selected",
@@ -756,13 +615,39 @@ window.metamaskConnectionTriggerEvent = async function metamaskConnectionTrigger
   });
 };
 
-window.metamaskConnectionSuccessEvent = async function metamaskConnectionSuccessEvent() {
+window.metamaskConnectionSuccessEvent = async function metamaskConnectionSuccessEvent() {     // Metamask connection success event
   gtag("event", "process", {
     event_category: "success",
     event_label: "Metamask Connection Successful",
     campaign_id: `${campaignId}`,
   });
 };
+
+window.torusConnectionTriggerEvent = async function torusConnectionTriggerEvent() {   // Torus triggered event
+  gtag("event", "click", {
+    event_category: "button click",
+    event_label: "Torus Option Selected",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.torusConnectionSuccessEvent = async function torusConnectionSuccessEvent() {   // Torus connection success event
+  gtag("event", "process", {
+    event_category: "success",
+    event_label: "Torus Connection Successful",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+window.viewInOpenseaEvent = async function viewInOpenseaEvent() {   // View in opensea event
+  gtag("event", "click", {
+    event_category: "button click",
+    event_label: "View NFT Button",
+    campaign_id: `${campaignId}`,
+  });
+};
+
+
 
 window.navigateToComponent = async function navigateToComponent(elementId) {
   console.log("entering navigateToComponent function with id ",elementId);
@@ -774,42 +659,40 @@ window.navigateToComponent = async function navigateToComponent(elementId) {
 window.checkForNftOwnership = async function checkForNftOwnership() {
   console.log("entering checkForNftOwnership function with wallet id ",connectedWalletAddress);
   console.log("nft contract address to verify is : ",userNftContractAddress);
-  const openseaApiUrl=`${config.OPENSEA_COLLECTION_FETCH_BASE_URL}${connectedWalletAddress}`;
-  console.log("opensea collection api is ",openseaApiUrl);
+  const url=`${config.DISTRIBUTION_BASE_BACKEND_URL}/open/nft`;
   try {
     const params = {
-      asset_owner: `${connectedWalletAddress}`,
-      offset: 0,
-      limit: 300
+      wallet_address: `${connectedWalletAddress}`,
+      campaign_id: `${campaignId}`
     };
     const apiConfig = {
       headers: {
-        'X-API-KEY': '4fac86a24a014b5a99cbe197f4e984e4',
-        'accept': 'application/json'
-      },
+        "Content-Type": "application/json",
+      }
     };
     await axios
-    .get(openseaApiUrl, {params,apiConfig})
+    .get(url, {params,apiConfig})
     .then((response) => {
-      const respData = response.data;   
-      if(respData.hasOwnProperty(`assets`)){
-        respData.assets.forEach((nfts)=>{
-          if(nfts.hasOwnProperty('asset_contract') && nfts.asset_contract.hasOwnProperty('address')){
-            console.log("nft contract addresses are : ",nfts)
-            if(userNftContractAddress==nfts.asset_contract.address){
-              console.log("NFT is present in this account");
-              window.ftd.set_value(
-                `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
-                true
-              );
-              if(nfts.hasOwnProperty('token_id')){
-                userNftTokenId=nfts.token_id;
-              }             
-            }
-          }          
-        })
-      }         
-      console.log("opensea api result is : ",respData);
+      const respData = response.data; 
+      if(respData.success){
+        if(respData.hasOwnProperty("values")){
+          if(respData.values.length!=0){
+            window.ftd.set_value(
+              `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
+              true
+            );
+            userNftContractAddress=respData.values[0].tokenAddress;
+            userNftTokenId=respData.values[0].tokenId;           
+          }
+          else{
+            window.ftd.set_value(
+              `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
+              false
+            );
+          }
+        }
+        
+      }      
     })
     .catch((error) => {
       console.error(error);
@@ -820,12 +703,11 @@ window.checkForNftOwnership = async function checkForNftOwnership() {
 };
 
 window.viewNftInOpensea = async function viewNftInOpensea() {
-  console.log("entering viewNftInOpensea function ");
-  if(connectedWalletAddress!="undefined" && userNftTokenId!="undefined"){    
-    const url=`${config.OPENSEA_VIEW_NFT_BASE_URL}/${userNftContractAddress}/${userNftTokenId}`;   
-    console.log("opensea view api is ",url); 
-    const newTab = window.open(url, '_blank');
-    newTab.focus();  
+  console.log("entering viewNftInOpensea function ");  
+  if(userNftContractAddress!="undefined" && userNftTokenId!="undefined"){    
+    const openseaUrl=`${config.OPENSEA_VIEW_NFT_BASE_URL}/${userNftContractAddress}/${userNftTokenId}`;
+    const newTab = window.open(openseaUrl, '_blank');
+    newTab.focus();      
   }
   else{
     window.ftd.set_value(
@@ -833,14 +715,8 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
       false
     );
   }  
+  viewInOpenseaEvent();
 }
-
-
-
-
-
-
-
 
 
 
@@ -869,17 +745,8 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
 
  let providerOptions;
  if(deviceType=="desktop"){
-  console.log("wallet connect is in desktop");
- 
+  console.log("wallet connect is in desktop"); 
   providerOptions = {
-    // walletconnect: {
-    //   package: WalletConnectProvider,
-    //   options: {
-    //     // Mikko's test key - don't copy as your mileage may vary
-    //     infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
-    //     qrcode: false         
-    //   }
-    // }
   };
  }
  else{
@@ -903,15 +770,13 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
   };
  }
 
- console.log("selected provider option is : ",providerOptions)
-   
+ console.log("selected provider option is : ",providerOptions)   
  
    web3Modal = new Web3Modal({
      cacheProvider: false, // optional
      providerOptions, // required
      disableInjectedProvider: false, // optional. For MetaMask / Brave / Opera.
-   });
- 
+   }); 
    console.log("Web3Modal instance is", web3Modal);
  }
  
@@ -919,41 +784,8 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
    const web3 = new Web3(provider); 
    console.log("Web3 instance is", web3);
    const chainId = await web3.eth.getChainId();
-   const chainData = evmChains.getChain(chainId); 
-
-   const networkId = await web3.eth.net.getId();
-   if (networkId === 137) {
-    console.log('Already connected to Polygon');    
-  }
-  else{
-    const isNetworkAdded = await ethereum.request({
-      method: 'wallet_addEthereumChain',
-      params: [
-        {
-          chainId: '0x89',
-          chainName: 'Polygon Mainnet',
-          nativeCurrency: {
-            name: 'MATIC',
-            symbol: 'MATIC',
-            decimals: 18,
-          },
-          rpcUrls: ['https://polygon-rpc.com'],
-          blockExplorerUrls: ['https://polygonscan.com'],
-        },
-      ],
-    });
-    // If Polygon Mainnet was added or is already present, switch to it
-    if (isNetworkAdded || networkId === '0x89') {
-      await ethereum.request({
-        method: 'wallet_switchEthereumChain',
-        params: [{ chainId: '0x89' }],
-      });
-      console.log('Switched to Polygon');
-    }
-  }
-
    const accounts = await web3.eth.getAccounts();
-   
+
    if(accounts.length!=0){
     console.log("Got accounts", accounts);
     connectedWalletAddress=accounts[0];
@@ -965,14 +797,17 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
       "public-pages/distribution/templates/holy-angel/texts#wallet-state",
       `Connected  (${buttonDisplayStringStart}...${buttonDisplayStringEnd})`
     );
-    metamaskConnectionSuccessEvent();
-    walletConnectedEvent();      
+    metamaskConnectionSuccessEvent();  
     checkForNftOwnership(); 
    }
    else{
     window.ftd.set_value(
       "public-pages/distribution/templates/holy-angel/texts#wallet-state",
       `Connect Wallet`
+    );  
+    window.ftd.set_value(
+      `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
+      false
     );
     walletDisconnectEvent();
     walletConnectionStatus=false;
@@ -994,7 +829,6 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
     showFailurePopup("Metamask is not installed in the browser","Connect wallet unsuccessful.");
     return;
   }
-  //metaMaskConnectEvent();
    try {
      provider = await web3Modal.connect();
    } catch(e) {
