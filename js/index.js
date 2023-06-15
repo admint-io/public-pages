@@ -777,13 +777,19 @@ window.checkForNftOwnership = async function checkForNftOwnership() {
   const openseaApiUrl=`${config.OPENSEA_COLLECTION_FETCH_BASE_URL}${connectedWalletAddress}`;
   console.log("opensea collection api is ",openseaApiUrl);
   try {
+    const params = {
+      asset_owner: `${connectedWalletAddress}`,
+      offset: 0,
+      limit: 300
+    };
     const apiConfig = {
       headers: {
-        "Content-Type": "application/json",
+        'X-API-KEY': '4fac86a24a014b5a99cbe197f4e984e4',
+        'accept': 'application/json'
       },
     };
     await axios
-    .get(openseaApiUrl, apiConfig)
+    .get(openseaApiUrl, {params,apiConfig})
     .then((response) => {
       const respData = response.data;   
       if(respData.hasOwnProperty(`assets`)){
