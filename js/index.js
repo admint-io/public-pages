@@ -83,6 +83,7 @@ window.onload = async function () {
         "loaded"
       );
     });
+    init();   
 };
 
 function getUrlParameters() {
@@ -902,7 +903,7 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
  let web3Modal 
  let provider; 
  
- function init() { 
+ async function init() { 
    console.log("Initializing example");
    console.log("WalletConnectProvider is", WalletConnectProvider);
    console.log("Fortmatic is", Fortmatic);
@@ -914,6 +915,29 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
        options: {
          // Mikko's test key - don't copy as your mileage may vary
          infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+         qrcodeModalOptions: {
+          desktopLinks: [
+            'ledger',
+            'tokenary',
+            'wallet',
+            'wallet 3',
+            'secuX',
+            'ambire',
+            'wallet3',
+            'apolloX',
+            'zerion',
+            'sequence',
+            'punkWallet',
+            'kryptoGO',
+            'nft',
+            'riceWallet',
+            'vision',
+            'keyring'
+          ],
+          mobileLinks: [
+            "metamask"
+          ],
+        },
        }
      },
  
@@ -995,8 +1019,7 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
     );
     walletDisconnectEvent();
     walletConnectionStatus=false;
-   }
-           
+   }           
  }  
  
  async function refreshAccountData() { 
@@ -1040,8 +1063,4 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
    } 
    selectedAccount = null;
  } 
- 
- window.addEventListener('load', async () => {
-   init();   
- });
  
