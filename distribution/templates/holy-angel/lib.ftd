@@ -350,7 +350,7 @@ string url-1: /
 string url-2: /
 string url-3: /
 string cta-text-1: Terms and Conditions
-string cta-text-2: Privacy Policy
+;;string cta-text-2: Privacy Policy
 
 -- ftd.column:
 align-self: center
@@ -392,10 +392,10 @@ role: $inherited.types.copy-regular
 color: $colors.text-
 $on-click$: $ftd.set-bool($a = $tc-pop-up-status, v = true)
 
--- ftd.text: $footer.cta-text-2
-role: $inherited.types.copy-regular
-color: $colors.text-
-$on-click$: $ftd.set-bool($a = $tc-pop-up-status, v = true)
+;;-- ftd.text: $footer.cta-text-2
+;;role: $inherited.types.copy-regular
+;;color: $colors.text-
+;;$on-click$: $ftd.set-bool($a = $tc-pop-up-status, v = true)
 
 -- end: ftd.row
 
@@ -444,10 +444,10 @@ role: $inherited.types.copy-regular
 color: $colors.text-
 $on-click$: $ftd.set-bool($a = $tc-pop-up-status, v = true)
 
--- ftd.text: $footer.cta-text-2
-role: $inherited.types.copy-regular
-color: $colors.text-
-$on-click$: $ftd.set-bool($a = $tc-pop-up-status, v = true)
+;;-- ftd.text: $footer.cta-text-2
+;;role: $inherited.types.copy-regular
+;;color: $colors.text-
+;;$on-click$: $ftd.set-bool($a = $tc-pop-up-status, v = true)
 
 -- end: ftd.row
 
