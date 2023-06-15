@@ -908,47 +908,41 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
    console.log("WalletConnectProvider is", WalletConnectProvider);
    console.log("Fortmatic is", Fortmatic);
    console.log("window.web3 is", window.web3, "window.ethereum is", window.ethereum);
- 
-   const providerOptions = {
-    //  walletconnect: {
-    //    package: WalletConnectProvider,
-    //    options: {
-    //      // Mikko's test key - don't copy as your mileage may vary
-    //      infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
-    //      qrcodeModalOptions: {
-    //       desktopLinks: [
-    //         'ledger',
-    //         'tokenary',
-    //         'wallet',
-    //         'wallet 3',
-    //         'secuX',
-    //         'ambire',
-    //         'wallet3',
-    //         'apolloX',
-    //         'zerion',
-    //         'sequence',
-    //         'punkWallet',
-    //         'kryptoGO',
-    //         'nft',
-    //         'riceWallet',
-    //         'vision',
-    //         'keyring'
-    //       ],
-    //       mobileLinks: [
-    //         "metamask"
-    //       ],
-    //     },
-    //    }
-    //  },
- 
-    //  fortmatic: {
-    //    package: Fortmatic,
-    //    options: {
-    //      // Mikko's TESTNET api key
-    //      key: "pk_test_391E26A3B43A3350"
-    //    }
-    //  }
-   };
+
+   const deviceType=await window.ftd.get_value(
+    "main",
+    "ftd#device"
+  );
+  console.log("device type from ftd is ",deviceType);
+
+ let providerOptions;
+ if(deviceType=="desktop"){
+  console.log("wallet connect is in desktop");
+  providerOptions = {
+    // walletconnect: {
+    //   package: WalletConnectProvider,
+    //   options: {
+    //     // Mikko's test key - don't copy as your mileage may vary
+    //     infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+    //     qrcode: false         
+    //   }
+    // }
+  };
+ }
+ else{
+  console.log("wallet connect is not in desktop");
+  providerOptions = {
+    walletconnect: {
+      package: WalletConnectProvider,
+      options: {
+        // Mikko's test key - don't copy as your mileage may vary
+        infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+        qrcode: false         
+      }
+    }
+  };
+ }
+   
  
    web3Modal = new Web3Modal({
      cacheProvider: false, // optional
