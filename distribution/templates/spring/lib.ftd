@@ -344,7 +344,7 @@ color: $colors.text-
 
 -- component footer:
 caption text:
-ftd.image-src logo: $assets.files.images.admint-logo.png
+ftd.image-src logo: $assets.files.images.logo.jpg
 ftd.image-src icon-1: $assets.files.images.linkedin.png
 ftd.image-src icon-2: $assets.files.images.youtube.png
 ftd.image-src icon-3: $assets.files.images.fb.png
@@ -411,6 +411,7 @@ role: $inherited.types.copy-regular
 color: $colors.text-
 
 -- ftd.image: $footer.logo
+height.fixed.px: 50
 
 -- end: ftd.row
 
@@ -433,6 +434,7 @@ color: $colors.text-
 
 -- ftd.image: $footer.logo
 align-self: center
+height.fixed.px: 50
 
 -- end: ftd.row
 
@@ -469,7 +471,7 @@ $on-click$: $ftd.set-bool($a = $tc-pop-up-status, v = true)
 
 
 -- component hero:
-string cover:
+ftd.image-src cover:
 caption title:
 string heading:
 body content:
@@ -513,7 +515,7 @@ padding-horizontal.px: 20
 
 -- ftd.row:
 if: { ftd.device == "desktop" }
-background.image: $assets.files.images.hero-bg-1.png
+;;background.image: $assets.files.images.hero-bg-1.png
 
 -- ftd.column:
 margin-horizontal.px: 33
@@ -559,7 +561,7 @@ width.fixed.percent: 50
 
 
 -- component image-with-button:
-string pic:
+ftd.image-src pic:
 caption title:
 body body:
 string text-1:
@@ -682,6 +684,7 @@ width.fixed.percent: 37.78
 ;; height.fixed.px: 765
 border-radius.px: 15
 src: $image-with-button.pic
+align-self: center
 
 -- ftd.column:
 margin-vertical.px: 215
@@ -1147,6 +1150,7 @@ align-self: center
 
 -- ftd.row:
 if: { ftd.device == "desktop" }
+align-self: center
 
 -- ftd.column:
 margin-vertical.percent: 9.5
@@ -1167,7 +1171,7 @@ opacity: 0.7
 -- ftd.image:
 src: $about.pic
 width.fixed.percent: 50
-
+align-self: center
 
 -- end: ftd.row
 
@@ -1307,9 +1311,9 @@ colors: $color-values-2
 
 -- ftd.linear-gradient-color list color-values-2:
 
--- ftd.linear-gradient-color: #6F59E9
+-- ftd.linear-gradient-color: #2a9df4
 
--- ftd.linear-gradient-color: #D12EEF
+-- ftd.linear-gradient-color: #187bcd
 
 -- end: color-values-2
 

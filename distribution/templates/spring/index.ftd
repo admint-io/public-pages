@@ -18,19 +18,19 @@ if: { $loadedState == "loading" }
 -- lib.page:
 if: { $loadedState == "loaded" }
 
--- lib.hero: Waiting For
-heading: This is what you are
-cover: $images.hero-image-url
+-- lib.hero: Reframe the Future
+heading: Empowering Change, Transforming Lives
+cover: $assets.files.images.sample.png
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
-ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
-posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis. 
+Welcome to Reframe the Future, a campaign dedicated to empowering individuals and 
+transforming lives. Our mission is to reshape the world we live in, creating a future 
+that is inclusive, sustainable, and filled with opportunity. 
 
 -- lib.image-with-button: Heading of Section
-pic: $images.nft-image-url
+pic: $assets.files.images.sample.png
 text-1: **Spring** : 
 text-2: **Spring** : 
-val-1: Polygon
+val-1: Future
 val-2: $texts.nft-type
 button-1: Click Here
 button-2: View Button
