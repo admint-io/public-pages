@@ -761,6 +761,7 @@ async function init() {
 
   const deviceType = await window.ftd.get_value("main", "ftd#device");
   console.log("device type from ftd is ", deviceType);
+  console.log("infura id is ", config.WALLET_CONNECT_INFURA_ID);
 
   let providerOptions =
     deviceType == "desktop"
@@ -770,7 +771,7 @@ async function init() {
             package: WalletConnectProvider,
             options: {
               // Mikko's test key - don't copy as your mileage may vary
-              infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+              infuraId: config.WALLET_CONNECT_INFURA_ID,
               qrcode: true,
               qrcodeModalOptions: {
                 desktopLinks: [],
