@@ -20,9 +20,7 @@ var userNftTokenId="undefined";
 function convertToColorBlocks(text) {
   const lines = text.trim().split("\n");
   const colorBlocks = [];
-
   let currentBlock = [];
-
   for (const line of lines) {
     if (line.trim().startsWith("-- ftd.color")) {
       if (currentBlock.length === 3) {
@@ -33,11 +31,9 @@ function convertToColorBlocks(text) {
       currentBlock.push(line.trim());
     }
   }
-
   if (currentBlock.length === 3) {
     colorBlocks.push(currentBlock.join("\n"));
   }
-
   return colorBlocks.join("\n\n");
 }
 
@@ -68,7 +64,7 @@ window.color_scheme_to_ftd = async function color_scheme_to_ftd(
 
 window.onload = async function () {
   readUrlParams()
-    .then((response) => {
+    .then(() => {
       console.log("readUrlParams() promise resolved");
       window.ftd.set_value(
         `public-pages/distribution/templates/holy-angel/#loadedState`,
@@ -86,52 +82,37 @@ window.onload = async function () {
     init();   
 };
 
-function getUrlParameters() {
-  const url = window.location.href;
-  const [baseUrl, fragment] = url.split("#");
-  if (fragment) {
-    const [fragmentPart, queryString] = fragment.split("?");
-    const fragmentParams = new URLSearchParams(queryString);
-    const decodedParams = {};
-    for (const [key, value] of fragmentParams.entries()) {
-      decodedParams[key] = decodeURIComponent(value);
-    }
+// function getUrlParameters() {
+//   const url = window.location.href;
+//   const [baseUrl, fragment] = url.split("#");
+//   if (fragment) {
+//     const [fragmentPart, queryString] = fragment.split("?");
+//     const fragmentParams = new URLSearchParams(queryString);
+//     const decodedParams = {};
+//     for (const [key, value] of fragmentParams.entries()) {
+//       decodedParams[key] = decodeURIComponent(value);
+//     }
 
-    return {
-      baseUrl: baseUrl,
-      fragmentParams: decodedParams,
-    };
-  }
+//     return {
+//       baseUrl: baseUrl,
+//       fragmentParams: decodedParams,
+//     };
+//   }
 
-  return {
-    baseUrl: baseUrl,
-  };
-}
+//   return {
+//     baseUrl: baseUrl,
+//   };
+// }
 
 window.readUrlParams = async function readUrlParams() {
   return new Promise(function (resolve, reject) {
     var inviteId;
     var domainName;
     var nftType;
-
     const url = window.location.href;
-    console.log("url from broswer is ",url);
-    const [baseUrl, fragment] = url.split("#");
 
-    if (fragment) {
-      console.log("fragment detecddted");
-      const [fragmentPart, queryString] = fragment.split("?");
-      const fragmentParams = new URLSearchParams(queryString);
-      const decodedParams = {};
-      for (const [key, value] of fragmentParams.entries()) {
-        decodedParams[key] = decodeURIComponent(value);
-      }
-      console.log("decoded params is ", decodedParams);
-      inviteId = decodedParams.invite_id;
-      domainName = decodedParams.cname;
-      nftType = decodedParams.type;
-    } else {
-      console.log("no fragment detected");
+    console.log("url from broswer is ",url);
+    console.log("no fragment detected");
       var urlParams = new URLSearchParams(window.location.search);
       inviteId = urlParams.get("invite_id");
       domainName = urlParams.get("cname");
@@ -140,7 +121,6 @@ window.readUrlParams = async function readUrlParams() {
       console.log("invite id is ", inviteId);
       console.log("cname is ", domainName);
       console.log("nft type is ", nftType);
-    }
 
     //domainName = cName;
     inviteCode = inviteId;
@@ -153,7 +133,10 @@ window.readUrlParams = async function readUrlParams() {
     fetchUiComponents(domainName, nftType)
       .then((result) => {
         console.log("fetchUiComponents() promise resolved");
-        if ("colorSchemeUrl" in result.values[0]) {
+        if (!result.values[0].hasOwnProperty("colorSchemeUrl")) {
+          reject("color scheme url key not included");
+          return;
+        }
           fetchColorScheme(result.values[0].colorSchemeUrl)
             .then((colorSchemeData) => {
               console.log("fetchColorScheme() promise resolved");
@@ -162,7 +145,7 @@ window.readUrlParams = async function readUrlParams() {
                   resultColorsObj.forEach((obj) => {
                     try {
                       var colors = obj.colors;
-                      if ("colors" in obj) {
+                      if (obj.hasOwnProperty("colors")) {
                         delete obj["colors"];
                       }
                       if (obj.light != undefined && obj.light != "undefined") {
@@ -195,10 +178,7 @@ window.readUrlParams = async function readUrlParams() {
                 "Promise rejected : fetchColorScheme(), Reason : ",
                 error
               );
-            });
-        } else {
-          reject("color scheme url key not included");
-        }
+            });        
         resolve(result);
       })
       .catch((error) => {
@@ -216,7 +196,12 @@ window.fetchUiComponents = async function fetchUiComponents(
   nftType
 ) {
   return new Promise(function (resolve, reject) {
-    if (domainName != undefined) {
+
+    if (domainName == undefined) {
+      reject("domain name is undefined");
+      return;
+    }
+
       const url = `${config.DISTRIBUTION_BASE_BACKEND_URL}/sitedata/${domainName}`;
       const apiConfig = {
         headers: {
@@ -227,12 +212,21 @@ window.fetchUiComponents = async function fetchUiComponents(
         .get(url, apiConfig)
         .then((response) => {
           const respData = response.data;
-          if ("values" in respData) {
-            if (respData.values.length > 0) {
-              if ("campaignId" in respData.values[0]) {
+
+          if (!respData.hasOwnProperty("values")) {
+            reject("values key not included in response from server");
+            return;
+          }
+          if (respData.values.length <= 0) {
+            reject("values is an empty array");
+            return;
+          }
+
+          console.log("checks passed");
+              if (respData.values[0].hasOwnProperty("campaignId")) {
                 campaignId = respData.values[0].campaignId;
               }
-              if ("bannerImageUrl" in respData.values[0]) {
+              if (respData.values[0].hasOwnProperty("bannerImageUrl")) {
                 checkImageURL(respData.values[0].bannerImageUrl)
                   .then((validImageUrl) => {
                     console.log("this is a valid image url", validImageUrl);
@@ -245,9 +239,9 @@ window.fetchUiComponents = async function fetchUiComponents(
                     console.error(error);
                   });
               }
-              if ("creativeDatas" in respData.values[0]) {
+              if (respData.values[0].hasOwnProperty("creativeDatas")) {
                 updateCreativeDataUi(respData.values[0].creativeDatas, nftType)
-                  .then((result) => {
+                  .then(() => {
                     console.log("creative data updated");
                     window.ftd.set_value(
                       `public-pages/distribution/templates/holy-angel/#loadedState`,
@@ -259,21 +253,13 @@ window.fetchUiComponents = async function fetchUiComponents(
                   });
               }
               resolve(respData);
-            } else {
-              reject("values is an empty array");
-            }
-          } else {
-            reject("values key not included in response from server");
-          }
+          
         })
         .catch((error) => {
           console.error(error);
-          //showFailurePopup(error);
           reject(error);
         });
-    } else {
-      reject("domain name is undefined");
-    }
+    
   });
 };
 
@@ -289,18 +275,10 @@ window.fetchColorScheme = async function fetchColorScheme(colorSchemeUrl) {
       .get(url, apiConfig)
       .then((response) => {
         const respData = response.data;
-        //console.log("color scheme from github is ",respData);
         resolve(respData);
-        // if (isValidJSON(respData)) {
-        //     const respDataString=JSON.stringify(respData);
-        //     resolve(respDataString);
-        //   } else {
-        //     reject("invalid JSON");
-        //   }
       })
       .catch((error) => {
         console.error(error);
-        //showFailurePopup(error);
         reject(error);
       });
   });
@@ -317,21 +295,27 @@ window.updateCreativeDataUi = async function updateCreativeDataUi(
       "type is ",
       nftType
     );
-    creativeDatasArray.forEach((obj) => {
-      if (obj.rarity == nftType) {
-        console.log("creatives match found ");
-        if("creativeContractAddress" in obj){
-          userNftContractAddress=obj.creativeContractAddress;
-        }        
-        if ("imageUrl" in obj) {
-          window.ftd.set_value(
-            "public-pages/distribution/templates/holy-angel/images#nft-image-url",
-            obj.imageUrl
-          );
+    try{
+      creativeDatasArray.forEach((obj) => {
+        if (obj.rarity == nftType) {
+          console.log("creatives match found ");
+          if(obj.hasOwnProperty("creativeContractAddress")){
+            userNftContractAddress=obj.creativeContractAddress;
+          }        
+          if (obj.hasOwnProperty("imageUrl")) {
+            console.log("checking nft image");
+            window.ftd.set_value(
+              "public-pages/distribution/templates/holy-angel/images#nft-image-url",
+              obj.imageUrl
+            );
+          }
         }
-      }
-    });
-    resolve("nft image updation success");
+      });
+      resolve("nft image updation success");
+    }
+    catch(e){
+      reject(e);
+    }    
   });
 };
 
@@ -412,20 +396,19 @@ window.checkImageURL = async function checkImageURL(url) {
     const img = new Image();
     img.onload = () => resolve(url);
     img.onerror = () => reject(new Error("Invalid image URL"));
-    img.src = url;
+    img.src = url;connectWallet
   });
 };
 
 window.connectWallet = async function connectWallet() {
   console.log("entering connect wallet function");
-  if(!walletConnectionStatus){
-    connectWalletClickEvent();
-    const walletPopup = new WalletPopup();
-    document.body.appendChild(walletPopup);
-  }
-  else{
+  if(walletConnectionStatus){
     console.log("wallet already connected");
-  }   
+    return;
+  }
+  connectWalletClickEvent();
+  const walletPopup = new WalletPopup();
+  document.body.appendChild(walletPopup);  
 };
 
 window.connectWalletProvider = async function connectWalletProvider(
@@ -438,17 +421,14 @@ window.connectWalletProvider = async function connectWalletProvider(
   }
   else if(selectedProvider=="torus (sign in with google)"){
     torusConnectionTriggerEvent();
-    document.body.style.cursor = 'wait';
-    torusInit().then(async ()=>{  
-    document.body.style.cursor = 'default';    
+    torusInit().then(async ()=>{      
     await torus.login();
     const provider = torus.provider;
     const web3 = new Web3(provider);
     const accounts = await web3.eth.getAccounts();
     connectedWalletAddress=accounts[0];
     console.log("Connected with address:", connectedWalletAddress);
-    walletConnectionStatus=true;
-    torusConnectionSuccessEvent();
+    walletConnectionStatus=true;    
     const buttonDisplayStringStart=`${connectedWalletAddress[0]}${connectedWalletAddress[1]}${connectedWalletAddress[2]}${connectedWalletAddress[3]}${connectedWalletAddress[4]}${connectedWalletAddress[5]}`
     const buttonDisplayStringEnd=`${connectedWalletAddress[connectedWalletAddress.length-4]}${connectedWalletAddress[connectedWalletAddress.length-3]}${connectedWalletAddress[connectedWalletAddress.length-2]}${connectedWalletAddress[connectedWalletAddress.length-1]}`;
     window.ftd.set_value(
@@ -458,10 +438,10 @@ window.connectWalletProvider = async function connectWalletProvider(
         if(torus.isLoggedIn){
           torus.torusWidgetVisibility=true;
         }  
+        torusConnectionSuccessEvent();
         checkForNftOwnership();      
     }).catch((error) => {
-      console.error("Failed to open torus:", error);
-      document.body.style.cursor = 'default';      
+      console.error("Failed to open torus:", error);  
     });    
   }
 };
@@ -470,15 +450,17 @@ window.torusInit = async function torusInit() {
   return new Promise(async (resolve, reject) => {
     console.log("Initialising torus");
     try{
-      if(!torus.isInitialized){
+      if(torus.isInitialized){
+        console.log("torus is already initialised as :  ",torus);
+        resolve("done");
+        return;
+      }
         await torus.init({
           network: {
             host: "matic",
           },
-        });
-       // torus.torusWidgetVisibility=false;
-      }      
-      console.log("torus is ",torus);
+        });   
+      console.log("torus initialised as :  ",torus);
       resolve("done");
     }catch(e){
       reject(e);
@@ -486,9 +468,13 @@ window.torusInit = async function torusInit() {
   });
 };
 
-window.sendWallet = async function sendWallet() {
+window.sendWallet = async function sendWallet() {  
   claimEvent();
-  if (walletConnectionStatus) {
+  
+  if (!walletConnectionStatus) {
+    showWarningPopup("If you don't have an existing wallet, use Torus to sign up.","Connect wallet to claim.");
+    return;
+  }
     try {
       console.log("account to send is ", connectedWalletAddress);
       if (campaignId != "undefined" && inviteCode != "undefined") {
@@ -506,7 +492,7 @@ window.sendWallet = async function sendWallet() {
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
-            if ("success" in data && "message" in data) {
+            if (data.hasOwnProperty("success") && data.hasOwnProperty("message")) {
               if (data.success) {
                 showSuccessPopup(data.message,"Claim successful.");
                 claimSuccessEvent();
@@ -521,7 +507,8 @@ window.sendWallet = async function sendWallet() {
               }
             }
           })
-          .catch((error) => console.error(error));
+          .catch((error) => {
+            console.error(error)});
       } else {
         invalidLinkEvent();
         showWarningPopup("You are using an incorrect invite URL.","Claim unsuccessful.");
@@ -529,9 +516,6 @@ window.sendWallet = async function sendWallet() {
     } catch (error) {
       console.error(error.message);
     }
-  } else {
-    showWarningPopup("If you don't have an existing wallet, use Torus to sign up","Connect wallet to claim");
-  }
 };
 
 window.dataLayer = window.dataLayer || [];
@@ -674,24 +658,30 @@ window.checkForNftOwnership = async function checkForNftOwnership() {
     .get(url, {params,apiConfig})
     .then((response) => {
       const respData = response.data; 
+
+      if(!respData.hasOwnProperty("success") ){
+        console.log("success not in response");
+        return;
+      }
+      if(!respData.hasOwnProperty("values")){
+        console.log("values not in response");
+        return;
+      }
       if(respData.success){
-        if(respData.hasOwnProperty("values")){
-          if(respData.values.length!=0){
-            window.ftd.set_value(
-              `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
-              true
-            );
-            userNftContractAddress=respData.values[0].tokenAddress;
-            userNftTokenId=respData.values[0].tokenId;           
-          }
-          else{
+        if(respData.values.length<=0){
+            console.log("assets are null");
             window.ftd.set_value(
               `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
               false
             );
-          }
+            return;
         }
-        
+        window.ftd.set_value(
+          `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
+          true
+        );
+        userNftContractAddress=respData.values[0].tokenAddress;
+        userNftTokenId=respData.values[0].tokenId; 
       }      
     })
     .catch((error) => {
@@ -743,32 +733,23 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
   );
   console.log("device type from ftd is ",deviceType);
 
- let providerOptions;
- if(deviceType=="desktop"){
-  console.log("wallet connect is in desktop"); 
-  providerOptions = {
-  };
- }
- else{
-  console.log("wallet connect is not in desktop");
-  providerOptions = {
-    walletconnect: {
-      package: WalletConnectProvider,
-      options: {
-        // Mikko's test key - don't copy as your mileage may vary
-        infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
-        qrcode: true,
-        qrcodeModalOptions: {
-          desktopLinks: [
-          ],
-          mobileLinks: [
-            "metamask"
-          ],
-        },        
-      }
+ let providerOptions=deviceType=="desktop"?{}:{
+  walletconnect: {
+    package: WalletConnectProvider,
+    options: {
+      // Mikko's test key - don't copy as your mileage may vary
+      infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+      qrcode: true,
+      qrcodeModalOptions: {
+        desktopLinks: [
+        ],
+        mobileLinks: [
+          "metamask"
+        ],
+      },        
     }
-  };
- }
+  }
+};
 
  console.log("selected provider option is : ",providerOptions)   
  
@@ -799,8 +780,8 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
     );
     metamaskConnectionSuccessEvent();  
     checkForNftOwnership(); 
+    return;
    }
-   else{
     window.ftd.set_value(
       "public-pages/distribution/templates/holy-angel/texts#wallet-state",
       `Connect Wallet`
@@ -810,8 +791,7 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
       false
     );
     walletDisconnectEvent();
-    walletConnectionStatus=false;
-   }           
+    walletConnectionStatus=false;             
  }  
  
  async function refreshAccountData() { 
@@ -826,7 +806,7 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
   console.log("device type from ftd is ",deviceType);
   console.log("window etheruem is  ",window.ethereum);
    if(deviceType=="desktop" && window.ethereum == undefined){
-    showFailurePopup("Metamask is not installed in the browser","Connect wallet unsuccessful.");
+    showFailurePopup("Metamask is not installed in the browser. Use Torus to sign up.","Connect wallet unsuccessful.");
     return;
   }
    try {
@@ -855,14 +835,14 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
    await refreshAccountData();
  }
  
- async function onDisconnect() {
+//  async function onDisconnect() {
  
-   console.log("Killing the wallet connection", provider); 
-   if(provider.close) {
-     await provider.close();
-     await web3Modal.clearCachedProvider();
-     provider = null;
-   } 
-   selectedAccount = null;
- } 
+//    console.log("Killing the wallet connection", provider); 
+//    if(provider.close) {
+//      await provider.close();
+//      await web3Modal.clearCachedProvider();
+//      provider = null;
+//    } 
+//    selectedAccount = null;
+//  } 
  
