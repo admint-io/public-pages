@@ -1,0 +1,20 @@
+-- void connectWallet():
+js: distribution/templates/spring/js/index.js:type=module
+
+connectWallet()
+
+-- void sendWallet():
+js: distribution/templates/spring/js/index.js:type=module
+
+sendWallet()
+
+-- void navigateToComponent(elementId):
+string elementId:
+js: distribution/templates/spring/js/index.js:type=module
+
+navigateToComponent(elementId)
+
+-- void viewNftInOpensea():
+js: distribution/templates/spring/js/index.js:type=module
+
+viewNftInOpensea()

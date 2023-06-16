@@ -8,4 +8,4 @@ export const OPENSEA_VIEW_NFT_BASE_URL="https://opensea.io/assets/matic";       
 //export const OPENSEA_VIEW_NFT_BASE_URL="https://testnets.opensea.io/assets/goerli";                     // Testnet
 export const WALLET_CONNECT_INFURA_ID="8043bb2cf99347b1bfadfb233c5325c0";           // Mikey Test key
 export const FTD_TEMPLATE_BASE_URL="public-pages/distribution/templates/holy-angel";           // Mikey Test key
-
+export const FTD_ID_APPEND_STRING="";           // Mikey Test key
