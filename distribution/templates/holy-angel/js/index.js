@@ -67,7 +67,7 @@ window.onload = async function () {
     .then(() => {
       console.log("readUrlParams() promise resolved");
       window.ftd.set_value(
-        `public-pages/distribution/templates/holy-angel/#loadedState`,
+        `${config.FTD_TEMPLATE_BASE_URL}/#loadedState`,
         "loaded"
       );
     })
@@ -75,7 +75,7 @@ window.onload = async function () {
       console.log("readUrlParams() promise rejected");
       console.error("Promise rejected : readUrlParams(), Reason : ", error);
       window.ftd.set_value(
-        `public-pages/distribution/templates/holy-angel/#loadedState`,
+        `${config.FTD_TEMPLATE_BASE_URL}/#loadedState`,
         "loaded"
       );
     });
@@ -126,7 +126,7 @@ window.readUrlParams = async function readUrlParams() {
     inviteCode = inviteId;
 
     window.ftd.set_value(
-      `public-pages/distribution/templates/holy-angel/texts#nft-type`,
+      `${config.FTD_TEMPLATE_BASE_URL}/texts#nft-type`,
       nftType
     );
 
@@ -150,13 +150,13 @@ window.readUrlParams = async function readUrlParams() {
                     }
                     if (obj.light != undefined && obj.light != "undefined") {
                       window.ftd.set_value(
-                        `public-pages/distribution/templates/holy-angel/colors#${colors}.light`,
+                        `${config.FTD_TEMPLATE_BASE_URL}/colors#${colors}.light`,
                         obj.light
                       );
                     }
                     if (obj.dark != undefined && obj.dark != "undefined") {
                       window.ftd.set_value(
-                        `public-pages/distribution/templates/holy-angel/colors#${colors}.dark`,
+                        `${config.FTD_TEMPLATE_BASE_URL}/colors#${colors}.dark`,
                         obj.dark
                       );
                     }
@@ -230,7 +230,7 @@ window.fetchUiComponents = async function fetchUiComponents(
             .then((validImageUrl) => {
               console.log("this is a valid image url", validImageUrl);
               window.ftd.set_value(
-                "public-pages/distribution/templates/holy-angel/images#hero-image-url",
+                `${config.FTD_TEMPLATE_BASE_URL}/images#hero-image-url`,
                 validImageUrl
               );
             })
@@ -243,7 +243,7 @@ window.fetchUiComponents = async function fetchUiComponents(
             .then(() => {
               console.log("creative data updated");
               window.ftd.set_value(
-                `public-pages/distribution/templates/holy-angel/#loadedState`,
+                `${config.FTD_TEMPLATE_BASE_URL}/#loadedState`,
                 "loaded"
               );
             })
@@ -302,7 +302,7 @@ window.updateCreativeDataUi = async function updateCreativeDataUi(
           if (obj.hasOwnProperty("imageUrl")) {
             console.log("checking nft image");
             window.ftd.set_value(
-              "public-pages/distribution/templates/holy-angel/images#nft-image-url",
+              `${config.FTD_TEMPLATE_BASE_URL}/images#nft-image-url`,
               obj.imageUrl
             );
           }
@@ -328,19 +328,19 @@ window.showSuccessPopup = async function showSuccessPopup(inputData, title) {
   console.log("input data is ", inputData);
 
   window.ftd.set_value(
-    "public-pages/distribution/templates/holy-angel/texts#popup-title",
+    `${config.FTD_TEMPLATE_BASE_URL}/texts#popup-title`,
     title
   );
   window.ftd.set_value(
-    "public-pages/distribution/templates/holy-angel/texts#popup-body",
+    `${config.FTD_TEMPLATE_BASE_URL}/texts#popup-body`,
     inputData
   );
   window.ftd.set_value(
-    "public-pages/distribution/templates/holy-angel/images#popup-image",
+    `${config.FTD_TEMPLATE_BASE_URL}/images#popup-image`,
     "images/success.png"
   );
   window.ftd.set_value(
-    "public-pages/distribution/templates/holy-angel/lib#pop-up-status",
+    `${config.FTD_TEMPLATE_BASE_URL}/lib#pop-up-status`,
     true
   );
 };
@@ -349,19 +349,19 @@ window.showFailurePopup = async function showFailurePopup(inputData, title) {
   console.log("input data is ", inputData);
 
   window.ftd.set_value(
-    "public-pages/distribution/templates/holy-angel/texts#popup-title",
+    `${config.FTD_TEMPLATE_BASE_URL}/texts#popup-title`,
     title
   );
   window.ftd.set_value(
-    "public-pages/distribution/templates/holy-angel/texts#popup-body",
+    `${config.FTD_TEMPLATE_BASE_URL}/texts#popup-body`,
     inputData
   );
   window.ftd.set_value(
-    "public-pages/distribution/templates/holy-angel/images#popup-image",
+    `${config.FTD_TEMPLATE_BASE_URL}/images#popup-image`,
     "images/error.svg"
   );
   window.ftd.set_value(
-    "public-pages/distribution/templates/holy-angel/lib#pop-up-status",
+    `${config.FTD_TEMPLATE_BASE_URL}/lib#pop-up-status`,
     true
   );
 };
@@ -369,19 +369,19 @@ window.showFailurePopup = async function showFailurePopup(inputData, title) {
 window.showWarningPopup = async function showWarningPopup(inputData, title) {
   console.log("input data is ", inputData);
   window.ftd.set_value(
-    "public-pages/distribution/templates/holy-angel/texts#popup-title",
+    `${config.FTD_TEMPLATE_BASE_URL}/texts#popup-title`,
     title
   );
   window.ftd.set_value(
-    "public-pages/distribution/templates/holy-angel/texts#popup-body",
+    `${config.FTD_TEMPLATE_BASE_URL}/texts#popup-body`,
     inputData
   );
   window.ftd.set_value(
-    "public-pages/distribution/templates/holy-angel/images#popup-image",
+    `${config.FTD_TEMPLATE_BASE_URL}/images#popup-image`,
     "images/error.svg"
   );
   window.ftd.set_value(
-    "public-pages/distribution/templates/holy-angel/lib#pop-up-status",
+    `${config.FTD_TEMPLATE_BASE_URL}/lib#pop-up-status`,
     true
   );
 };
@@ -433,7 +433,7 @@ window.connectWalletProvider = async function connectWalletProvider(
           connectedWalletAddress[connectedWalletAddress.length - 2]
         }${connectedWalletAddress[connectedWalletAddress.length - 1]}`;
         window.ftd.set_value(
-          "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+          `${config.FTD_TEMPLATE_BASE_URL}/texts#wallet-state`,
           `Connected  (${buttonDisplayStringStart}...${buttonDisplayStringEnd})`
         );
         if (torus.isLoggedIn) {
@@ -703,13 +703,13 @@ window.checkForNftOwnership = async function checkForNftOwnership() {
           if (respData.values.length <= 0) {
             console.log("assets are null");
             window.ftd.set_value(
-              `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
+              `${config.FTD_TEMPLATE_BASE_URL}/lib#viewNftButtonStatus`,
               false
             );
             return;
           }
           window.ftd.set_value(
-            `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
+            `${config.FTD_TEMPLATE_BASE_URL}/lib#viewNftButtonStatus`,
             true
           );
           userNftContractAddress = respData.values[0].tokenAddress;
@@ -732,7 +732,7 @@ window.viewNftInOpensea = async function viewNftInOpensea() {
     newTab.focus();
   } else {
     window.ftd.set_value(
-      `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
+      `${config.FTD_TEMPLATE_BASE_URL}/lib#viewNftButtonStatus`,
       false
     );
   }
@@ -809,7 +809,7 @@ async function fetchAccountData() {
       connectedWalletAddress[connectedWalletAddress.length - 2]
     }${connectedWalletAddress[connectedWalletAddress.length - 1]}`;
     window.ftd.set_value(
-      "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+      `${config.FTD_TEMPLATE_BASE_URL}/texts#wallet-state`,
       `Connected  (${buttonDisplayStringStart}...${buttonDisplayStringEnd})`
     );
     metamaskConnectionSuccessEvent();
@@ -817,11 +817,11 @@ async function fetchAccountData() {
     return;
   }
   window.ftd.set_value(
-    "public-pages/distribution/templates/holy-angel/texts#wallet-state",
+    `${config.FTD_TEMPLATE_BASE_URL}/texts#wallet-state`,
     `Connect Wallet`
   );
   window.ftd.set_value(
-    `public-pages/distribution/templates/holy-angel/lib#viewNftButtonStatus`,
+    `${config.FTD_TEMPLATE_BASE_URL}/lib#viewNftButtonStatus`,
     false
   );
   walletDisconnectEvent();
