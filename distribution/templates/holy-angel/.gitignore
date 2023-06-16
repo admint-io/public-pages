@@ -2,4 +2,4 @@
 .build
 .DS_Store
 .idea
-config.js
+distribution/templates/holy-angel/js/config.js
