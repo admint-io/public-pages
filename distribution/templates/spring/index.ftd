@@ -4,7 +4,7 @@
 -- import: public-pages/distribution/templates/spring/texts as texts
 -- import: public-pages/distribution/templates/spring/functions as funct
 
--- string $loadedState: loading
+-- string $loadedState: loaded
 
 
 -- lib.window-popup:
@@ -18,280 +18,296 @@ if: { $loadedState == "loading" }
 -- lib.page:
 if: { $loadedState == "loaded" }
 
--- lib.hero: Cyber Education
-heading: Building a resilient future through
-cover: $images.hero-image-url
+-- lib.hero: Reframe the Future
+heading: Empowering Change, Transforming Lives
+cover: $assets.files.images.sample.png
 
-From safeguarding your personal data to protecting your community, our aim is to equip 
-you with the latest cyber education tools & strategies. Let's work together to build a 
-resilient future - Be Secured, Stay Secured!"
+Welcome to Reframe the Future, a campaign dedicated to empowering individuals and 
+transforming lives. Our mission is to reshape the world we live in, creating a future 
+that is inclusive, sustainable, and filled with opportunity. 
 
--- lib.image-with-button: CYBERSECURITY  CONFERENCE  TOKEN
-pic: $images.nft-image-url
-text-1: **Blockchain** : 
-text-2: **POAP Type** : 
-val-1: Polygon
+-- lib.image-with-button: Heading of Section
+pic: $assets.files.images.sample.png
+text-1: **Spring** : 
+text-2: **Spring** : 
+val-1: Future
 val-2: $texts.nft-type
-button-1: Claim Now
-button-2: View NFT
+button-1: Click Here
+button-2: View Button
 
-This POAP or Proof of Attendance Protocol is a non-fungible token that proves you 
-participated in the 2nd Regional Cybersecurity Conference conducted by The School of 
-Computing, Holy Angel University on 10th May 2023. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
--- lib.countdown-with-info: 2nd Regional cybersecurity conference
-pic: $assets.files.images.conf.png
-heading: 10 | May | 2023
+-- lib.countdown-with-info: Heading of Section
+pic: $assets.files.images.sample.png
+heading: 30 | February | 2023
 icon: $assets.files.images.location_on.png
-text: University Theatre, SFJ Blog, Holy Angel University
-counter: 12 days : 16 hr : 30 min
-reminder: Time Left to claim NFT
+text: Somewhere in the universe
+counter: 7 days : 6 hr : 5 min
+reminder: Time is running away
 
--- lib.container-with-title: How to Claim
+-- lib.container-with-title: Heading of Section
 
--- lib.image-with-content: Connect your wallet
-pic: $assets.files.images.connect.png
+-- lib.image-with-content: This is first
+pic: $assets.files.images.sample.png
 number: 01
 
-Design your drop of 1-5 NFTs and send us your artwork. We get that you're creative, so 
-take note: Sweet supports image, audio and video media assets. Make your NFT drop 
-interesting, engaging and fun.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
--- lib.image-with-content: Claim NFT
-pic: $assets.files.images.claim.png
+-- lib.image-with-content: This is second
+pic: $assets.files.images.sample.png
 number: 02
 
-Design your drop of 1-5 NFTs and send us your artwork. We get that you're creative, so 
-take note: Sweet supports image, audio and video media assets. Make your NFT drop 
-interesting, engaging and fun.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
--- lib.image-with-content: View NFT
-pic: $assets.files.images.view.png
+-- lib.image-with-content: This is third
+pic: $assets.files.images.sample.png
 number: 03
 
-Design your drop of 1-5 NFTs and send us your artwork. We get that you're creative, so 
-take note: Sweet supports image, audio and video media assets. Make your NFT drop 
-interesting, engaging and fun.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
 -- end: lib.container-with-title
 
--- lib.about: About Us
-pic: $assets.files.images.people.png
+-- lib.about: Heading of Section
+pic: $assets.files.images.sample.png
 
-A design approach is a general philosophy that may or may not include a guide for 
-specific methods. A design approach is a general philosophy that may or may not include 
-a guide for specific methods.A design approach is a general philosophy that may or may 
-not include a guide for specific methods.A design approach is a general philosophy 
-that may or may not include a guide for specific methods.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
 -- lib.container-with-title: FAQs
 
--- lib.faq: What is a POAP token?
+-- lib.faq: How can I use this template?
 
-A POAP token, or Proof of Attendance Protocol token, is a non-fungible token (NFT) that is 
-given to users as a way to prove that they attended a certain event. POAP tokens are 
-minted on a blockchain and are stored in users' wallets. They can be displayed on social 
-media or used to prove attendance for future events.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
--- lib.faq: How do I claim the POAP token?
+-- lib.faq: How can I use this template?
 
-To claim the token, you need to connect to the website using a crypto browser wallet - 
-Metamask or Torus. After logging in simply claim and approve the transaction. Once done, 
-the organizers will be able to send the POAP NFT to you. The NFT should reflect in your 
-wallet within 24 hours.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
--- lib.faq: I don’t have a crypto wallet. How do I claim my token?
+-- lib.faq: How can I use this template?
 
-You can select the login with the Torus wallet option. Once selected you can simply login 
-with any of your existing social accounts, and a wallet will be created for you. You can 
-then proceed to claim the POAP NFT.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
--- lib.faq: How do I get a Metamask wallet?
+-- lib.faq: How can I use this template?
 
  
-You can download and install Metamask in your favorite browser here: 
-[https://metamask.io/download/](https://metamask.io/download/) 
-Follow the steps mentioned diligently. Do note down your private key details. Your private 
-keys are the keys to your wallet. They allow you to access your cryptocurrency & NFTs. So 
-it's important to keep them safe. Never share your private keys with anyone.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
--- lib.faq: How many times can I claim a token?
+-- lib.faq: How can I use this template?
 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-Your assigned NFT can be claimed only once. Hence it is very important that you do not 
-share your unique URL with others as they could claim it on your behalf.
-
--- lib.faq: Which blockchain are these tokens minted on?
+-- lib.faq: How can I use this template?
 $id: faq-s
 
-The POAP token issued to you has been minted over the Polygon network.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
--- lib.faq: Do I have to pay to claim this NFT?
+-- lib.faq: How can I use this template?
 
-There are no fees to claim these tokens. In the future, you may want to purchase a few 
-Matic tokens as cryptocurrency (to pay as gas fees) if you wish to transfer the tokens to 
-another wallet.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
--- lib.faq: How long will it take for the NFT to reflect in my wallet?
+-- lib.faq: How can I use this template?
 
-After claiming the token successfully, the NFT will be sent into your wallet within the 
-next 24 hours.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
--- lib.faq: How can I use this POAP token in the future?
+-- lib.faq: How can I use this template?
 
-Currently there are no utilities associated with the token. However we may choose to give 
-NFT holders special privileges for future events & meetups.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
--- lib.faq: Who do I get in touch with in case of any issues?
+-- lib.faq: How can I use this templates?
 
-You can write in to the following email id: team@theblokc.com for any assistance related 
-to getting the POAP tokens. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
 -- end: lib.container-with-title
 
 -- end: lib.page
 
 -- lib.tc-popup:
-title: 2nd Regional Cybersecurity Conference at the Holy Angel University Proof of Attendance NFT (Non-Fungible Tokens)
-head: Event Date: May 10, 2023
+title: Terms and Conditions Title
+head: These are the Terms and Conditions
 
-By claiming your Proof of Attendance (POA) NFT, you acknowledge that you have read, 
+By claiming this, you acknowledge that you have read, 
 understood, and agreed to these terms and conditions.
 
 -- lib.tc-item: Eligibility
 number: (1)
 
-1.1. To be eligible for the POA NFT, you must have attended and actively participated in 
-the specified event or activity as indicated.
+1.1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua.
 
-1.2. You must be at least 18 years old or have obtained consent from a legal guardian to 
-claim the POA NFT.
+1.2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua.
 
-1.3. The POA NFT is non-transferable and can only be claimed by the individual who attended 
-the event or activity.
+1.3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliquay.
 
--- lib.tc-item: Claim Process
+-- lib.tc-item: Heading-2
 number: (2)
 
-2.1. To claim your POA NFT, you must provide accurate and truthful information as requested by the organizers such as your name and working email address.
+2.1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor  by the organizers such as your name and working email address.
 
-2.2. You will receive a unique URL via email, which will direct you to the claim page.
+2.2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
 
-2.3. Click on the provided unique URL to access the claim page.
+2.3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
 
-2.4. On the claim page, you will be prompted to connect your existing digital wallet or 
-create a new wallet using your email address or social media accounts via the preferred 
-digital wallet provider, such as Torus.
+2.4. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
 
-2.5. Follow the instructions provided by the wallet provider to connect or create your wallet.
+2.5. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
 
-2.6. Once your wallet is connected or created successfully, click on the "Claim" button
-on the claim page.
+2.6. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
 
-2.7. Your claim will be processed, and you will receive the POA NFT in your wallet within 
-24 hours if the claim is successful.
+2.7. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
 
-2.8. You understand and acknowledge that the unique URL provided to you is confidential 
-and should not be shared with anyone else.
+2.8. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
   
-2.9. Sharing the unique URL with others may result in unauthorized access to your claim 
-and potential loss of the POA NFT.
+2.9. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
   
-2.10. The organizers and The BLOKC (the “Issuer”) shall not be responsible for any 
-unauthorized access or loss of the POA NFT due to the sharing of the unique URL or due
-to any negligent or willful act of the claimant/participant.
+2.10. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
 -- lib.tc-item-item: Privacy and Data Protection
 number: 2.11
 
-2.11.1  The organizers and the Issuer are committed to protecting your personal 
-information and complying with applicable data privacy laws.
+2.11.1  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
     
-2.11.2  By participating in the claim process and providing your personal data, you 
-consent to the organizers collecting, storing, and processing your personal information
-for the purpose of administering the POA NFT program.
+2.11.2  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
     
-2.11.3  The personal information collected may include your name, email address, 
-wallet address, and any other information necessary for the claim process.
+2.11.3  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-2.11.4  The organizers and the Issuer will use the collected personal information 
-solely for the purpose of verifying your attendance/participation and delivering the 
-POA NFT to your wallet.
+2.11.4  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-2.11.5  The organizers and the Issuer may share your personal information with a 
-third-party service provider responsible for minting and distributing the NFTs, 
-solely for the purpose of fulfilling the third-party's role in the claim process.
+2.11.5  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-2.11.6  The organizers and the Issuer will take reasonable measures to safeguard your 
-personal information against unauthorized access, loss, or disclosure.
+2.11.6  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-2.11.7  Your personal information will be retained only for as long as necessary to 
-fulfill the purposes for which it was collected, unless a longer retention period is 
-required or permitted by law.
+2.11.7  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-2.11.8  The third-party service provider may have its own privacy policies and terms 
-of service that govern the handling of personal information. The organizers recommend 
-reviewing the privacy policies and terms of service of the third-party service provider 
-to understand how they handle and protect your personal information.
+2.11.8  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
 -- lib.tc-item-item: Security
 number: 2.12
 
-2.12.1  It is your responsibility to ensure the security of your digital wallet and 
-the unique URL provided to you.
+2.12.1  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-2.12.2  Keep your wallet credentials, including passwords and recovery phrases, 
-confidential and secure.
+2.12.2  KLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-2.12.3  Do not share your wallet credentials or the unique URL with anyone, as it may 
-lead to unauthorized access to your claim and potential loss of the POA NFT.
+2.12.3  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-2.12.4  The organizers and the Issuer shall not be responsible for any unauthorized 
-access, loss, or misuse of your personal information or the POA NFT due to your 
-failure to maintain the security of your wallet credentials or the unique URL.
+2.12.4  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis..
 
 -- lib.tc-item: Ownership and Usage Rights
 number: (3)
 
-3.1 By claiming the POA NFT, you acknowledge that you are the sole owner of the NFT.
+3.1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-3.2 The POA NFT grants you a limited, non-exclusive, non-transferable, and revocable 
-license to use and display the NFT for personal and non-commercial purposes.
+3.2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-3.3 You agree not to reproduce, modify, distribute, sell, or exploit the POA NFT in 
-any manner without prior written consent from the Issuer.
+3.3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
 -- lib.tc-item: Compliance with Laws
 number: (4)
 
-4.1 You agree to comply with all applicable laws and regulations while participating 
-in the event or activity, as well as when claiming and using the POA NFT.
+4.1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-4.2 You understand that any misuse, unlawful activity, or violation of these terms and 
-conditions may result in the forfeiture of your claim and potential legal consequences.
+4.2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
 -- lib.tc-item: Disclaimer of Warranty
 number: (5)
 
-5.1 The POA NFT is provided on an "as is" basis without any warranties, whether 
-expressed or implied.
+5.1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-5.2 The organizers and the Issuer do not guarantee the accuracy, completeness, or 
-reliability of the information contained in the NFT or the event it represents.
+5.2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
 -- lib.tc-item: Limitation of Liability
 number: (6)
 
-6.1 In no event shall the organizers and the Issuer be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or in connection with the POA NFT or the event it represents.
+6.1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-6.2 The organizers shall not be responsible for any loss, damage, or theft of the POA NFT once it has been claimed and transferred to your digital wallet.
+6.2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
 -- lib.tc-item: Amendments and Termination
 number: (7)
 
-7.1 The organizers and the Issuer reserve the right to modify, amend, or terminate the POA NFT program and these terms and conditions at any time, without prior notice.
+7.1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
-7.2 Any changes made to the terms and conditions will be effective immediately upon posting on the landing page and may also be sent to NFT holder’s email addresses.
+7.2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
 
 -- lib.tc-item: Governing Law and Jurisdiction
@@ -299,7 +315,9 @@ number: (8)
 
 8.1 These terms and conditions shall be governed by and construed in accordance with the laws of the Philippines.
 
-8.2 Any disputes arising out of or in connection with these terms and conditions shall be subject to the exclusive jurisdiction of the courts in the Philippines.
+8.2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
 
 -- end: lib.tc-popup
 
