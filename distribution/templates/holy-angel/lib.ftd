@@ -870,7 +870,7 @@ margin-bottom.px: 40
 
 -- ftd.text: $countdown-with-info.heading
 role: $inherited.types.heading-medium
-css: [ $assets.files.gradient.css ]
+css: [ public-pages/distribution/templates/holy-angel/gradient-1.css ]
 classes: color-2
 margin-bottom.px: 40
 
@@ -991,7 +991,7 @@ opacity: 0.7
 align-self: center
 style: bold
 role: $inherited.types.heading-small
-css: [ $assets.files.gradient.css ]
+css: [ public-pages/distribution/templates/holy-angel/gradient-1.css ]
 classes: color-2
 margin-bottom.px: 12
 
@@ -1037,7 +1037,7 @@ margin-horizontal.percent: 9.3
 src: $image-with-content-desktop.pic
 
 -- ftd.column:
-margin-vertical.px: 50
+align-self: center
 
 -- ftd.text: $image-with-content-desktop.number
 style: bold
@@ -1048,7 +1048,7 @@ opacity: 0.7
 -- ftd.text: $image-with-content-desktop.title
 align-self: center
 role: $inherited.types.heading-medium
-css: [ $assets.files.gradient.css ]
+css: [ public-pages/distribution/templates/holy-angel/gradient-1.css ]
 classes: color-2
 margin-bottom.px: 38
 
