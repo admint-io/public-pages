@@ -2,7 +2,7 @@
 -- import: fastn
 -- import: fastn/processors as pr
 -- import: fifthtry.github.io/color-doc as cd
--- import: admint-io.github.io/distribution_templates/colors as colors
+-- import: public-pages/distribution/templates/distribution_temp1/colors as colors
 -- import: fastn-community.github.io/opensans-typography
 
 -- ftd.column:
@@ -200,11 +200,12 @@ margin-top.px: 40
 width: fill-container
 height.fixed.px:556
 border-radius.px: 30
+
 -- ftd.image: 
 width: fill-container
 height.fixed.px:556
 border-radius.px: 30
-src: images/herogif.gif
+src: distribution/templates/distribution_temp1/images/herogif.gif
 -- end: ftd.row
 ;; end gif
 
@@ -262,7 +263,7 @@ color: $colors.text-
 -- ftd.image:
 width.fixed.px: 298
 height.fixed.px: 528
-src: images/hero2.png
+src: distribution/templates/distribution_temp1/images/hero2.png
 -- end: ftd.column
 -- end: ftd.row
 -- end: ftd.column
@@ -307,7 +308,7 @@ background.solid: $colors.base-
 
 -- ftd.column:
 -- ftd.image: 
-src: images/hero3.png
+src: distribution/templates/distribution_temp1/images/hero3.png
 -- end: ftd.column
 
 -- ftd.column:
@@ -375,13 +376,13 @@ spacing.fixed.px: 20
 
 -- stepcol:
 ;;bg: $colors.base-
-url: images/step1.png
+url: distribution/templates/distribution_temp1/images/step1.png
 -- stepcol:
 ;;bg: #F9D54C
-url: images/step2.png
+url: distribution/templates/distribution_temp1/images/step2.png
 -- stepcol:
 ;;bg: $colors.base-
-url: images/step1.png
+url: distribution/templates/distribution_temp1/images/step1.png
 
 -- end: ftd.row
 
@@ -505,7 +506,7 @@ padding-horizontal.px: 20
 
 -- ftd.row:
 -- ftd.image:
-src: images/clctn.png
+src: distribution/templates/distribution_temp1/images/clctn.png
 -- end: ftd.row
 
 -- ftd.row:

@@ -12,6 +12,8 @@
 -- fastn.dependency: fifthtry.github.io/doc-site
 -- fastn.dependency: fifthtry.github.io/footer
 -- fastn.dependency: fastn-community.github.io/opensans-font
+-- fastn.dependency: fifthtry.github.io/color-doc
+-- fastn.dependency: fastn-community.github.io/opensans-typography
 
 -- fastn.auto-import: public-pages/assets
 
