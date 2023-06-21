@@ -81,11 +81,11 @@ the "View NFT" button to see your token.
 -- lib.about: About Us
 pic: $assets.files.images.people.png
 
-A design approach is a general philosophy that may or may not include a guide for 
-specific methods. A design approach is a general philosophy that may or may not include 
-a guide for specific methods.A design approach is a general philosophy that may or may 
-not include a guide for specific methods.A design approach is a general philosophy 
-that may or may not include a guide for specific methods.
+On the 10th of May, the School of Computing conducted the 2nd Regional Cybersecurity 
+Conference at the Holy Angel University (HAU) Theater. The conference invited various 
+speakers from different industries who shared their experience and knowledge about 
+Cybersecurity. It highlights the importance of digital safeguards empowerment and 
+cybersecurity awareness in the digital age as cyber-attacks are becoming common in society. IT Education Heads, Faculty, Students, IT Professionals, and Cybersecurity enthusiasts from different schools and companies attended the event.
 
 -- lib.container-with-title: FAQs
 $id: faq
