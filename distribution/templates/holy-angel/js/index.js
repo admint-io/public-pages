@@ -115,7 +115,7 @@ window.readUrlParams = async function readUrlParams() {
     var urlParams = new URLSearchParams(window.location.search);
     inviteId = urlParams.get("invite_id");
     domainName = urlParams.get("cname");
-    const nftType = urlParams.get("type");
+    nftType = urlParams.get("type");
     var nftTypeDisp;
 
     if(nftType){
