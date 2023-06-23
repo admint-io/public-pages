@@ -6,6 +6,7 @@
 
 -- string $loadedState: loading
 
+-- ftd.text: $loadedState
 
 -- lib.window-popup:
 pic: $images.popup-image
