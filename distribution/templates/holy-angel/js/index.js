@@ -663,7 +663,7 @@ window.navigateToComponent = async function navigateToComponent(elementId) {
   const element = document.getElementById(`${elementId}${config.FTD_ID_APPEND_STRING}`);
   element.scrollIntoView({
     behavior: "smooth",
-    block: "end",
+    block: "start",
     inline: "nearest",
   });
 };
