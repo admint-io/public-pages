@@ -29,7 +29,7 @@ This POAP or Proof of Attendance Protocol is a non-fungible token that proves yo
 participated in the 2nd Regional Cybersecurity Conference conducted by The School of 
 Computing, Holy Angel University on 10th May 2023. 
 
--- lib.countdown-with-info: 2nd Regional cybersecurity conference
+-- lib.countdown-with-info: 2nd Regional Cybersecurity Conference
 pic: $assets.files.images.polygon.png
 heading: 10 | May | 2023
 icon: $assets.files.images.location_on.png
