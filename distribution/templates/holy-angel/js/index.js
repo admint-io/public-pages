@@ -115,12 +115,16 @@ window.readUrlParams = async function readUrlParams() {
     var urlParams = new URLSearchParams(window.location.search);
     inviteId = urlParams.get("invite_id");
     domainName = urlParams.get("cname");
-    const nftTypeRaw = urlParams.get("type");
+    const nftType = urlParams.get("type");
+    var nftTypeDisp;
 
-    console.log("nfttttt ",nftTypeRaw)
-    if(nftTypeRaw){
-      nftType=nftTypeRaw.charAt(0).toUpperCase() + nftTypeRaw.slice(1);
+    if(nftType){
+      nftTypeDisp=nftType.charAt(0).toUpperCase() + nftType.slice(1);     
     }   
+    window.ftd.set_value(
+      `${config.FTD_TEMPLATE_BASE_URL}/texts#nft-type`,
+      nftTypeDisp
+    );
 
     console.log("invite id is ", inviteId);
     console.log("cname is ", domainName);
@@ -129,10 +133,7 @@ window.readUrlParams = async function readUrlParams() {
     //domainName = cName;
     inviteCode = inviteId;
 
-    window.ftd.set_value(
-      `${config.FTD_TEMPLATE_BASE_URL}/texts#nft-type`,
-      nftType
-    );
+    
 
     fetchUiComponents(domainName, nftType)
       .then((result) => {
