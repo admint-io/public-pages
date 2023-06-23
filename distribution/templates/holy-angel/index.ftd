@@ -4,9 +4,9 @@
 -- import: public-pages/distribution/templates/holy-angel/texts as texts
 -- import: public-pages/distribution/templates/holy-angel/functions as funct
 
--- string $loadedState: loaded
+-- string $loadedState: loading
 
--- ftd.text: $loadedState
+;;-- ftd.text: $loadedState
 
 -- lib.window-popup:
 pic: $images.popup-image
