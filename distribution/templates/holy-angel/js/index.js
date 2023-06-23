@@ -115,7 +115,12 @@ window.readUrlParams = async function readUrlParams() {
     var urlParams = new URLSearchParams(window.location.search);
     inviteId = urlParams.get("invite_id");
     domainName = urlParams.get("cname");
-    nftType = urlParams.get("type");
+    const nftTypeRaw = urlParams.get("type");
+
+    console.log("nfttttt ",nftTypeRaw)
+    if(nftTypeRaw){
+      nftType=nftTypeRaw.charAt(0).toUpperCase() + nftTypeRaw.slice(1);
+    }   
 
     console.log("invite id is ", inviteId);
     console.log("cname is ", domainName);
