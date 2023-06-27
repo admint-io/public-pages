@@ -85,6 +85,7 @@ height.fixed.px: 33
 ;;background.solid: yellow
 margin-left.px: 40
 padding-vertical.px: 40
+
 -- ftd.text: LOGO
 text-align: center
 color: $colors.text-
@@ -102,6 +103,7 @@ align-self: center
 width.fixed.px: 368
 height.fixed.px: 30
 ;;background.solid: yellow
+
 -- ftd.row:
 width.fixed.px: 368
 height.fixed.px: 30
@@ -114,6 +116,7 @@ spacing.fixed.px: 32
 -- navlink:
 
 -- end: ftd.row
+
 -- end: ftd.column
 
 -- end: ftd.row
