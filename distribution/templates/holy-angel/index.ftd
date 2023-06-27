@@ -6,6 +6,7 @@
 
 -- string $loadedState: loading
 
+;;-- ftd.text: $loadedState
 
 -- lib.window-popup:
 pic: $images.popup-image
@@ -29,17 +30,17 @@ resilient future - Be Secured, Stay Secured!"
 -- lib.image-with-button: CYBERSECURITY  CONFERENCE  TOKEN
 pic: $images.nft-image-url
 text-1: **Blockchain** : 
-text-2: **POAP Type** : 
+text-2: **POA Type** : 
 val-1: Polygon
 val-2: $texts.nft-type
 button-1: Claim Now
 button-2: View NFT
 
-This POAP or Proof of Attendance Protocol is a non-fungible token that proves you 
+This POA or Proof of Attendance is a non-fungible token that proves you 
 participated in the 2nd Regional Cybersecurity Conference conducted by The School of 
 Computing, Holy Angel University on 10th May 2023. 
 
--- lib.countdown-with-info: 2nd Regional cybersecurity conference
+-- lib.countdown-with-info: 2nd Regional Cybersecurity Conference
 pic: $assets.files.images.conf.png
 heading: 10 | May | 2023
 icon: $assets.files.images.location_on.png
@@ -48,63 +49,67 @@ counter: 12 days : 16 hr : 30 min
 reminder: Time Left to claim NFT
 
 -- lib.container-with-title: How to Claim
+$id: howtoclaim
 
 -- lib.image-with-content: Connect your wallet
 pic: $assets.files.images.connect.png
 number: 01
 
-Design your drop of 1-5 NFTs and send us your artwork. We get that you're creative, so 
-take note: Sweet supports image, audio and video media assets. Make your NFT drop 
-interesting, engaging and fun.
+You need a crypto browser wallet to access your token. In case you do not have a wallet, 
+you can quickly set one up using the Torus wallet option. You can sign up to Torus with 
+your existing email / social media accounts. 
+
 
 -- lib.image-with-content: Claim NFT
 pic: $assets.files.images.claim.png
 number: 02
 
-Design your drop of 1-5 NFTs and send us your artwork. We get that you're creative, so 
-take note: Sweet supports image, audio and video media assets. Make your NFT drop 
-interesting, engaging and fun.
+To claim your token, connect your wallet and simply click on the "Claim Now" button. You 
+will be notified in case of a successful claim or otherwise. Do note that you can only 
+claim your token once. 
+
 
 -- lib.image-with-content: View NFT
 pic: $assets.files.images.view.png
 number: 03
 
-Design your drop of 1-5 NFTs and send us your artwork. We get that you're creative, so 
-take note: Sweet supports image, audio and video media assets. Make your NFT drop 
-interesting, engaging and fun.
+Once you have claimed your token, it will be transferred to your wallet over the next 24 
+hours. Connect again with the same wallet id you used to claim. Scroll down and click on 
+the "View NFT" button to see your token.
 
 -- end: lib.container-with-title
 
 -- lib.about: About Us
 pic: $assets.files.images.people.png
 
-A design approach is a general philosophy that may or may not include a guide for 
-specific methods. A design approach is a general philosophy that may or may not include 
-a guide for specific methods.A design approach is a general philosophy that may or may 
-not include a guide for specific methods.A design approach is a general philosophy 
-that may or may not include a guide for specific methods.
+On the 10th of May, the School of Computing conducted the 2nd Regional Cybersecurity 
+Conference at the Holy Angel University (HAU) Theater. The conference invited various 
+speakers from different industries who shared their experience and knowledge about 
+Cybersecurity. It highlights the importance of digital safeguards empowerment and 
+cybersecurity awareness in the digital age as cyber-attacks are becoming common in society. IT Education Heads, Faculty, Students, IT Professionals, and Cybersecurity enthusiasts from different schools and companies attended the event.
 
 -- lib.container-with-title: FAQs
+$id: faq
 
--- lib.faq: What is a POAP token?
+-- lib.faq: What is a POA token?
 
-A POAP token, or Proof of Attendance Protocol token, is a non-fungible token (NFT) that is 
-given to users as a way to prove that they attended a certain event. POAP tokens are 
+A POA token, or Proof of Attendance token, is a non-fungible token (NFT) that is 
+given to users as a way to prove that they attended a certain event. POA tokens are 
 minted on a blockchain and are stored in users' wallets. They can be displayed on social 
 media or used to prove attendance for future events.
 
--- lib.faq: How do I claim the POAP token?
+-- lib.faq: How do I claim the POA token?
 
 To claim the token, you need to connect to the website using a crypto browser wallet - 
 Metamask or Torus. After logging in simply claim and approve the transaction. Once done, 
-the organizers will be able to send the POAP NFT to you. The NFT should reflect in your 
+the organizers will be able to send the POA NFT to you. The NFT should reflect in your 
 wallet within 24 hours.
 
 -- lib.faq: I don’t have a crypto wallet. How do I claim my token?
 
 You can select the login with the Torus wallet option. Once selected you can simply login 
 with any of your existing social accounts, and a wallet will be created for you. You can 
-then proceed to claim the POAP NFT.
+then proceed to claim the POA NFT.
 
 -- lib.faq: How do I get a Metamask wallet?
 
@@ -122,9 +127,8 @@ Your assigned NFT can be claimed only once. Hence it is very important that you 
 share your unique URL with others as they could claim it on your behalf.
 
 -- lib.faq: Which blockchain are these tokens minted on?
-$id: faq
 
-The POAP token issued to you has been minted over the Polygon network.
+The POA token issued to you has been minted over the Polygon network.
 
 -- lib.faq: Do I have to pay to claim this NFT?
 
@@ -137,7 +141,7 @@ another wallet.
 After claiming the token successfully, the NFT will be sent into your wallet within the 
 next 24 hours.
 
--- lib.faq: How can I use this POAP token in the future?
+-- lib.faq: How can I use this POA token in the future?
 
 Currently there are no utilities associated with the token. However we may choose to give 
 NFT holders special privileges for future events & meetups.
@@ -145,7 +149,7 @@ NFT holders special privileges for future events & meetups.
 -- lib.faq: Who do I get in touch with in case of any issues?
 
 You can write in to the following email id: team@theblokc.com for any assistance related 
-to getting the POAP tokens. 
+to getting the POA tokens. 
 
 -- end: lib.container-with-title
 
