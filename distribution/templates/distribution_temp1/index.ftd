@@ -5,7 +5,10 @@
 -- import: public-pages/distribution/templates/distribution_temp1/colors as colors
 -- import: fastn-community.github.io/opensans-typography
 
+-- boolean $is-checked: true
+
 -- ftd.column:
+width.fixed.vw: 100
 background.solid: $colors.base-
 types: $opensans-typography.types
 
@@ -16,7 +19,10 @@ types: $opensans-typography.types
 -- navbar:
 ;; end navbar
 
+
+
 -- cta-1:
+if: {is-checked}
 
 ;; hero-1
 -- hero-1:
@@ -147,12 +153,19 @@ height.fixed.px: 68
 background.solid: $colors.cta-primary-base-
 -- ftd.column:
 align-content: center
-width.fixed.px: 488
+width.fixed.vw: 75
 height.fixed.px: 30
 -- ftd.text: Lorem ipsum dolor sit amet consectetur adipiscin.
 color: $colors.cta-primary-text-
 role: $inherited.types.button-large
 -- end: ftd.column
+
+
+-- ftd.text: x
+margin-right.px: 10
+$on-click$: $ftd.set-bool($a = $is-checked, v = false)
+role: $inherited.types.button-large
+color: $colors.cta-primary-text-
 
 
 
@@ -254,7 +267,6 @@ padding-vertical.px: 100
 -- ftd.column:
 width.fixed.px: 404
 height.fixed.px: 865
-;;background.solid: red
 -- ftd.row:
 width.fixed.px: 404
 height.fixed.px: 208
@@ -302,8 +314,8 @@ h2: Mint Upto
 
 -- component hero-3:
 -- ftd.row:
+padding-horizontal.px: 130
 margin-top.px: 150
-margin-horizontal.px: 100
 width.fixed.vw: 100
 height.fixed.px: 680
 spacing.fixed.px: 192
@@ -315,7 +327,7 @@ src: distribution/templates/distribution_temp1/images/hero3.png
 -- end: ftd.column
 
 -- ftd.column:
-width.fixed.px: 512
+width: fill-container
 height.fixed.px: 361
 margin-vertical.px: 160
 spacing.fixed.px: 38
@@ -329,6 +341,7 @@ color: $colors.text-
 -- end: ftd.row
 
 -- ftd.row:
+width: fill-container
 -- ftd.column:
 -- ftd.text: The Collection includes work by 73 incredible artists from six different continents across five artistic mediums. Each artist was asked to interpret the messages of The Seven Spiritual Laws of Success into a unique book cover, capturing what is described as “a connection between the power of art and the power and potential of human beings.”
 role: $inherited.types.copy-regular
@@ -542,10 +555,14 @@ color: $colors.text-
 
 
 -- component walletform:
+-- ftd.column:
+width.fixed.vw: 100
+align-content: center
+
 -- ftd.row:
 margin-top.px: 150
 margin-horizontal.px: 40
-width.fixed.px: 1360
+width.fixed.vw: 75
 height.fixed.px: 424
 background.solid: $colors.cta-primary-base-
 border-radius.px: 20
@@ -555,6 +572,7 @@ align-content: center
 padding-vertical.px: 100
 padding-horizontal.px: 168
 align-content: top-center
+
 
 -- ftd.row:
 -- ftd.text: To Participate, drop your Wallet ID here
@@ -603,6 +621,7 @@ role: $inherited.types.blockquote
 -- end: ftd.column
 
 -- end: ftd.row
+-- end: ftd.column
 -- end: walletform
 
 -- component faqtabs:
@@ -666,7 +685,7 @@ t1: How do I get on the allow list for this collection?
 
 -- component footer:
 -- ftd.row:
-width: fill-container
+width.fixed.vw: 100
 height.fixed.px: 300
 background.solid: $colors.cta-primary-base-
 padding-vertical.px: 64
@@ -677,20 +696,24 @@ width: fill-container
 height.fixed.px: 112
 
 
+
 -- ftd.row:
 align-content: center
 padding-left.px: 15
 spacing.fixed.px: 40
 -- ftd.text: Logo
 role: $inherited.types.heading-small
+
 -- ftd.text: Stay in touch with everything you need
 role: $inherited.types.label-large
 color: $colors.cta-primary-text-
 -- end: ftd.row
 
+
+
 -- ftd.row:
-margin-top.px: 28
-height.fixed.px: 1
+margin-top.px: 8
+height.fixed.px: 2
 width: fill-container
 background.solid: black
 -- end: ftd.row
@@ -701,14 +724,29 @@ padding-horizontal.px: 15
 height.fixed.px: 26
 spacing.fixed.px: 714
 align-content: center
+
 -- ftd.text: Copyright ©2022. Fastn Inc. 
 role: $inherited.types.label-large
 color: $colors.cta-primary-text-
+
 -- ftd.column:
 width.fixed.px: 216
 height.fixed.px: 24
-background.solid: green
+-- ftd.row:
+spacing.fixed.px: 24
+
+-- ftd.image: 
+src: distribution/templates/distribution_temp1/images/FB.png
+
+-- ftd.image: 
+src: distribution/templates/distribution_temp1/images/FIGMA.png
+
+-- ftd.image: 
+src: distribution/templates/distribution_temp1/images/google.png
+
+-- end: ftd.row
 -- end: ftd.column
+
 -- end: ftd.row
 
 -- end: ftd.column
