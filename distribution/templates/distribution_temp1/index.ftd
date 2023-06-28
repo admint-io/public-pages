@@ -393,12 +393,15 @@ spacing.fixed.px: 20
 -- stepcol:
 ;;bg: $colors.base-
 url: distribution/templates/distribution_temp1/images/step1.png
+num: distribution/templates/distribution_temp1/images/one.png
 -- stepcol:
 ;;bg: #F9D54C
 url: distribution/templates/distribution_temp1/images/step2.png
+num: distribution/templates/distribution_temp1/images/two.png
 -- stepcol:
 ;;bg: $colors.base-
 url: distribution/templates/distribution_temp1/images/step1.png
+num: distribution/templates/distribution_temp1/images/one.png
 
 -- end: ftd.row
 
@@ -409,6 +412,7 @@ url: distribution/templates/distribution_temp1/images/step1.png
 
 
 -- component stepcol:
+caption num:
 caption url:
 ;;caption bg:
 -- ftd.column:
@@ -436,6 +440,13 @@ role: $inherited.types.copy-regular
 color: $colors.text-
 -- end: ftd.row
 
+-- ftd.row:
+align-content: right
+width: fill-container
+-- ftd.image:
+src:$stepcol.num
+-- end: ftd.row
+
 -- end: ftd.column
 -- end: stepcol
 
@@ -457,6 +468,7 @@ margin-horizontal.px: 150
 align-content: top-center
 
 -- ftd.row:
+align-content: center
 width.fixed.px: 534
 height.fixed.px: 65
 -- ftd.text: The Seven Collection
@@ -514,7 +526,10 @@ width.fixed.px: 270
 height.fixed.px: 372
 background.solid: $colors.step-1-
 border-radius.px: 20
-border-width.px: 4
+border-right-width.px: 1
+border-top-width.px: 1
+border-left-width.px: 4
+border-bottom-width.px: 4
 border-color: $colors.cta-primary-base-
 align-content: top-center
 padding-top.px: 20
@@ -576,7 +591,7 @@ align-content: top-center
 
 -- ftd.row:
 -- ftd.text: To Participate, drop your Wallet ID here
-role: $inherited.types.heading-medium
+role: $inherited.types.heading-large
 color: $colors.cta-primary-text-
 -- end: ftd.row
 
@@ -639,9 +654,14 @@ border-left-width.px: 1
 background.solid: $colors.base-
 align-content: left
 padding-left.px: 20
+-- ftd.column:
+width.fixed.px: 665
 -- ftd.text: $faqtabs.t1
 role: $inherited.types.heading-small
 color: $colors.text-
+-- end: ftd.column
+-- ftd.image:
+src: distribution/templates/distribution_temp1/images/downarrow.png
 -- end: ftd.row
 -- end: faqtabs
 
