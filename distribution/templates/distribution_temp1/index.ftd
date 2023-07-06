@@ -1,0 +1,716 @@
+-- import: fifthtry.github.io/color-doc/color-ui as cu
+-- import: fastn
+-- import: fastn/processors as pr
+-- import: fifthtry.github.io/color-doc as cd
+-- import: public-pages/distribution/templates/distribution_temp1/colors as colors
+-- import: fastn-community.github.io/opensans-typography
+
+-- ftd.column:
+background.solid: $colors.base-
+types: $opensans-typography.types
+
+
+
+
+;; navbar 
+-- navbar:
+;; end navbar
+
+-- cta-1:
+
+;; hero-1
+-- hero-1:
+;; end hero-1
+
+;; hero-2
+-- hero-2:
+;; end hero-2
+
+
+;; hero-3
+-- hero-3:
+;; end hero-3
+
+
+;;steps
+-- steps-sectn:
+;; steps ends
+
+
+;; collection section
+-- collection:
+;; collection ends
+
+
+;; entry form
+-- walletform:
+;; entry form ends
+
+;; faq section
+-- faq:
+;; faq ends
+
+;; footer Starts
+-- footer:
+;; footer ends
+
+
+
+-- end: ftd.column
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+-- component navbar:
+-- ftd.row:
+width.fixed.vw.px: 100
+height.fixed.px: 112
+background.solid: $colors.base-
+
+
+-- ftd.column:
+align-content: center
+width.fixed.px: 77
+height.fixed.px: 33
+;;background.solid: yellow
+margin-left.px: 40
+padding-vertical.px: 40
+
+-- ftd.text: LOGO
+text-align: center
+color: $colors.text-
+role: $inherited.types.heading-small
+-- end: ftd.column
+
+-- ftd.column:
+width.fixed.px: 875
+-- end: ftd.column
+
+
+-- ftd.column:
+margin-right.px: 80
+align-self: center
+width.fixed.px: 368
+height.fixed.px: 30
+;;background.solid: yellow
+
+-- ftd.row:
+width.fixed.px: 368
+height.fixed.px: 30
+spacing.fixed.px: 32
+
+-- navlink:
+-- navlink:
+-- navlink:
+-- navlink:
+-- navlink:
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: ftd.row
+-- end: navbar
+
+
+
+
+
+-- component navlink:
+-- ftd.column:
+height: fill-container
+align-content: center
+-- ftd.text: Label
+color: $colors.text-
+text-align: center
+role: $inherited.types.button-large
+-- end: ftd.column
+-- end: navlink
+
+
+
+-- component cta-1:
+-- ftd.row:
+align-content: center
+width.fixed.vw.px: 100
+height.fixed.px: 68
+background.solid: $colors.cta-primary-base-
+-- ftd.column:
+align-content: center
+width.fixed.px: 488
+height.fixed.px: 30
+-- ftd.text: Lorem ipsum dolor sit amet consectetur adipiscin.
+color: $colors.cta-primary-text-
+role: $inherited.types.button-large
+-- end: ftd.column
+
+
+
+-- end: ftd.row
+-- end: cta-1
+
+
+
+-- component hero-1:
+-- ftd.row:
+padding-top.px: 100
+align-content: center
+width.fixed.vw.px: 100
+height.fixed.px: 772
+background.solid: $colors.base-
+
+-- ftd.column:
+align-content: top-center
+width.fixed.px: 993 
+height: fill-container
+background.solid: $colors.base-
+
+-- ftd.row:
+-- ftd.text: The Seven Collection
+color: $colors.text-
+role: $inherited.types.heading-hero
+-- end: ftd.row
+
+-- ftd.row:
+width.fixed.px: 688
+-- ftd.text: In Partnership with Seva.Love and Artifex, the NFT Edition positions Chopra's timeless wisdom in a new light, in time for the 25th Anniversary of Chopra’s Bestseller, The Seven Spiritual Laws of Success.
+text-align: center
+color: $colors.text-
+role: $inherited.types.copy-regular
+-- end: ftd.row
+
+-- ftd.row:
+width.fixed.px: 688
+-- ftd.text: The mint for TIMEPieces x Deepak Chopra: The Seven Collection is now closed as of January 22, 2023.
+text-align: center
+color: $colors.text-
+role: $inherited.types.copy-regular
+-- end: ftd.row
+
+;; gif section
+-- ftd.row:
+margin-top.px: 40
+width: fill-container
+height.fixed.px:556
+border-radius.px: 30
+
+-- ftd.image: 
+width: fill-container
+height.fixed.px:556
+border-radius.px: 30
+src: distribution/templates/distribution_temp1/images/herogif.gif
+-- end: ftd.row
+;; end gif
+
+-- end: ftd.column
+
+-- end: ftd.row
+-- end: hero-1
+
+
+-- component timer:
+caption h1:
+caption h2:
+-- ftd.row:
+width.fixed.px: 180
+height.fixed.px: 107
+;;background.solid: white
+align-content: center
+-- ftd.column:
+align-content: center
+-- ftd.text: $timer.h1
+role: $inherited.types.heading-large
+color: $colors.cta-primary-text-
+white-space: nowrap
+-- ftd.text: $timer.h2
+role: $inherited.types.copy-regular
+color: $colors.cta-primary-text-
+text-align: center
+-- end: ftd.column
+-- end: ftd.row
+-- end: timer
+
+-- component hero-2:
+-- ftd.row:
+align-content: top-center
+margin-top.px: 150
+width.fixed.vw.px: 100
+height.fixed.px: 1206
+background.solid: $colors.step-1-
+spacing.fixed.px: 170
+padding-vertical.px: 100
+
+;; colmn 1
+-- ftd.column:
+width.fixed.px: 404
+height.fixed.px: 865
+;;background.solid: red
+-- ftd.row:
+width.fixed.px: 404
+height.fixed.px: 208
+;;background.solid: green
+-- ftd.column:
+-- ftd.text: About the Drop
+role: $inherited.types.heading-hero
+color: $colors.text-
+-- ftd.image:
+width.fixed.px: 298
+height.fixed.px: 528
+src: distribution/templates/distribution_temp1/images/hero2.png
+-- end: ftd.column
+-- end: ftd.row
+-- end: ftd.column
+;; colmn 1 end
+
+-- ftd.column:
+border-radius.px: 30
+width.fixed.px: 610
+height.fixed.px: 1000
+background.solid: $colors.cta-primary-base-
+padding-vertical.px: 100
+align-content: top-center
+spacing.fixed.px: 126
+-- timer:
+h1: 19 Jan
+h2: Mint Starts
+-- timer:
+h1: 22 Jan
+h2: Mint Ends
+-- timer:
+h1: 0.077 ETH
+h2: Mint Costs
+-- timer:
+h1: 3 Pieces
+h2: Mint Upto
+-- end: ftd.column
+
+
+
+-- end: ftd.row
+-- end: hero-2
+
+
+-- component hero-3:
+-- ftd.row:
+margin-top.px: 150
+margin-horizontal.px: 100
+width.fixed.vw: 100
+height.fixed.px: 680
+spacing.fixed.px: 192
+background.solid: $colors.base-
+
+-- ftd.column:
+-- ftd.image: 
+src: distribution/templates/distribution_temp1/images/hero3.png
+-- end: ftd.column
+
+-- ftd.column:
+width.fixed.px: 512
+height.fixed.px: 361
+margin-vertical.px: 160
+spacing.fixed.px: 38
+
+-- ftd.row:
+width: fill-container
+height.fixed.px: 65
+-- ftd.text: What is Admint
+role: $inherited.types.heading-large
+color: $colors.text-
+-- end: ftd.row
+
+-- ftd.row:
+-- ftd.column:
+-- ftd.text: The Collection includes work by 73 incredible artists from six different continents across five artistic mediums. Each artist was asked to interpret the messages of The Seven Spiritual Laws of Success into a unique book cover, capturing what is described as “a connection between the power of art and the power and potential of human beings.”
+role: $inherited.types.copy-regular
+color: $colors.text-
+-- ftd.text: The Collection includes work by 73 incredible artists from six different continents across five artistic mediums.
+role: $inherited.types.copy-regular
+color: $colors.text-
+-- end: ftd.column
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: ftd.row
+
+-- end: hero-3
+
+
+-- component steps-sectn:
+-- ftd.row:
+width.fixed.vw: 100
+height.fixed.px: 1005
+margin-top.px: 150
+background.solid: $colors.base-
+align-content: center
+
+-- ftd.column:
+width: fill-container
+margin-top.px: 200
+margin-horizontal.px: 130
+margin-bottom.px: 60
+background.solid: $colors.base-
+align-content: top-center
+
+-- ftd.row:
+align-content: center
+width.fixed.px: 470
+height.fixed.px: 60
+-- ftd.text: How to Participate
+role: $inherited.types.heading-large
+color: $colors.text-
+-- end: ftd.row
+
+-- ftd.row:
+margin-top.px: 60
+width: fill-container
+background.solid: $colors.base-
+spacing.fixed.px: 20
+
+-- stepcol:
+;;bg: $colors.base-
+url: distribution/templates/distribution_temp1/images/step1.png
+-- stepcol:
+;;bg: #F9D54C
+url: distribution/templates/distribution_temp1/images/step2.png
+-- stepcol:
+;;bg: $colors.base-
+url: distribution/templates/distribution_temp1/images/step1.png
+
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: ftd.row
+-- end: steps-sectn
+
+
+-- component stepcol:
+caption url:
+;;caption bg:
+-- ftd.column:
+align-content: top-center
+width.fixed.px: 380
+height.fixed.px: 620
+border-radius.px: 20
+border-width.px: 4
+border-color: $colors.cta-primary-base-
+background.solid: $colors.base-
+padding-top.px: 30
+margin-horizontal.px: 18
+
+-- ftd.row:
+border-radius.px: 20
+-- ftd.image:
+src: $stepcol.url
+-- end: ftd.row
+
+-- ftd.row:
+padding-top.px: 36
+padding-horizontal.px: 18
+-- ftd.text: Members earn 1 point for every $1 spent. Once you accrue 150, 250 or 350 points, you are eligible to redeem points for a product with any purchase.
+role: $inherited.types.copy-regular
+color: $colors.text-
+-- end: ftd.row
+
+-- end: ftd.column
+-- end: stepcol
+
+
+
+-- component collection:
+-- ftd.row:
+margin-top.px: 150
+width.fixed.vw: 100
+height.fixed.px: 1111
+align-content: center
+background.solid: $colors.base-
+
+-- ftd.column:
+margin-vertical.px: 56
+width: fill-container
+height.fixed.px: 1000
+margin-horizontal.px: 150
+align-content: top-center
+
+-- ftd.row:
+width.fixed.px: 534
+height.fixed.px: 65
+-- ftd.text: The Seven Collection
+role: $inherited.types.heading-large
+color: $colors.text-
+-- end: ftd.row
+
+-- ftd.row:
+margin-top.px: 20
+width.fixed.px: 920
+height.fixed.px: 90
+-- ftd.text: The Collection includes work by 73 incredible artists from six different continents across five artistic mediums. Each artist was asked to interpret the messages of The Seven Spiritual Laws of Success into a unique book cover, capturing what is described as “a connection between the power of art and the power and potential of human beings.”
+role: $inherited.types.copy-regular
+text-align: center
+color: $colors.text-
+-- end: ftd.row
+
+-- ftd.row:
+width: fill-container
+height.fixed.px: 372
+background.solid: $colors.base-
+margin-top.px: 60
+padding-horizontal.px: 150
+spacing.fixed.px: 30
+-- collectioncol:
+-- collectioncol:
+-- collectioncol:
+-- collectioncol:
+-- end: ftd.row
+
+
+-- ftd.row:
+width: fill-container
+height.fixed.px: 372
+background.solid: $colors.base-
+margin-top.px: 20
+padding-horizontal.px: 150
+spacing.fixed.px: 30
+-- collectioncol:
+-- collectioncol:
+-- collectioncol:
+-- collectioncol:
+-- end: ftd.row
+
+
+-- end: ftd.column
+
+-- end: ftd.row
+-- end: collection
+
+
+-- component collectioncol:
+-- ftd.column:
+width.fixed.px: 270
+height.fixed.px: 372
+background.solid: $colors.step-1-
+border-radius.px: 20
+border-width.px: 4
+border-color: $colors.cta-primary-base-
+align-content: top-center
+padding-top.px: 20
+padding-horizontal.px: 20
+
+-- ftd.row:
+-- ftd.image:
+src: distribution/templates/distribution_temp1/images/clctn.png
+-- end: ftd.row
+
+-- ftd.row:
+margin-top.px: 17
+width.fixed.px: 240
+align-content: left
+-- ftd.text: NFT name
+role: $inherited.types.heading-tiny
+color: $colors.cta-primary-base-
+-- end: ftd.row
+
+
+-- ftd.row:
+margin-top.px: 16
+width.fixed.px: 240
+height.fixed.px: 30
+spacing.fixed.px: 115
+-- ftd.text: Price
+role: $inherited.types.copy-regular
+color: $colors.text-
+-- ftd.text: 0.077 ETH
+white-space: nowrap
+role: $inherited.types.copy-regular
+color: $colors.text-
+-- end: ftd.row
+
+-- end: ftd.column
+
+-- end: collectioncol
+
+
+-- component walletform:
+-- ftd.row:
+margin-top.px: 150
+margin-horizontal.px: 40
+width.fixed.px: 1360
+height.fixed.px: 424
+background.solid: $colors.cta-primary-base-
+border-radius.px: 20
+align-content: center
+
+-- ftd.column:
+padding-vertical.px: 100
+padding-horizontal.px: 168
+align-content: top-center
+
+-- ftd.row:
+-- ftd.text: To Participate, drop your Wallet ID here
+role: $inherited.types.heading-medium
+color: $colors.cta-primary-text-
+-- end: ftd.row
+
+-- ftd.row:
+margin-top.px: 18
+width: fill-container
+height.fixed.px: 60
+-- ftd.text:  The Collection includes work by 73 incredible artists from six different continents across five artistic mediums. Each artist was asked to interpret the messages of The Seven Spiritual Laws of Success into a unique book cover, 
+role: $inherited.types.copy-regular
+color: $colors.cta-primary-text-
+text-align: center
+-- end: ftd.row
+
+-- ftd.row:
+margin-top.px: 32
+width.fixed.px: 850
+height.fixed.px: 57
+-- ftd.text-input: 
+width.fixed.px: 626
+height: fill-container
+border-radius.px: 56
+background.solid: $colors.base-
+placeholder: Enter your wallet ID
+role: $inherited.types.blockquote
+color: $colors.text-
+padding-left.px: 40
+-- ftd.column:
+align-content: center
+margin-left.px: 28
+width.fixed.px: 196
+height: fill-container
+border-radius.px: 56
+background.solid: $colors.cta-tertiary-base-
+-- ftd.text: Connect Now!
+color: $colors.text-
+role: $inherited.types.blockquote
+-- end: ftd.column
+-- end: ftd.row
+
+
+
+-- end: ftd.column
+
+-- end: ftd.row
+-- end: walletform
+
+-- component faqtabs:
+caption t1:
+-- ftd.row:
+margin-top.px: 60
+width.fixed.px: 730
+height.fixed.px: 134
+border-radius.px: 10
+border-color: $colors.cta-primary-base-
+border-bottom-width.px: 6
+border-top-width.px: 1
+border-right-width.px: 1
+border-left-width.px: 1
+background.solid: $colors.base-
+align-content: left
+padding-left.px: 20
+-- ftd.text: $faqtabs.t1
+role: $inherited.types.heading-small
+color: $colors.text-
+-- end: ftd.row
+-- end: faqtabs
+
+-- component faq:
+-- ftd.row:
+margin-top.px: 150
+width.fixed.vw: 100
+height.fixed.px: 1087
+background.solid: $colors.step-1-
+align-content: center
+padding-vertical.px: 66
+padding-horizontal.px: 355
+
+-- ftd.column:
+width: fill-container
+height.fixed.px: 955
+background.solid: $colors.step-1-
+align-content: top-center
+
+-- ftd.text: FAQ
+role: $inherited.types.heading-large
+color: $colors.text-
+
+-- faqtabs:
+t1: How do I get on the allow list for this collection?
+-- faqtabs:
+t1: How do I get on the allow list for this collection?
+-- faqtabs:
+t1: How do I get on the allow list for this collection?
+-- faqtabs:
+t1: How do I get on the allow list for this collection?
+-- faqtabs:
+t1: How do I get on the allow list for this collection?
+
+
+-- end: ftd.column
+
+-- end: ftd.row
+-- end: faq
+
+
+-- component footer:
+-- ftd.row:
+width: fill-container
+height.fixed.px: 300
+background.solid: $colors.cta-primary-base-
+padding-vertical.px: 64
+padding-horizontal.px: 131
+align-content: center
+-- ftd.column:
+width: fill-container
+height.fixed.px: 112
+
+
+-- ftd.row:
+align-content: center
+padding-left.px: 15
+spacing.fixed.px: 40
+-- ftd.text: Logo
+role: $inherited.types.heading-small
+-- ftd.text: Stay in touch with everything you need
+role: $inherited.types.label-large
+color: $colors.cta-primary-text-
+-- end: ftd.row
+
+-- ftd.row:
+margin-top.px: 28
+height.fixed.px: 1
+width: fill-container
+background.solid: black
+-- end: ftd.row
+
+-- ftd.row:
+margin-top.px: 25
+padding-horizontal.px: 15
+height.fixed.px: 26
+spacing.fixed.px: 714
+align-content: center
+-- ftd.text: Copyright ©2022. Fastn Inc. 
+role: $inherited.types.label-large
+color: $colors.cta-primary-text-
+-- ftd.column:
+width.fixed.px: 216
+height.fixed.px: 24
+background.solid: green
+-- end: ftd.column
+-- end: ftd.row
+
+-- end: ftd.column
+-- end: ftd.row
+-- end: footer
