@@ -1,0 +1,524 @@
+-- import: public-pages/assets
+-- import: public-pages/lib
+-- import: public-pages/common/fonts
+
+-- integer $current-active: 1
+-- boolean $show-waitlist-popup: false
+-- integer $current-cell: 1
+
+-- lib.page: AdMint - Deliver refreshing Web 3.0 campaigns!
+$show-signup: $show-waitlist-popup
+
+-- lib.join-waitlist-popup:
+name-label: Name
+identity-label: Who are you?
+org-label: Organization Name
+email-label: Email id
+cta-text: Join waitlist
+$visible: $show-waitlist-popup
+
+-- lib.join-waitlist-popup.title:
+
+-- ftd.container:
+
+-- ftd.text: Join the
+role: $fonts.nunito-40
+color: $inherited.colors.text
+region: h1
+display: inline
+
+-- ftd.text: waitlist
+role: $fonts.nunito-40
+color: $inherited.colors.cta-primary.base
+region: h1
+display: inline
+margin-horizontal.px: 11
+
+-- ftd.text: to get updated when we go live!
+role: $fonts.nunito-40
+color: $inherited.colors.text
+region: h1
+display: inline
+
+-- end: ftd.container
+
+-- end: lib.join-waitlist-popup.title
+
+-- end: lib.join-waitlist-popup
+
+-- lib.hero: Deliver refreshing Web 3.0 campaigns!
+cta-text: Get Started
+$show-signup: $show-waitlist-popup
+
+Build your brand's fan-base in web 3.0 with us!
+
+-- lib.carousel:
+$active-item: $current-active
+
+-- lib.simple-steps: **WHY ADMINT?**
+src: $assets.files.static.carousel.simple.svg
+index: 1
+reset: $current-active
+
+-- lib.simple-steps.subtitle:
+
+-- ftd.container:
+
+-- ftd.text: Make your brand &quot;
+display: inline-block
+
+-- ftd.text: Web 3.0 ready
+display: inline
+color: $inherited.colors.border
+
+-- ftd.text: &quot;
+display: inline
+
+-- ftd.text: via structured campaign phases:
+display: inline-block
+display if { ftd.device == "mobile" }: inline
+margin-left.px if { ftd.device == "mobile" }: 8
+
+-- end: ftd.container
+
+-- end: lib.simple-steps.subtitle
+
+-- lib.feature-card: 1
+
+ Reach out to existing audience base via known channels. 
+
+-- lib.feature-card: 2
+
+ Identify & segregate your “web 3.0 ready” audience pool. 
+
+-- lib.feature-card: 3
+
+ Extend real-world benefits & build your metaverse fanbase! 
+
+-- end: lib.simple-steps
+
+-- lib.structured: **WHY ADMINT?**
+src: $assets.files.static.carousel.structured.svg
+index: 2 
+reset: $current-active
+
+-- lib.structured.subtitle:
+
+-- ftd.container:
+width: fill-container
+
+-- ftd.text: Campaigns are structured to mimic  
+display: inline-block
+
+-- ftd.text: standard known processes:
+display: inline-block
+color: $inherited.colors.border
+margin-horizontal.px if { ftd.device != "mobile" }: 11
+display if { ftd.device == "mobile" }: inline
+
+-- ftd.text: Planning, Set Up, Execution & Analysis
+display: inline-block
+display if { ftd.device == "mobile" }: inline
+margin-left.px if { ftd.device == "mobile" }: 8
+
+
+-- end: ftd.container
+
+-- end: lib.structured.subtitle
+
+-- lib.structured.body:
+
+Follow along our guided walkthroughs to sequentially construct
+all the necessary components to launch a campaign.
+
+-- lib.keymedia-vehicle: **WHY ADMINT?**
+src: $assets.files.static.carousel.keymedia.svg 
+index: 3 
+reset: $current-active
+
+-- lib.keymedia-vehicle.subtitle:
+
+-- ftd.container:
+
+-- ftd.text: NFTs are our
+display: inline-block
+
+-- ftd.text: key media vehicle
+display: inline-block
+color: $inherited.colors.border
+margin-horizontal.px: 11
+margin-horizontal.px if { ftd.device == "mobile" }: 8
+display if { ftd.device == "mobile" }: inline
+
+-- ftd.text: 
+display: inline
+
+to run  campaigns. You can even mint your own!
+
+-- end: ftd.container
+
+-- end: lib.keymedia-vehicle.subtitle
+
+-- lib.keymedia-vehicle.body:
+
+With AdMint you can create your very own custom NFT collection
+or use pre-minted NFTs (if yet unsure!) to power your campaigns.
+
+-- lib.distribute-nft: **WHY ADMINT?**
+src: $assets.files.static.carousel.distribute.svg
+index: 4 
+reset: $current-active
+
+-- lib.distribute-nft.subtitle:
+
+-- ftd.container:
+
+-- ftd.text: We help you
+display: inline-block
+
+-- ftd.text: distribute, validate & track
+display: inline-block
+margin-horizontal.px: 11
+margin-horizontal.px if { ftd.device == "mobile" }: 8
+color: $inherited.colors.border
+display if { ftd.device == "mobile" }: inline
+
+-- ftd.text:  
+display: inline
+
+your NFTs via custom tools & templates. A one-stop ad stack! 
+
+-- end: ftd.container
+
+-- end: lib.distribute-nft.subtitle
+
+-- lib.distribute-nft.body:
+
+With AdMint's custom tools & templates, you can ensure that
+your intended audience receive the NFTs and avail the 
+associated real-world brand offerings.
+
+-- lib.analyze-pane: **WHY ADMINT?**
+src: $assets.files.static.carousel.analyze.svg
+index: 5
+reset: $current-active
+
+-- lib.analyze-pane.subtitle:
+
+-- ftd.container:
+
+-- ftd.text: Analyze & consolidate
+display: inline
+color: $inherited.colors.border
+margin-right.px: 11
+display if { ftd.device == "mobile" }: inline-block
+
+-- ftd.text:
+display: inline
+
+the strategy that works best for your brand! Run your web 3.0 experiments.
+
+-- end: ftd.container
+
+-- end: lib.analyze-pane.subtitle
+
+-- lib.analyze-pane.body:
+
+Watch the numbers. See the plan take shape. Measure that ROI. 
+Stake your claim across the Metaverses!
+
+-- end: lib.carousel
+
+-- lib.help-banner:
+cta-label: Let's Learn
+cta-url: learn/
+image: $assets.files.static.help-banner.svg
+
+-- lib.help-banner.title:
+
+-- ftd.container:
+
+-- ftd.text: NFTs are our preferred
+display: inline
+
+-- ftd.text: media vehicle!
+color: $inherited.colors.cta-primary.base
+display: inline-block
+display if { ftd.device == "mobile" }: inline
+margin-horizontal.rem: 0.48
+
+-- ftd.text:
+display: inline-block
+display if { ftd.device == "mobile" }: inline
+
+You ask why? Because... Followed by the WHY NFTs?
+
+-- end: ftd.container
+
+-- end: lib.help-banner.title
+
+-- end: lib.help-banner
+
+-- lib.how-it-works: **HOW IT WORKS**
+
+-- lib.how-it-works.subtitle:
+
+-- ftd.container:
+
+-- ftd.text: Web 3.0 campaigns
+display: inline
+color: $inherited.colors.border
+margin-right.px: 11
+
+-- ftd.text: set up made simple.
+display: inline
+
+-- end: ftd.container
+
+-- end: lib.how-it-works.subtitle
+
+-- lib.how-it-works.body:
+
+AdMint offsets most of the technological challenges 
+associated with Web 3.0, allowing advertisers to focus 
+on strategy & campaign execution
+
+-- lib.carousel:
+$active-item: $current-cell
+min: 1
+max: 6
+small-height: true
+
+-- lib.works-cell: PLANNING
+number: 1
+right-src: $assets.files.static.carousel.planning-right-img.svg 
+left-src: $assets.files.static.carousel.planning-left-img.svg
+right-mob-src: $assets.files.static.carousel.planning-right-mob-new.svg
+left-mob-src: $assets.files.static.carousel.planning-left-mob.svg
+top-cell: You choose your brand’s campaign objective 
+bottom-cell: AdMint provides relevant web 3.0 context on the campaign execution.
+index: 1
+reset: $current-cell
+
+-- lib.works-cell: FUNDS
+number: 2
+left-src: $assets.files.static.carousel.fund-left-img.svg 
+right-src: $assets.files.static.carousel.fund-right-img.svg
+left-mob-src: $assets.files.static.carousel.fund-left-mob.svg 
+right-mob-src: $assets.files.static.carousel.fund-right-mob.svg
+top-cell: You set up funds via standard payment options 
+bottom-cell: AdMint handles your crypto wallets & transfers 
+index: 2
+reset: $current-cell
+
+-- lib.works-cell: NFTs
+number: 3
+left-src: $assets.files.static.carousel.nft-left-img.svg 
+right-src: $assets.files.static.carousel.nft-right-img.svg
+left-mob-src: $assets.files.static.carousel.nft-left-mob.svg 
+right-mob-src: $assets.files.static.carousel.nft-right-mob.svg
+top-cell: You provide us creatives to run the campaign
+bottom-cell: AdMint preps & converts them into NFT collections
+index: 3
+reset: $current-cell
+
+-- lib.works-cell: DISTRIBUTION
+number: 4
+left-src: $assets.files.static.carousel.dist-left-img.svg 
+right-src: $assets.files.static.carousel.dist-right-img.svg
+left-mob-src: $assets.files.static.carousel.dist-left-mob.svg 
+right-mob-src: $assets.files.static.carousel.dist-right-mob.svg
+top-cell: You identify target audience to receive the NFTs
+bottom-cell: AdMint provides tools and templates to enable distribution.
+index: 4
+reset: $current-cell
+
+-- lib.works-cell: UTILITY
+number: 5
+left-src: $assets.files.static.carousel.utility-left-img.svg 
+right-src: $assets.files.static.carousel.utility-right-img.svg
+left-mob-src: $assets.files.static.carousel.utility-left-mob.svg 
+right-mob-src: $assets.files.static.carousel.utility-right-mob.svg
+top-cell: You determine the real world value offering to consumers
+bottom-cell: AdMint helps validate NFT ownership & extends access 
+index: 5
+reset: $current-cell
+
+-- lib.works-cell: ANALYTICS
+number: 6
+left-src: $assets.files.static.carousel.analytics-img-left.svg 
+right-src: $assets.files.static.carousel.analytics-img-right.svg
+left-mob-src: $assets.files.static.carousel.analytics-left-mob.svg 
+right-mob-src: $assets.files.static.carousel.analytics-right-mob.svg
+top-cell: You define campaign objectives & success metrics
+bottom-cell: AdMint provides web 2.0 & web 3.0 data to analyse your campaign  
+index: 6
+reset: $current-cell
+
+-- end: lib.carousel
+
+-- end: lib.how-it-works
+
+-- lib.advertisement:
+tagline: **ADVERTISING IN WEB 3.0**
+
+-- lib.advertisement.title:
+
+-- ftd.container:
+
+-- ftd.text: How advertising in web 3.0
+role: $inherited.types.heading-medium
+color: $inherited.colors.text
+region: h1
+display: inline
+
+-- ftd.text: different....
+role: $inherited.types.heading-medium
+color: $inherited.colors.cta-primary.base
+region: h1
+display: inline
+margin-left.px: 11
+
+-- end: ftd.container
+
+-- end: lib.advertisement.title
+
+-- lib.advertisement-card: Transparent Yet Private
+src: $assets.files.static.advertising.Transparent-Yet-Private.svg
+
+In the decentralized web, there's no room for cookies, device
+Ids or tracking individuals. New user data is protected, 
+anonymized, and yet accessible for all, via simple clicks 
+across blockchain explorers. As a brand, what do you
+measure & how?
+
+-- lib.advertisement-card: New Data is Universal
+src: $assets.files.static.advertising.newData.svg
+
+Data no longer sits under one roof, to be used or misused 
+without proper consent from the individual users. But we 
+do get to see any and all trasactions across
+wallets, brand tokens, NFTs & crypto currencies. As a brand,
+focus on behavioral traits rather than individuals?
+
+-- lib.advertisement-card: The target is always moving
+src: $assets.files.static.advertising.target-is-always-moving.svg
+
+Your NFTs are transitionary! Here today, there tomorrow. Your
+high value customer-base is no longer "male, 22-40, SEC A+" 
+but "wallets on Polygon, having BAYC NFT, with $500+ liquid 
+crypto holdings". As a brand, how do you get them to use 
+your NFTs?
+
+-- lib.advertisement-card: Everyone is everywhere
+src: $assets.files.static.advertising.everyone-is-everywhere.svg
+
+Metaverse and other web 3.0 destinations are global. You no 
+longer have audiences restricted to local & hyperlocal cohorts.
+Your brand now caters to a slew of anonymized wallets across 
+global platforms. As a brand, how will you use your regional
+web 3.0 budget?
+
+-- end: lib.advertisement
+
+-- lib.help-banner:
+cta-label: Let's Learn
+cta-url: learn/
+image: $assets.files.static.help-banner.svg
+
+-- lib.help-banner.title:
+
+-- ftd.container:
+width.fixed.percent if { ftd.device == "desktop" }: 80
+
+-- ftd.text: Confused about everything Web 3.0?
+role: $inherited.types.heading-small
+color: $inherited.colors.cta-primary.base
+region: h1
+display: inline
+margin-right.px: 9
+
+-- ftd.text: Don't worry, we will help you ! Lezzzgoooooo!
+role: $inherited.types.heading-small
+color: $inherited.colors.text
+region: h1
+display: inline
+
+-- end: ftd.container
+
+-- end: lib.help-banner.title
+
+-- end: lib.help-banner
+
+-- lib.sneak-peak:
+image: $assets.files.static.carousel.sneak-peak.png
+bg-image: $assets.files.static.carousel.sneak-bg.png
+cta-text: Get Started
+$cta-event: $show-waitlist-popup
+
+-- lib.sneak-peak.title:
+
+-- ftd.container:
+width.fixed.percent if { ftd.device == "desktop" }: 60
+
+-- ftd.text: A 
+role: $fonts.heading-md
+color: $inherited.colors.text
+region: h1
+display: inline
+
+-- ftd.text: sneak peek
+role: $fonts.heading-md
+color: $inherited.colors.cta-primary.base
+region: h1
+display: inline
+margin-horizontal.px: 11
+margin-horizontal.px if { ftd.device == "mobile" }: 8
+
+-- ftd.text: into the AdMint platform. See how simple it really is!
+role: $fonts.heading-md
+color: $inherited.colors.text
+region: h1
+display: inline
+
+-- end: ftd.container
+
+-- end: lib.sneak-peak.title
+
+-- end: lib.sneak-peak
+
+-- lib.join-waitlist-form: 
+name-label: Name
+identity-label: Who are you?
+org-label: Organization Name
+email-label: Email id
+cta-text: Join waitlist
+
+-- lib.join-waitlist-form.title:
+
+-- ftd.container:
+width.fixed.percent if { ftd.device == "desktop" }: 80
+region: h1
+
+-- ftd.text: Join the
+role: $inherited.types.heading-large
+color: $inherited.colors.text
+display: inline-block
+
+-- ftd.text: waitlist
+role: $inherited.types.heading-large
+color: $inherited.colors.cta-primary.base
+display: inline-block
+margin-horizontal.px: 14
+margin-horizontal.px if { ftd.device == "mobile" }: 8
+
+-- ftd.text: to get updated when we go live!
+role: $inherited.types.heading-large
+color: $inherited.colors.text
+display: inline-block
+
+-- end: ftd.container
+
+-- end: lib.join-waitlist-form.title
+
+-- end: lib.page

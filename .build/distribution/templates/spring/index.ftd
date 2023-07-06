@@ -1,0 +1,325 @@
+-- import: public-pages/assets
+-- import: public-pages/distribution/templates/spring/lib
+-- import: public-pages/distribution/templates/spring/images as images
+-- import: public-pages/distribution/templates/spring/texts as texts
+-- import: public-pages/distribution/templates/spring/functions as funct
+
+-- string $loadedState: loaded
+
+
+-- lib.window-popup:
+pic: $images.popup-image
+title: $texts.popup-title
+body : $texts.popup-body
+
+-- lib.loader:
+if: { $loadedState == "loading" }
+
+-- lib.page:
+if: { $loadedState == "loaded" }
+
+-- lib.hero: Reframe the Future
+heading: Empowering Change, Transforming Lives
+cover: $assets.files.images.sample.png
+
+Welcome to Reframe the Future, a campaign dedicated to empowering individuals and 
+transforming lives. Our mission is to reshape the world we live in, creating a future 
+that is inclusive, sustainable, and filled with opportunity. 
+
+-- lib.image-with-button: Heading of Section
+pic: $assets.files.images.sample.png
+text-1: **Spring** : 
+text-2: **Spring** : 
+val-1: Future
+val-2: $texts.nft-type
+button-1: Click Here
+button-2: View Button
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.countdown-with-info: Heading of Section
+pic: $assets.files.images.sample.png
+heading: 30 | February | 2023
+icon: $assets.files.images.location_on.png
+text: Somewhere in the universe
+counter: 7 days : 6 hr : 5 min
+reminder: Time is running away
+
+-- lib.container-with-title: Heading of Section
+
+-- lib.image-with-content: This is first
+pic: $assets.files.images.sample.png
+number: 01
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.image-with-content: This is second
+pic: $assets.files.images.sample.png
+number: 02
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.image-with-content: This is third
+pic: $assets.files.images.sample.png
+number: 03
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- end: lib.container-with-title
+
+-- lib.about: Heading of Section
+pic: $assets.files.images.sample.png
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.container-with-title: FAQs
+
+-- lib.faq: How can I use this template?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.faq: How can I use this template?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.faq: How can I use this template?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.faq: How can I use this template?
+
+ 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.faq: How can I use this template?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.faq: How can I use this template?
+$id: faq-s
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.faq: How can I use this template?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.faq: How can I use this template?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.faq: How can I use this template?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.faq: How can I use this templates?
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- end: lib.container-with-title
+
+-- end: lib.page
+
+-- lib.tc-popup:
+title: Terms and Conditions Title
+head: These are the Terms and Conditions
+
+By claiming this, you acknowledge that you have read, 
+understood, and agreed to these terms and conditions.
+
+-- lib.tc-item: Eligibility
+number: (1)
+
+1.1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua.
+
+1.2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua.
+
+1.3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliquay.
+
+-- lib.tc-item: Heading-2
+number: (2)
+
+2.1. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor  by the organizers such as your name and working email address.
+
+2.2. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+
+2.3. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+
+2.4. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+
+2.5. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+
+2.6. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+
+2.7. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+
+2.8. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+  
+2.9. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor 
+  
+2.10. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.tc-item-item: Privacy and Data Protection
+number: 2.11
+
+2.11.1  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+    
+2.11.2  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+    
+2.11.3  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+2.11.4  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+2.11.5  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+2.11.6  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+2.11.7  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+2.11.8  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.tc-item-item: Security
+number: 2.12
+
+2.12.1  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+2.12.2  KLorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+2.12.3  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+2.12.4  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis..
+
+-- lib.tc-item: Ownership and Usage Rights
+number: (3)
+
+3.1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+3.2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+3.3 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.tc-item: Compliance with Laws
+number: (4)
+
+4.1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+4.2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.tc-item: Disclaimer of Warranty
+number: (5)
+
+5.1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+5.2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.tc-item: Limitation of Liability
+number: (6)
+
+6.1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+6.2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- lib.tc-item: Amendments and Termination
+number: (7)
+
+7.1 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+7.2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+
+-- lib.tc-item: Governing Law and Jurisdiction
+number: (8)
+
+8.1 These terms and conditions shall be governed by and construed in accordance with the laws of the Philippines.
+
+8.2 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt 
+ut labore et dolore magna aliqua. Fames ac turpis egestas maecenas pharetra convallis 
+posuere morbi. In ornare quam viverra orci sagittis eu volutpat odio facilisis.
+
+-- end: lib.tc-popup
+
+
+

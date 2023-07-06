@@ -1,0 +1,31 @@
+-- import: fifthtry.github.io/doc-site as ds
+-- import: public-pages/docs
+-- import: public-pages/lib
+-- import: fifthtry.github.io/admint-cs as cs
+-- import: public-pages/common
+-- import: fifthtry.github.io/admint-typography as typo
+-- import: public-pages/assets
+
+
+
+
+-- ds.page: Blog
+show-footer: true
+site-logo: $assets.files.static.admint-logo.svg
+colors: $cs.main
+types: $typo.types
+$widthfill: true
+sections: $lib.sitemap.sections
+
+
+-- ds.page.footer:
+
+-- docs.footer:
+
+-- end: ds.page.footer
+
+-- ds.page.body:
+
+Documentation work in in progress.
+
+-- end: ds.page

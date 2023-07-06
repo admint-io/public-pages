@@ -1,6 +1,5 @@
 js/config.js
 .packages
-.build
 .DS_Store
 .idea
 distribution/templates/holy-angel/js/config.js
